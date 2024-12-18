@@ -1,0 +1,85 @@
+<th:block th:fragment="content">
+	<div class="p-3">
+		<div class="row gap-3">
+			<div class="col card-dashboard">
+				<div class="card-dashboard-content">
+					<p>
+						<i class="bi bi-person-gear" style="font-size: 64px"></i>
+					</p>
+					<p class="card-dashboard-number">5</p>
+				</div>
+				<p class="card-dashboard-title">Bilangan Pengguna Super Admin</p>
+			</div>
+			<div class="col card-dashboard">
+				<div class="card-dashboard-content">
+					<p>
+						<i class="bi bi-person-vcard-fill" style="font-size: 64px"></i>
+					</p>
+					<p class="card-dashboard-number ps-3">5</p>
+				</div>
+				<p class="card-dashboard-title">Bilangan Pengguna State Admin</p>
+			</div>
+			<div class="col card-dashboard">
+				<div class="card-dashboard-content">
+					<p>
+						<i class="bi bi-person-square" style="font-size: 64px"></i>
+					</p>
+					<p class="card-dashboard-number ps-3">25</p>
+				</div>
+				<p class="card-dashboard-title">Bilangan Pengguna PPD Admin</p>
+			</div>
+			<div class="col card-dashboard">
+				<div class="card-dashboard-content">
+					<p>
+						<i class="bi bi-person-workspace" style="font-size: 64px"></i>
+					</p>
+					<p class="card-dashboard-number ps-3">250</p>
+				</div>
+				<p class="card-dashboard-title">Bilangan Pengguna School Admin</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="dashboard-graph ">
+		<div class="card-graph graph-1">
+			<div>
+				<p>Bilangan Pengguna mengikut jenis</p>
+			</div>
+			<div class="card-canvas">
+				<canvas id="barChart"></canvas>
+			</div>
+		</div>
+
+		<div class="card-graph graph-2">
+			<div class="p-3">
+				<p class="p-0 m-0">Bilangan Pengguna Mengikut Daerah</p>
+				<hr>
+				<div style="width: 200px;">
+					<div class="floating-form-group">
+						<select class="floating-select" value="">
+							<option value="" selected disabled hidden></option>
+							<option value="1">Skudai</option>
+						</select> <label class="floating-select-label">Jenis Daerah</label>
+					</div>
+				</div>
+				<hr>
+			</div>
+			<div class="canvas-graph">
+				<canvas id="donutChart"></canvas>
+			</div>
+		</div>
+
+		<div class="card-graph graph-3">
+			<div>
+				<p>Log Pengguna</p>
+			</div>
+			<div class="canvas-graph">
+				<canvas id="lineChart"></canvas>
+			</div>
+		</div>
+
+	</div>
+
+	<th:block th:replace="fragments/chartscripts :: chartscripts"></th:block>
+
+</th:block>

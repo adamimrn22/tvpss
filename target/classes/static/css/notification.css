@@ -1,0 +1,74 @@
+.btn-noti {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background-color: var(--white);
+	border: 1px solid var(--gray-500);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.btn-noti:hover {
+	background-color: var(--gray-200);
+}
+
+.title-noti {
+	padding: 10px;
+}
+
+.title-noti span {
+	text-align: end;
+}
+
+.notification-card {
+	max-height: 300px;
+	overflow-y: auto;
+	width: 300px;
+	border-radius: 10px;
+}
+
+/* Add shadow and background for card */
+.notification-card .card {
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+}
+
+/* Notification Item Styling */
+.notification-item {
+	display: flex;
+	align-items: flex-start;
+	padding: 12px;
+	/* Divider between notifications */
+}
+
+.notification-item .badge {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+}
+
+.notification-item strong {
+	display: block;
+	font-weight: bold;
+}
+
+.notification-item p {
+	margin: 0;
+	font-size: 0.9rem;
+}
+
+.notification-item small {
+	font-size: 0.8rem;
+	color: #6c757d;
+}
+
+/* Footer link styling */
+.card-footer .btn-link {
+	color: #007bff;
+	text-decoration: none;
+}

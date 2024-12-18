@@ -1,0 +1,177 @@
+.floating-datepicker {
+	width: 100%;
+	height: 50px;
+	padding: 16px 14px;
+	border: 1px solid var(--primary);
+	border-radius: 4px;
+	font-size: 16px;
+	outline: none;
+	box-sizing: border-box;
+	transition: all 0.2s ease;
+	background-color: var(--white);
+	color: var(--primary);
+}
+
+.floating-datepicker-label {
+	position: absolute;
+	top: 50%;
+	left: 14px;
+	transform: translateY(-50%);
+	background-color: var(--white);
+	padding: 0 4px;
+	color: var(--gray-600);
+	font-size: 16px;
+	transition: all 0.2s ease;
+	pointer-events: none;
+}
+
+.floating-datepicker:focus {
+	border-color: var(--primary) !important;
+	border-width: 2px;
+	color: var(--primary);
+}
+
+.floating-datepicker:active {
+	border-color: var(--primary) !important;
+	color: var(--primary);
+}
+
+.floating-datepicker:focus+.floating-datepicker-label,
+	.floating-datepicker:not(:placeholder-shown)+.floating-datepicker-label
+	{
+	top: 0;
+	font-size: 12px;
+	color: var(--primary);
+	transform: translateY(-50%);
+}
+
+.floating-datepicker.error {
+	border-color: var(--error);
+}
+
+.floating-datepicker.error+.floating-datepicker-label {
+	color: var(--error);
+}
+
+.floating-datepicker:disabled {
+	background-color: var(--gray-100);
+	border-color: var(--gray-200);
+	cursor: not-allowed;
+}
+
+.floating-datepicker:disabled+.floating-datepicker-label {
+	color: var(--gray-300);
+}
+
+.date-picker-container {
+	position: relative;
+	display: inline-block;
+}
+
+#dateInput {
+	padding: 10px;
+	font-size: 16px;
+	width: 200px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.custom-date-picker {
+	position: absolute;
+	top: 120%;
+	left: 0;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	padding: 15px;
+	z-index: 1000;
+	display: none;
+	width: 350px;
+}
+
+.date-picker-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.date-picker-header span {
+	font-weight: bold;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.date-picker-header button {
+	background: none;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.date-picker-header button:hover, .date-picker-header span:hover {
+	color: #007bff;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+th, td {
+	text-align: center;
+	padding: 8px;
+	cursor: pointer;
+}
+
+th {
+	font-weight: bold;
+}
+
+td {
+	border-radius: 15%;
+}
+
+td:hover {
+	background: var(--gray-100);
+}
+
+.selected {
+	background: #007bff;
+	color: white;
+}
+
+.disabled {
+	color: #ccc;
+	pointer-events: none;
+}
+
+.year-picker {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+}
+
+.year-picker div {
+	padding: 10px;
+	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.year-picker div:hover {
+	background: #f0f0f0;
+}
+
+.year-picker .selected {
+	background: #007bff;
+	color: white;
+}
+
+.hidden {
+	display: none;
+}

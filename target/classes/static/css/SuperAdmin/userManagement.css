@@ -1,0 +1,77 @@
+.breadcrumb-item a {
+	color: var(--primary);
+	text-decoration: none;
+}
+
+.end-btn {
+	padding: 0px 20px;
+	display: flex;
+	justify-content: end;
+}
+
+.badge-super-admin {
+	background-color: #0057b4;
+	color: #fff;
+}
+
+.badge-admin-ppd {
+	background-color: #063811;
+	color: #fff;
+}
+
+.badge-admin-sekolah {
+	background-color: #3b0a0e;
+	color: #fff;
+}
+
+.badge-admin-state {
+	background-color: #856404;
+	color: #fff;
+}
+
+.table-actions {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.table-actions button:hover {
+	background-color: var(--gray-200);
+}
+
+.table-actions button i {
+	font-size: 1.2rem;
+}
+
+.th-header th {
+  color: var(--gray-500);
+  font-weight: bold; 
+  text-transform: uppercase;  
+  padding: 10px;   
+}
+
+th, td {
+    cursor: default;
+}
+
+td {
+	color: var(--gray-600) !important;
+}
+
+.hover-edit, .hover-delete {
+  color: var(--gray-300); 
+}
+
+
+
+.hover-edit:hover {
+	color: var(--green-500);
+	background-color: var(--green-100) !important;
+}
+
+.hover-delete:hover {
+	color: var(--red-500);
+	background-color: var(--red-100) !important;
+}
+ 
+ 

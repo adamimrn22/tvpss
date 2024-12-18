@@ -1,0 +1,18 @@
+.floating-form-group {
+	position: relative;
+	width: 100%;
+	margin: 20px 0px 0px 0px;
+	padding: 0;
+}
+
+.form-helper {
+	font-size: 12px;
+	color: var(--gray-600);
+	padding: 0;
+	margin-top: 0;
+	margin-left: 5px;
+}
+
+.form-helper.error {
+	color: var(--error);
+}

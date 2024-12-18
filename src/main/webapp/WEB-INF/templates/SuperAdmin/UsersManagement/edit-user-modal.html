@@ -1,0 +1,117 @@
+
+<!-- Add User Modal -->
+<div th:fragment="editUserModal">
+	<div class="modal fade" id="editUserModal" tabindex="-1"
+		aria-labelledby="editUserModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editUserModalLabel"
+						style="color: #515B92">Kemaskini Pengguna</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="/StarMIS_TVPSS/SuperAdmin/Pengguna/TambahPengguna"
+						method="post">
+						<div class="p-3 pt-0">
+							<div>
+								<!-- Set the width here -->
+								<div class="floating-form-group">
+									<input type="text" class="floating-input" placeholder=" ">
+									<label class="floating-input-label">Nama Penuh Pengguna</label>
+								</div>
+							</div>
+							<div>
+								<!-- Set the width here -->
+								<div class="floating-form-group">
+									<input type="text" class="floating-input" placeholder=" ">
+									<label class="floating-input-label">Email Penuh
+										Pengguna</label>
+								</div>
+							</div>
+
+							<div>
+								<div class="floating-form-group">
+									<select class="floating-select" id="editUserTypeSelect">
+										<option value="" selected disabled hidden></option>
+										<option value="super-admin">Super Admin</option>
+										<option value="admin-state">Admin State</option>
+										<option value="admin-ppd">Admin PPD</option>
+										<option value="admin-school">Admin School</option>
+									</select> <label class="floating-select-label">Jenis Pengguna</label>
+								</div>
+
+								<!-- Daerah Dropdown -->
+								<div class="floating-form-group" id="editDaerahGroup"
+									style="display: none;">
+									<select class="floating-select">
+										<option value="" selected disabled hidden></option>
+										<option value="skudai">Skudai</option>
+										<option value="kulai">Kulai</option>
+										<option value="pontian">Pontian</option>
+										<option value="batu-pahat">Batu Pahat</option>
+									</select> <label class="floating-select-label">Daerah</label>
+								</div>
+
+								<!-- Nama Sekola Dropdown -->
+								<div class="floating-form-group" id="editSchoolGroup"
+									style="display: none;">
+									<select class="floating-select">
+										<option value="" selected disabled hidden></option>
+										<option value="smk-skudai">SMK Skudai</option>
+										<option value="smk-kulai">SMK Kulai</option>
+										<option value="smk-pontian">SMK Pontian</option>
+										<option value="smk-batu-pahat">SMK Batu Pahat</option>
+									</select> <label class="floating-select-label">Nama Sekolah</label>
+								</div>
+
+							</div>
+
+							<div class="d-flex justify-content-end mt-3"></div>
+						</div>
+					</form>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sm" data-bs-dismiss="modal">Batal</button>
+					<button class="btn btn-primary btn-sm" type="submit">Kemaskini</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+        document.querySelectorAll('.floating-select').forEach(select => {
+            select.addEventListener('change', function () {
+                this.setAttribute('value', this.value);
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const userTypeSelect = document.getElementById("editUserTypeSelect");
+            const daerahGroup = document.getElementById("editDaerahGroup");
+            const schoolGroup = document.getElementById("editSchoolGroup");
+
+            // Listen for changes in the "Jenis Pengguna" dropdown
+            userTypeSelect.addEventListener("change", function () {
+                const selectedValue = userTypeSelect.value;
+
+                if (selectedValue === "admin-ppd") {
+                    // Show only the Daerah dropdown
+                    daerahGroup.style.display = "block";
+                    schoolGroup.style.display = "none";
+                } else if (selectedValue === "admin-school") {
+                    // Show both Daerah and School dropdowns
+                    daerahGroup.style.display = "block";
+                    schoolGroup.style.display = "block";
+                } else {
+                    // Hide both dropdowns for other user types
+                    daerahGroup.style.display = "none";
+                    schoolGroup.style.display = "none";
+                }
+            });
+        });
+ </script>

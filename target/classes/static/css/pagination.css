@@ -1,0 +1,19 @@
+.pagination .page-item .page-link {
+	color: var(--gray-600);  	
+}
+
+.pagination .page-item:hover .page-link:hover {
+	color: var(--white);  	
+	background-color: var(--primary-lighter) !important;	
+}
+ 
+
+.pagination .page-item.active .page-link {
+	color: var(--white) !important;
+	border-color: var(--primary);
+	background-color: var(--primary) !important;	
+}
+
+.pagination .page-item.active:hover .page-link {
+	background-color: var(--primary-darker) !important;
+}

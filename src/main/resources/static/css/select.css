@@ -1,0 +1,67 @@
+.floating-select {
+	width: 100%;
+	color: var(--primary);
+	height: 50px;
+	padding: 0 14px;
+	border: 1px solid var(--gray-300);
+	border-radius: 4px;
+	font-size: 16px;
+	outline: none;
+	box-sizing: border-box;
+	transition: all 0.2s ease;
+	background-color: var(--white);
+	cursor: pointer;
+	appearance: none;
+	-moz-appearance: none;
+	background-image:
+		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 16px;
+	padding-right: 40px;
+	line-height: 1.5;
+}
+
+.floating-select-label {
+	position: absolute;
+	top: 50%;
+	left: 14px;
+	transform: translateY(-50%);
+	background-color: var(--white);
+	padding: 0 4px;
+	color: var(--gray-600);
+	font-size: 16px;
+	transition: all 0.2s ease;
+	pointer-events: none;
+}
+
+.floating-select:focus {
+	border-color: var(--primary);
+	border-width: 2px;
+}
+
+.floating-select:focus+.floating-select-label, .floating-select:not([value=""])+.floating-select-label
+	{
+	top: 0;
+	font-size: 12px;
+	color: var(--primary);
+	transform: translateY(-50%);
+}
+
+.floating-select.error {
+	border-color: var(--error);
+}
+
+.floating-select.error+.floating-select-label {
+	color: var(--error);
+}
+
+.floating-select:disabled {
+	background-color: var(--gray-100);
+	border-color: var(--gray-200);
+	cursor: not-allowed;
+}
+
+.floating-select:disabled+.floating-select-label {
+	color: var(--gray-300);
+}

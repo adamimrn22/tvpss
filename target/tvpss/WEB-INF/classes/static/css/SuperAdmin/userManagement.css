@@ -1,0 +1,56 @@
+.breadcrumb-item a {
+	color: var(--primary);
+	text-decoration: none;
+}
+
+.end-btn {
+	padding: 0px 20px;
+	display: flex;
+	justify-content: end;
+}
+
+.badge-super-admin {
+	background-color: #0057b4;
+	color: #fff;
+}
+
+.badge-admin-ppd {
+	background-color: #063811;
+	color: #fff;
+}
+
+.badge-admin-sekolah {
+	background-color: #3b0a0e;
+	color: #fff;
+}
+
+.badge-admin-state {
+	background-color: #856404;
+	color: #fff;
+}
+
+.table-actions {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.table-actions button:hover {
+	background-color: var(--gray-200);
+}
+
+.table-actions button i {
+	font-size: 1.2rem;
+}
+
+.pagination .page-item.active .page-link {
+	background-color: var(--bs-primary) !important;
+}
+
+.pagination .page-item.active:hover .page-link {
+	background-color: var(--bs-primary) !important;
+}
+
+a>active:hover .page-link {
+	background-color: var(--bs-primary) !important;
+}
