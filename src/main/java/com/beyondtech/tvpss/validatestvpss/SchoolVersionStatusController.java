@@ -11,7 +11,7 @@ public class SchoolVersionStatusController {
 
 	@GetMapping("/InformasiTVPSS")
 	public String viewAllSchoolStatus(Model model) throws AccessDeniedException {
-		String role = "stateadmin";
+		String role = "ppdadmin";
 		model.addAttribute("pageTitle", "Status TVPSS");
 		if (role == "ppdadmin") {
 			model.addAttribute("role", "ppdadmin");
@@ -32,4 +32,29 @@ public class SchoolVersionStatusController {
 		return "layouts/admin-layouts";
 	}
 
+	@GetMapping("/InformasiTVPSS/SchoolValidate")
+	public String viewValidateSchoolVersion(Model model) {
+		model.addAttribute("role", "ppdadmin");
+		model.addAttribute("currentPage", "AdminPPDInformasiTVPSS");
+		model.addAttribute("headerText", "Info Status TVPSS");
+		model.addAttribute("content", "PpdAdmin/SchoolVersionStatus/validate-school");
+		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
+		model.addAttribute("breadcrumbTitle2", "Butiran Sekolah");
+
+		return "layouts/admin-layouts";
+	}
+
+	@GetMapping("/InformasiTVPSS/SchoolDetails")
+	public String viewSchoolDetailsStateAdmin(Model model) {
+
+		model.addAttribute("role", "stateadmin");
+		model.addAttribute("currentPage", "StateAdminInformasiTVPSS");
+		model.addAttribute("headerText", "Info Status TVPSS");
+		model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-school-status-detail");
+
+		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
+		model.addAttribute("breadcrumbTitle2", "Butiran Sekolah");
+
+		return "layouts/admin-layouts";
+	}
 }

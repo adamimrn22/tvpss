@@ -86,3 +86,8 @@
   font-size: 1em;
   position: relative;
 }
+
+.custom-checkbox-label { 
+    font-size: 16px;
+    line-height: 30px; 
+}
