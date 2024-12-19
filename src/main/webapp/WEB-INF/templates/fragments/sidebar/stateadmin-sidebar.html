@@ -6,6 +6,10 @@
 	</a>
 	
 	 <a href="#crew" class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-patch-check"></i> Jana Sijil Pelajar </a> 
-	 <a href="#crew" class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-info-circle"></i> Informasi TVPSS Sekolah	</a>
+	  <a th:href="@{/InformasiTVPSS}"
+		th:classappend="${currentPage == 'StateAdminInformasiTVPSS' ? ' active pe-none' : ''}"
+		class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-info-circle"></i>
+		Informasi TVPSS Sekolah
+	</a>
 
 </div>

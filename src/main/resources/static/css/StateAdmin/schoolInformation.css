@@ -1,0 +1,12 @@
+ 
+
+.table-school thead th {
+    color: var(--gray-500);
+    text-transform: uppercase;
+        text-align: start;
+}
+
+.table-school tbody td {
+	color: var(--gray-500);
+	    text-align: start
+}
