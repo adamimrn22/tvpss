@@ -22,3 +22,24 @@
 	-webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.35);
 	-moz-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.35);
 }
+
+.btn-resume {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: white;
+  height: 50px; /* Adjust to match your input height */
+  text-align: left;
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+}
+
+.btn-resume:hover {
+  border-color: var(--primary);
+}
+
+/* If you need to adjust the floating label position */
+.btn-resume + .floating-input-label {
+  background: white;
+  padding: 0 0.3rem;
+}
+

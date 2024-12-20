@@ -1,0 +1,44 @@
+.custom-nav {
+    display: flex;
+    justify-content: flex-start;  
+    gap: 15px;
+}
+
+.custom-nav-link {
+	border-radius: 5px;
+    color: var(--gray-500);
+    text-decoration: none; 
+    display: flex;
+    align-items: center;  
+    justify-content: flex-start; 
+    padding: 8px 15px;  
+}
+
+.custom-nav-link:hover {
+   color: var(--white);
+   background-color: var(--primary)  
+}
+
+.custom-nav-link.active { 
+    color: var(--white);
+    background-color: var(--primary) 
+}
+
+.table-school thead th {
+	color: var(--gray-500);
+	text-transform: uppercase;
+	text-align: start;
+}
+
+.table-school tbody td {
+	color: var(--gray-500);
+	text-align: start
+}
+
+th, td {
+	cursor: default;
+}
+
+td {
+	color: var(--gray-600) !important;
+} 

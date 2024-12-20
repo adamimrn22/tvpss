@@ -65,12 +65,12 @@
 }
 
 .custom-checkbox:checked::after {
-  content: '';  /* Clear content because we'll insert the SVG */
-  display: block; /* Make sure the SVG is displayed */
-  width: 100%;    /* Make sure the SVG takes full width of the checkbox */
-  height: 100%;   /* Make sure the SVG takes full height of the checkbox */
+  content: ''; 
+    display: block;
+  width: 100%;
+  height: 100%;
   background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20stroke%3D%22none%22%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M5%2012l5%205l10%20-10%22%2F%3E%3C%2Fsvg%3E') no-repeat center center;
-  background-size: contain; /* Ensure SVG is properly scaled */
+  background-size: contain; 
 }
 
 .custom-checkbox {

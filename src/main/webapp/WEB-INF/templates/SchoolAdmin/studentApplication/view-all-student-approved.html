@@ -1,0 +1,116 @@
+
+<div
+	th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}">
+</div>
+
+<div class="card p-3">
+
+	<div class="custom-nav mb-3">
+		<a class="custom-nav-link " th:href="@{/StudentApplication}">Pending</a> <a
+			class="custom-nav-link active" th:href="@{/StudentApplication/Approve}">Lulus</a> <a
+			class="custom-nav-link " th:href="@{/StudentApplication/Rejected}">Ditolak</a>
+	</div>
+	<h3 style="color: var(--primary)">Maklumat Pelajar</h3>
+	<div class="d-flex justify-content-end">
+		<button class="btn btn-outline-danger  btn-sm	">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+				viewBox="0 0 24 24" fill="none" stroke="currentColor"
+				stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+				class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
+					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+					<path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
+					<path d="M17 18h2" />
+					<path d="M20 15h-3v6" />
+					<path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>
+			<span class="mx-1">Eksport PDF</span>
+		</button>
+		<button class="btn btn-outline-success btn-sm ms-2">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+				viewBox="0 0 24 24" fill="none" stroke="currentColor"
+				stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+				class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-xls">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
+					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+					<path d="M4 15l4 6" />
+					<path d="M4 21l4 -6" />
+					<path
+					d="M17 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" />
+					<path d="M11 15v6h3" /></svg>
+			<span class="mx-1">Eksport Excel</span>
+		</button>
+	</div>
+
+	<div class="d-flex justify-content-between align-items-end mb-3">
+		<div>
+			<!-- Set the width here -->
+			<div class="floating-form-group" style="width: 400px">
+				<input type="text" class="floating-input" placeholder=" "> <label
+					class="floating-input-label">Cari Nama Pelajar...</label>
+			</div>
+		</div>
+
+		<div class="d-flex align-items-center">
+			<div class="d-flex align-items-center mx-4">
+				<label for="entries" class="mx-3">Tunjuk</label> <select
+					id="entries" class="form-select w-auto me-2">
+					<option>5</option>
+					<option selected>10</option>
+					<option>25</option>
+					<option>50</option>
+					<option>100</option>
+				</select> <span>Entri</span>
+			</div>
+		</div>
+	</div>
+
+	<table class="table table-school">
+		<thead>
+			<tr>
+				<th><input class="custom-checkbox" type="checkbox"></th>
+				<th>Bil</th>
+				<th>Nama Penuh Pelajar</th>
+				<th class="text-center">Kad Pengenalan</th>
+				<th class="text-center">Tingkatan</th>
+				<th class="text-center">Jawatan</th>
+				<th class="text-center">Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-first">
+				<td><input class="custom-checkbox" type="checkbox"></td>
+				<td>1</td>
+				<td>Mr. Tan Ah Kow</td>
+				<td class="text-center">030504010</td>
+				<td class="text-center">3</td>
+				<td class="text-center">Pembaca Berita</td>
+				<td class="text-center"><a class="btn btn-primary btn-sm"
+					th:href="@{/StudentApplication/Approved/Detail}"> <svg
+							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+							<path
+								d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg><span
+						class="mx-1">Lihat Permohonan</span>
+				</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<ul class="pagination justify-content-start m-3">
+		<li class="page-item"><a class="page-link" href="#"
+			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+		</a></li>
+		<li class="page-item active"><a class="page-link" href="#">1</a>
+		</li>
+		<li class="page-item"><a class="page-link" href="#">2</a></li>
+		<li class="page-item"><a class="page-link" href="#"
+			aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+		</a></li>
+	</ul>
+</div>

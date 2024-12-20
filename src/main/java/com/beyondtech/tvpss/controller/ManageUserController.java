@@ -1,4 +1,4 @@
-package com.beyondtech.tvpss.controller.users;
+package com.beyondtech.tvpss.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,0 +1,118 @@
+<div
+	th:replace="~{fragments/breadcrumbs :: breadcrumb3WithLink(
+    title1=${breadcrumbTitle1}, 
+    title2=${breadcrumbTitle2}, 
+    title3=${breadcrumbTitle3},
+    link1=${breadcrumbLink1},
+    link2=${breadcrumbLink2} 
+)}">
+</div>
+
+<div class="card p-3">
+	<form>
+		<div class="form-section row">
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" id="schoolName"
+						placeholder=" "> <label class="floating-input-label">Kad
+						Pengenalan Pelajar</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" id="address1"
+						placeholder=" "> <label class="floating-input-label">Nama
+						Penuh Pelajar</label>
+				</div>
+			</div>
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" id="address2"
+						placeholder=" "> <label class="floating-input-label">Alamat
+						Email</label>
+				</div>
+			</div>
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" id="postcode"
+						placeholder=" "> <label class="floating-input-label">Tarikh
+						Permohonan</label>
+				</div>
+			</div>
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<button class="floating-input btn-resume" type="button">
+						<span>Lihat Pautan Resume</span>
+					</button>
+					<label class="floating-input-label">Pautan Resume</label>
+				</div>
+			</div>
+
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<button class="floating-input btn-resume" type="button">
+						<span>Lihat Pautan Media Sosial</span>
+					</button>
+					<label class="floating-input-label">Pautan Media Sosial</label>
+				</div>
+			</div>
+
+			<div class="col-12">
+				<div class="floating-form-group">
+					<select class="floating-select" id="userTypeSelect">
+						<option value="" selected disabled hidden>Pilih Status
+							Permohonan</option>
+						<option value="super-admin">Lulus Permohonan</option>
+						<option value="admin-state">Tolak Permohonan</option>
+					</select> <label class="floating-select-label">Status Permohonan</label>
+				</div>
+			</div>
+
+			<div class="col-12 reason-textfield" id="reasonTextField"
+				style="display: none;">
+				<div class="floating-form-group">
+					<textarea id="reasonInput" name="reasonPenolakan"
+						style="height: 200px; resize: none; width: 100%;"
+						class="floating-input"></textarea>
+					<label class="floating-input-label" for="reasonInput">Alasan
+						Penolakan</label>
+
+				</div>
+			</div>
+
+			<!-- Submit Button -->
+			<div class="col-12 text-end mt-3">
+				<a class="btn me-2" th:href="@{${breadcrumbLink1}}"> Kembali </a>
+
+				<button type="submit" class="btn btn-primary">Kemaskini
+					Permohonan</button>
+			</div>
+
+		</div>
+	</form>
+</div>
+
+<script>
+
+document.getElementById('userTypeSelect').addEventListener('change', function () {
+    const reasonTextField = document.getElementById('reasonTextField');
+    const reasonInput = document.getElementById('reasonInput');
+    const selectedValue = this.value;
+
+    // If "Tolak Permohonan" is selected
+    if (selectedValue === 'admin-state') {
+        // Show the textarea and make it required
+        reasonTextField.style.display = 'block';
+        reasonInput.setAttribute('required', 'required'); // Set the required attribute
+    } else {
+        // Hide the textarea and remove the required attribute
+        reasonTextField.style.display = 'none';
+        reasonInput.removeAttribute('required'); // Remove the required attribute
+    }
+});
+
+
+</script>
