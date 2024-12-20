@@ -22,7 +22,9 @@
 		Informasi Sekolah
 	</a> 
 	
-	 <a href="#item" class="nav-link px-3 mx-3 mt-2">
+	 <a th:href="@{/EquipmentManagement}" 
+	 	th:classappend="${currentPage == 'EquipmentManagement' ? ' active pe-none' : ''}"
+	 	class="nav-link px-3 mx-3 mt-2">
 		<i class="bi bi-box"></i> Bilangan Barang
 	</a> 
 	

@@ -85,10 +85,9 @@
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	padding: 15px;
+	padding: 15px; 
 	z-index: 1000;
-	display: none;
-	width: 350px;
+	display: none; 
 }
 
 .date-picker-header {
@@ -112,31 +111,33 @@
 }
 
 .date-picker-header button:hover, .date-picker-header span:hover {
-	color: #007bff;
+	color: var(--primary);
 }
 
-table {
+.table-datepicker {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 10px;
 }
 
-th, td {
+.th-datepicker, .td-datepicker {
 	text-align: center;
 	padding: 8px;
-	cursor: pointer;
 }
 
-th {
+.th-datepicker {
 	font-weight: bold;
+	cursor: default !important;
 }
 
-td {
+.td-datepicker {
 	border-radius: 15%;
+	cursor: pointer !important;
 }
 
-td:hover {
-	background: var(--gray-100);
+.td-datepicker:hover {
+	color: var(--white) !important;
+	background: var(--primary) !important;
 }
 
 .selected {
@@ -172,6 +173,7 @@ td:hover {
 	color: white;
 }
 
-.hidden {
+.hidden-toggle {
 	display: none;
 }
+ 

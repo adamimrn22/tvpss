@@ -34,16 +34,16 @@ class DatePicker {
 
         // Add empty cells before the first day
         for (let i = 0; i < firstDayOfMonth; i++) {
-            daysHTML += '<td class="disabled"></td>';
+            daysHTML += '<td class=" disabled"></td>';
         }
 
         // Add days of the month
         for (let i = firstDayOfMonth; i < 7 * 6; i++) {
             if (i >= firstDayOfMonth && dayCounter <= daysInMonth) {
-                daysHTML += `<td data-date="${year}-${String(month + 1).padStart(2, '0')}-${String(dayCounter).padStart(2, '0')}">${dayCounter}</td>`;
+                daysHTML += `<td class="td-datepicker "data-date="${year}-${String(month + 1).padStart(2, '0')}-${String(dayCounter).padStart(2, '0')}">${dayCounter}</td>`;
                 dayCounter++;
             } else {
-                daysHTML += '<td class="disabled"></td>';
+                daysHTML += '<td class=" disabled"></td>';
             }
             if ((i + 1) % 7 === 0) {
                 daysHTML += '</tr><tr>';
@@ -67,7 +67,7 @@ class DatePicker {
 
     updateNavigation() {
         this.prevMonth.addEventListener('click', () => {
-            if (!this.calendarView.classList.contains('hidden')) {
+            if (!this.calendarView.classList.contains('hidden-toggle')) {
                 this.currentDate.setMonth(this.currentDate.getMonth() - 1);
                 this.renderCalendar();
             } else {
@@ -77,7 +77,7 @@ class DatePicker {
         });
 
         this.nextMonth.addEventListener('click', () => {
-            if (!this.calendarView.classList.contains('hidden')) {
+            if (!this.calendarView.classList.contains('hidden-toggle')) {
                 this.currentDate.setMonth(this.currentDate.getMonth() + 1);
                 this.renderCalendar();
             } else {
@@ -90,13 +90,13 @@ class DatePicker {
     setupEventListeners() {
         // Switch to year view when clicking month/year display
         this.monthYearDisplay.addEventListener('click', () => {
-            if (!this.calendarView.classList.contains('hidden')) {
-                this.calendarView.classList.add('hidden');
-                this.yearView.classList.remove('hidden');
+            if (!this.calendarView.classList.contains('hidden-toggle')) {
+                this.calendarView.classList.add('hidden-toggle');
+                this.yearView.classList.remove('hidden-toggle');
                 this.renderYearPicker();
             } else {
-                this.calendarView.classList.remove('hidden');
-                this.yearView.classList.add('hidden');
+                this.calendarView.classList.remove('hidden-toggle');
+                this.yearView.classList.add('hidden-toggle');
                 this.renderCalendar();
             }
         });
@@ -105,8 +105,8 @@ class DatePicker {
         this.yearView.addEventListener('click', (e) => {
             if (e.target.dataset.year) {
                 this.currentDate.setFullYear(e.target.dataset.year);
-                this.yearView.classList.add('hidden');
-                this.calendarView.classList.remove('hidden');
+                this.yearView.classList.add('hidden-toggle');
+                this.calendarView.classList.remove('hidden-toggle');
                 this.renderCalendar();
             }
         });
