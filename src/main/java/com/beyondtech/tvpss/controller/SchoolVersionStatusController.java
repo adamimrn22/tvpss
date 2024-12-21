@@ -15,7 +15,7 @@ public class SchoolVersionStatusController {
 		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "SubmitTVPSSVersion");
 		model.addAttribute("headerText", "Info Status TVPSS");
-		model.addAttribute("content", "SchoolAdmin/tvpssSubmission/submitTvpssVersion");
+		model.addAttribute("content", "SchoolAdmin/tvpssSubmission/submit-tvpss-version");
 
 		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
 		model.addAttribute("breadcrumbTitle2", "Submit Versi TVPSS");

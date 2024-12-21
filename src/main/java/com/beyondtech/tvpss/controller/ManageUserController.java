@@ -14,7 +14,7 @@ public class ManageUserController {
 		model.addAttribute("pageTitle", "View User");
 		model.addAttribute("role", "superadmin");
 		model.addAttribute("currentPage", "SuperAdminPengguna");
-		model.addAttribute("content", "SuperAdmin/UsersManagement/view");
+		model.addAttribute("content", "SuperAdmin/UsersManagement/view-all-user");
 
 		model.addAttribute("headerText", "Semua Pengguna");
 		model.addAttribute("breadcrumbTitle1", "Pengurusan Pengguna");

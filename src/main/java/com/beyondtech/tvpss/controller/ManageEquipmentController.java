@@ -14,7 +14,7 @@ public class ManageEquipmentController {
 		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "EquipmentManagement");
 		model.addAttribute("headerText", "Pengurusan Barang");
-		model.addAttribute("content", "SchoolAdmin/manageEquipment/viewEquipment");
+		model.addAttribute("content", "SchoolAdmin/manageEquipment/view-all-equipment");
 		model.addAttribute("breadcrumbTitle1", "Pengurusan Barang");
 		model.addAttribute("breadcrumbTitle2", "Semua Barang");
 

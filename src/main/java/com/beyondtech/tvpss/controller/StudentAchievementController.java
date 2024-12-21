@@ -15,7 +15,7 @@ public class StudentAchievementController {
 		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
-		model.addAttribute("content", "SchoolAdmin/studentAchievement/viewAllStudentAchievement");
+		model.addAttribute("content", "SchoolAdmin/studentAchievement/view-all-student-achievement");
 		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");
 		model.addAttribute("breadcrumbTitle2", "Semua Pencapaian");
 
@@ -28,9 +28,22 @@ public class StudentAchievementController {
 		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
-		model.addAttribute("content", "SchoolAdmin/studentAchievement/addStudentAchievement");
+		model.addAttribute("content", "SchoolAdmin/studentAchievement/add-student-chievement");
 		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");
 		model.addAttribute("breadcrumbTitle2", "Semua Pencapaian");
+
+		return "layouts/admin-layouts";
+	}
+
+	@GetMapping("/viewStudentAchievementDetail")
+	public String viewStudentAchievementDetail(Model model) {
+		model.addAttribute("pageTitle", "View Student Achievement Detail");
+		model.addAttribute("role", "schooladmin");
+		model.addAttribute("currentPage", "StudentAchievement");
+		model.addAttribute("headerText", "Pencapaian Pelajar");
+		model.addAttribute("content", "SchoolAdmin/studentAchievement/view-student-achievement-detail");
+		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");
+		model.addAttribute("breadcrumbTitle2", "KAE121");
 
 		return "layouts/admin-layouts";
 	}
