@@ -1,0 +1,327 @@
+
+<div class="p-3 pb-0">
+	<div
+		th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
+</div>
+
+<div class="p-3">
+	<!-- Main Form -->
+	<form id="studentForm" action="/your-controller-endpoint" method="POST">
+		<div class="card">
+			<div
+				class="card-header d-flex justify-content-between align-items-center">
+				<h5 class="mb-0">Student List</h5>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+					data-bs-target="#searchModal">Add Student</button>
+			</div>
+			<div class="card-body">
+				<table class="table" id="selectedStudentsTable">
+					<thead>
+						<tr>
+							<th style="width: 15%">ID</th>
+							<th style="width: 25%">Name</th>
+							<th style="width: 25%">Jenis Pencapaian</th>
+							<th style="width: 25%">Maklumat Pencapaian</th>
+							<th style="width: 10%">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Selected students will appear here -->
+					</tbody>
+				</table>
+
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="pagination-info">
+						Showing <span id="mainStartIndex">0</span> to <span
+							id="mainEndIndex">0</span> of <span id="mainTotalItems">0</span>
+						entries
+					</div>
+					<ul class="pagination" id="mainPagination">
+						<!-- Main pagination will be generated here -->
+					</ul>
+				</div>
+				<button type="submit" class="btn btn-success mt-3">Submit
+					Form</button>
+			</div>
+		</div>
+	</form>
+
+	<!-- Search Modal -->
+	<div class="modal fade" id="searchModal" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Search Students</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					<input type="text" class="form-control mb-3" id="searchInput"
+						placeholder="Search students...">
+					<table class="table" id="searchResultsTable">
+						<thead>
+							<tr>
+								<th style="width: 15%">ID</th>
+								<th style="width: 65%">Name</th>
+								<th style="width: 20%">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Search results will appear here -->
+						</tbody>
+					</table>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="pagination-info">
+							Showing <span id="modalStartIndex">0</span> to <span
+								id="modalEndIndex">0</span> of <span id="modalTotalItems">0</span>
+							entries
+						</div>
+						<ul class="pagination" id="modalPagination">
+							<!-- Modal pagination will be generated here -->
+						</ul>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+        // Sample student data - increased for pagination demo
+        const students = Array.from({ length: 50 }, (_, i) => ({
+            id: (i + 1).toString().padStart(3, '0'),
+            name: `Student ${i + 1}`
+        }));
+
+        // Pagination settings
+        const ITEMS_PER_PAGE = 10;
+        let currentMainPage = 1;
+        let currentModalPage = 1;
+        let filteredStudents = [...students];
+
+        // Selected students array
+        let selectedStudents = [];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const searchResultsTable = document.getElementById('searchResultsTable').getElementsByTagName('tbody')[0];
+        const selectedStudentsTable = document.getElementById('selectedStudentsTable').getElementsByTagName('tbody')[0];
+        
+        // Pagination functions
+        function generatePagination(totalItems, currentPage, itemsPerPage, containerId, onPageChange) {
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            const container = document.getElementById(containerId);
+            const startIndex = (currentPage - 1) * itemsPerPage + 1;
+            const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems);
+
+            // Update pagination info
+            const type = containerId === 'mainPagination' ? 'main' : 'modal';
+            document.getElementById(`${type}StartIndex`).textContent = totalItems ? startIndex : 0;
+            document.getElementById(`${type}EndIndex`).textContent = endIndex;
+            document.getElementById(`${type}TotalItems`).textContent = totalItems;
+
+            // Generate pagination buttons
+            let html = '';
+            
+            // First and Previous buttons
+            html += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="1">First</a>
+                </li>
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
+                </li>
+            `;
+
+            // Page numbers with ellipsis
+            const visiblePages = 5; // Number of pages to show
+            let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + visiblePages - 1);
+
+            // Adjust start if we're near the end
+            if (endPage - startPage + 1 < visiblePages) {
+                startPage = Math.max(1, endPage - visiblePages + 1);
+            }
+
+            // Show first page and ellipsis if needed
+            if (startPage > 1) {
+                html += `
+                    <li class="page-item"><a class="page-link" href="#" data-page="1">1</a></li>
+                    ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                `;
+            }
+
+            // Show page numbers
+            for (let i = startPage; i <= endPage; i++) {
+                html += `
+                    <li class="page-item ${currentPage === i ? 'active' : ''}">
+                        <a class="page-link" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `;
+            }
+
+            // Show last page and ellipsis if needed
+            if (endPage < totalPages) {
+                html += `
+                    ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                    <li class="page-item"><a class="page-link" href="#" data-page="${totalPages}">${totalPages}</a></li>
+                `;
+            }
+
+            // Next and Last buttons
+            html += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
+                </li>
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="${totalPages}">Last</a>
+                </li>
+            `;
+
+            container.innerHTML = html;
+
+            // Add event listeners
+            container.querySelectorAll('.page-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const newPage = parseInt(e.target.dataset.page);
+                    if (!isNaN(newPage) && newPage > 0 && newPage <= totalPages) {
+                        onPageChange(newPage);
+                    }
+                });
+            });
+        }
+ 
+
+        // Search functionality
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filteredStudents = students.filter(student => 
+                student.name.toLowerCase().includes(searchTerm) ||
+                student.id.toLowerCase().includes(searchTerm)
+            );
+            currentModalPage = 1; // Reset to first page on new search
+            displaySearchResults();
+        });
+
+        // Display search results with pagination
+        function displaySearchResults() {
+            const startIndex = (currentModalPage - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+            const paginatedStudents = filteredStudents.slice(startIndex, endIndex);
+
+            searchResultsTable.innerHTML = '';
+            paginatedStudents.forEach(student => {
+                const isAdded = selectedStudents.some(s => s.id === student.id);
+                const row = searchResultsTable.insertRow();
+                row.innerHTML = `
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>
+                        ${isAdded ? `
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-secondary btn-sm" disabled>
+                                    Added
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" 
+                                        onclick="removeStudent('${student.id}')">
+                                    Remove
+                                </button>
+                            </div>
+                        ` : `
+                            <button type="button" class="btn btn-success btn-sm" 
+                                    onclick="addStudent('${student.id}')">
+                                Add
+                            </button>
+                        `}
+                    </td>
+                `;
+            });
+
+            generatePagination(
+                filteredStudents.length,
+                currentModalPage,
+                ITEMS_PER_PAGE,
+                'modalPagination',
+                page => {
+                    currentModalPage = page;
+                    displaySearchResults();
+                }
+            );
+        }
+
+        // Add student to selected list
+        function addStudent(studentId) {
+            const student = students.find(s => s.id === studentId);
+            if (student && !selectedStudents.some(s => s.id === studentId)) {
+                selectedStudents.push({
+                    ...student,
+                    jenisPencapaian: '',
+                    maklumatPencapaian: ''
+                });
+                updateSelectedStudentsTable();
+                displaySearchResults();
+            }
+        }
+
+        // Remove student from selected list
+        function removeStudent(studentId) {
+            selectedStudents = selectedStudents.filter(s => s.id !== studentId);
+            updateSelectedStudentsTable();
+            displaySearchResults();
+        }
+
+        // Update selected students table with pagination
+        function updateSelectedStudentsTable() {
+            const startIndex = (currentMainPage - 1) * ITEMS_PER_PAGE;
+            const endIndex = startIndex + ITEMS_PER_PAGE;
+            const paginatedStudents = selectedStudents.slice(startIndex, endIndex);
+
+            selectedStudentsTable.innerHTML = '';
+            paginatedStudents.forEach((student, index) => {
+                const globalIndex = startIndex + index;
+                const row = selectedStudentsTable.insertRow();
+                row.innerHTML = `
+                    <td>
+                        <input type="hidden" name="students[${globalIndex}][id]" value="${student.id}">
+                        ${student.id}
+                    </td>
+                    <td>
+                        <input type="hidden" name="students[${globalIndex}][name]" value="${student.name}">
+                        ${student.name}
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="students[${globalIndex}][jenisPencapaian]" 
+                               value="${student.jenisPencapaian}" placeholder="Enter Jenis Pencapaian">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="students[${globalIndex}][maklumatPencapaian]" 
+                               value="${student.maklumatPencapaian}" placeholder="Enter Maklumat Pencapaian">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeStudent('${student.id}')">
+                            Remove
+                        </button>
+                    </td>
+                `;
+            });
+
+            generatePagination(
+                selectedStudents.length,
+                currentMainPage,
+                ITEMS_PER_PAGE,
+                'mainPagination',
+                page => {
+                    currentMainPage = page;
+                    updateSelectedStudentsTable();
+                }
+            );
+        }
+
+        // Initial display
+        displaySearchResults();
+        updateSelectedStudentsTable();
+    </script>

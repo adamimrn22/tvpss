@@ -9,6 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SchoolVersionStatusController {
 
+	@GetMapping("/SubmitTVPSSVersion")
+	public String submitSchoolVersion(Model model) {
+		model.addAttribute("pageTitle", "TVPSS Submission");
+		model.addAttribute("role", "schooladmin");
+		model.addAttribute("currentPage", "SubmitTVPSSVersion");
+		model.addAttribute("headerText", "Info Status TVPSS");
+		model.addAttribute("content", "SchoolAdmin/tvpssSubmission/submitTvpssVersion");
+
+		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
+		model.addAttribute("breadcrumbTitle2", "Submit Versi TVPSS");
+
+		return "layouts/admin-layouts";
+	}
+
 	@GetMapping("/InformasiTVPSS")
 	public String viewAllSchoolStatus(Model model) throws AccessDeniedException {
 		String role = "ppdadmin";
@@ -34,6 +48,7 @@ public class SchoolVersionStatusController {
 
 	@GetMapping("/InformasiTVPSS/SchoolValidate")
 	public String viewValidateSchoolVersion(Model model) {
+		model.addAttribute("pageTitle", "Validate School Version");
 		model.addAttribute("role", "ppdadmin");
 		model.addAttribute("currentPage", "AdminPPDInformasiTVPSS");
 		model.addAttribute("headerText", "Info Status TVPSS");
@@ -46,7 +61,7 @@ public class SchoolVersionStatusController {
 
 	@GetMapping("/InformasiTVPSS/SchoolDetails")
 	public String viewSchoolDetailsStateAdmin(Model model) {
-
+		model.addAttribute("pageTitle", "School Details");
 		model.addAttribute("role", "stateadmin");
 		model.addAttribute("currentPage", "StateAdminInformasiTVPSS");
 		model.addAttribute("headerText", "Info Status TVPSS");

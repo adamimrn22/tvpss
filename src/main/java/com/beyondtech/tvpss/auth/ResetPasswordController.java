@@ -9,9 +9,9 @@ public class ResetPasswordController {
 
 	@GetMapping("/resetpassword")
 	public String ResetPassword(Model model) {
+		model.addAttribute("role", "ppdadmin");
 		model.addAttribute("pageTitle", "ResetPassword");
 		model.addAttribute("currentPage", "resetpassword");
-		model.addAttribute("role", "ppdadmin");
 		model.addAttribute("content", "reset-password");
 		model.addAttribute("headerText", "Tukar Kata Laluan");
 

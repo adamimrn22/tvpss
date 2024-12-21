@@ -9,6 +9,7 @@ public class SchoolInformationController {
 
 	@GetMapping("/SchoolInformation")
 	public String viewSchoolInformation(Model model) {
+		model.addAttribute("pageTitle", "School Information");
 		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "SchoolInformation");
 		model.addAttribute("headerText", "Informasi Sekolah");
