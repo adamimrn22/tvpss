@@ -1,0 +1,80 @@
+<div
+	th:replace="~{fragments/breadcrumbs :: breadcrumb3WithLink(
+    title1=${breadcrumbTitle1}, 
+    title2=${breadcrumbTitle2}, 
+    title3=${breadcrumbTitle3},
+    link1=${breadcrumbLink1}, 
+)}">
+</div>
+
+<div class="card p-3">
+	<div class="form-section row">
+
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<input type="text" class="floating-input" id="schoolName"
+					value="" readonly> <label class="floating-input-label">Kad
+					Pengenalan Pelajar</label>
+			</div>
+		</div>
+
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<input type="text" class="floating-input" id="address1"
+					value="" readonly> <label class="floating-input-label">Nama
+					Penuh Pelajar</label>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<input type="text" class="floating-input" id="address2"
+					value="" readonly> <label class="floating-input-label">Alamat
+					Email</label>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<input type="text" class="floating-input" id="postcode"
+					value="" readonly> <label class="floating-input-label">Tarikh
+					Permohonan</label>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<button class="floating-input btn-resume" type="button">
+					<span>Lihat Pautan Resume</span>
+				</button>
+				<label class="floating-input-label">Pautan Resume</label>
+			</div>
+		</div>
+
+
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<button class="floating-input btn-resume" type="button">
+					<span>Lihat Pautan Media Sosial</span>
+				</button>
+				<label class="floating-input-label">Pautan Media Sosial</label>
+			</div>
+		</div>
+
+		<div class="col-12">
+			<div class="floating-form-group">
+				<input type="text" class="floating-input" id="postcode"
+					value="Lulus" readonly> <label class="floating-input-label">Status Permohonan</label>
+			</div>
+		</div>
+		
+		<div class="col-12 reason-textfield" id="reasonTextField">
+				<div class="floating-form-group">
+					<textarea id="reasonInput" name="reasonPenolakan"
+						style="height: 200px; resize: none; width: 100%;"
+						class="floating-input" readonly></textarea>
+					<label class="floating-input-label" for="reasonInput">Alasan
+						Penolakan</label>
+
+				</div>
+			</div>
+
+	</div>
+</div>

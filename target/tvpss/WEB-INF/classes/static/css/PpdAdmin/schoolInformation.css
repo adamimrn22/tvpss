@@ -1,0 +1,38 @@
+.table-school thead th {
+	color: var(--gray-500);
+	text-transform: uppercase;
+	text-align: start;
+}
+
+.table-school tbody td {
+	color: var(--gray-500);
+	text-align: start
+}
+
+th, td {
+	cursor: default;
+}
+
+td {
+	color: var(--gray-600) !important;
+}
+
+.gradient-container-card {
+	background: linear-gradient(to bottom, #e6e9ff 0%, #f0f2ff 100%);
+}
+
+.version-number {
+	font-size: 34px; 
+	font-weight:700;
+	color: var(--gray-400);
+	
+}
+
+.version-number .arrow {
+	color: var(--gray-400);
+	margin: 0 10px;
+}
+
+.version-number .new-version {
+	color: var(--red-500);
+}

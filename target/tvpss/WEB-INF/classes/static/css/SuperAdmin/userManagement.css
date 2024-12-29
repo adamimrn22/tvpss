@@ -43,14 +43,35 @@
 	font-size: 1.2rem;
 }
 
-.pagination .page-item.active .page-link {
-	background-color: var(--bs-primary) !important;
+.th-header th {
+  color: var(--gray-500);
+  font-weight: bold; 
+  text-transform: uppercase;  
+  padding: 10px;   
 }
 
-.pagination .page-item.active:hover .page-link {
-	background-color: var(--bs-primary) !important;
+th, td {
+    cursor: default;
 }
 
-a>active:hover .page-link {
-	background-color: var(--bs-primary) !important;
+td {
+	color: var(--gray-600) !important;
 }
+
+.hover-edit, .hover-delete {
+  color: var(--gray-300); 
+}
+
+
+
+.hover-edit:hover {
+	color: var(--green-500);
+	background-color: var(--green-100) !important;
+}
+
+.hover-delete:hover {
+	color: var(--red-500);
+	background-color: var(--red-100) !important;
+}
+ 
+ 

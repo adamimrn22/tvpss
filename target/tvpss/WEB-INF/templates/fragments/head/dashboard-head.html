@@ -2,7 +2,9 @@
 <th:block th:fragment="dashboardHead">
 	<!-- Directly use the role as the th:switch expression -->
 	<th:block th:switch="${role}">
-		<link th:case="'superadmin'"
-			th:href="@{/css/dashboard/SuperAdmin.css}" rel="stylesheet" />
+		<link th:case="'superadmin'" th:href="@{/css/dashboard/SuperAdmin.css}" rel="stylesheet" />	
+		<link th:case="'stateadmin'" th:href="@{/css/dashboard/StateAdmin.css}" rel="stylesheet" />		
+		<link th:case="'ppdadmin'" th:href="@{/css/dashboard/PPDAdmin.css}" rel="stylesheet" />
+		<link th:case="'schooladmin'" th:href="@{/css/dashboard/SchoolAdmin.css}" rel="stylesheet" />
 	</th:block>
 </th:block>

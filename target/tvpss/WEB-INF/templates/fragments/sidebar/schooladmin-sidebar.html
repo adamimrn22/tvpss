@@ -1,0 +1,38 @@
+<div th:fragment=schooladmin-sidebar>
+
+	<a th:href="@{/SchoolAdmin}"
+		th:classappend="${currentPage == 'SchoolAdmin' ? ' active pe-none' : ''}"
+		class="nav-link px-3 mx-3"> <i class="bi bi-house-door"></i>
+		Dashboard
+	</a> 
+	
+	<a th:href="@{/StudentApplication}"
+		th:classappend="${currentPage == 'StudentApplication' ? ' active pe-none' : ''}"
+		class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-person"></i>
+		Permohonan Krew
+	</a> 
+	
+	<a  th:href="@{/StudentAchievement}" 
+	    th:classappend="${currentPage == 'StudentAchievement' ? ' active pe-none' : ''}"
+		class="nav-link p-3 mx-3 mt-2"> 
+		<i class="bi bi-check-circle"></i> Pencapaian Pelajar
+	</a> 
+
+	<a th:href="@{/SchoolInformation}"
+		th:classappend="${currentPage == 'SchoolInformation' ? ' active pe-none' : ''}"
+		class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-info-circle"></i>
+		Informasi Sekolah
+	</a> 
+	
+	 <a th:href="@{/EquipmentManagement}" 
+	 	th:classappend="${currentPage == 'EquipmentManagement' ? ' active pe-none' : ''}"
+	 	class="nav-link px-3 mx-3 mt-2">
+		<i class="bi bi-box"></i> Bilangan Barang
+	</a> 
+	
+	<a th:href="@{/SubmitTVPSSVersion}" 
+	   th:classappend="${currentPage == 'SubmitTVPSSVersion' ? ' active pe-none' : ''}"
+	   class="nav-link px-3 mx-3 mt-2"> 
+	   <i class="bi bi-cloud-arrow-up"></i> Submit Versi TVPSS
+	</a>
+</div>

@@ -11,11 +11,17 @@
 	<link th:href="@{/css/select.css}" rel="stylesheet" />
 	<link th:href="@{/css/sidebar.css}" rel="stylesheet" />
 	<link th:href="@{/css/table.css}" rel="stylesheet" />
+	<link th:href="@{/css/pagination.css}" rel="stylesheet" />
+	<link th:href="@{/css/breadcrumb.css}" rel="stylesheet" />
 
 	<th:block th:switch="${currentPage}">
-		<link th:case="Pengguna"
-			th:href="@{/css/SuperAdmin/userManagement.css}" rel="stylesheet" />
+		<link th:case="SuperAdminPengguna" th:href="@{/css/SuperAdmin/userManagement.css}" rel="stylesheet" />
+		<link th:case="AdminPPDInformasiTVPSS" th:href="@{/css/PpdAdmin/schoolInformation.css}" rel="stylesheet" />
+		<link th:case="StateAdminInformasiTVPSS" th:href="@{/css/StateAdmin/schoolInformation.css}" rel="stylesheet" />
+		<link th:case="StudentApplication" th:href="@{/css/SchoolAdmin/viewAllStudent.css}" rel="stylesheet" />		
+		<link th:case="EquipmentManagement" th:href="@{/css/SchoolAdmin/equipmentManagement.css}" rel="stylesheet" />		
+		<link th:case="StudentAchievement" th:href="@{/css/SchoolAdmin/studentAchievement.css}" rel="stylesheet" />		
+		
 	</th:block>
-
 
 </th:block>

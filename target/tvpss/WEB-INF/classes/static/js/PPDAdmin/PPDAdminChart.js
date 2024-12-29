@@ -1,5 +1,5 @@
 // Bar Chart
-const barCtx = document.getElementById('barChart').getContext('2d');
+const barCtx = document.getElementById('barPPDChart').getContext('2d');
 new Chart(barCtx, {
     type: 'bar',
     data: {
@@ -21,7 +21,7 @@ new Chart(barCtx, {
 });
 
 // Donut Chart
-const donutCtx = document.getElementById('donutChart').getContext('2d');
+const donutCtx = document.getElementById('donutPPDChart').getContext('2d');
 new Chart(donutCtx, {
     type: 'pie',
     data: {

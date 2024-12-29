@@ -1,0 +1,57 @@
+<div th:fragment="breadcrumb(title1, title2)"  class="my-3">
+    <nav aria-label="breadcrumb">
+        <ol class="custom-breadcrumb">
+            <li class="custom-breadcrumb-item">
+                <a th:text="${title1}" class="breadcrumb-link"></a>
+            </li>
+            <li class="custom-breadcrumb-item active">
+                <span th:text="${title2}" class="breadcrumb-active"></span>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<div th:fragment="breadcrumb3(title1, title2, title3)"  class="my-3">
+    <nav aria-label="breadcrumb">
+        <ol class="custom-breadcrumb">
+            <li class="custom-breadcrumb-item">
+                <a th:text="${title1}" class="breadcrumb-link"></a>
+            </li>
+            <li class="custom-breadcrumb-item">
+                <a th:text="${title2}" class="breadcrumb-link"></a>
+            </li>
+            <li class="custom-breadcrumb-item active">
+                <span th:text="${title3}" class="breadcrumb-active"></span>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<div th:fragment="breadcrumb2WithLink(title1, title2, link1)" class="my-3">
+    <nav aria-label="breadcrumb">
+        <ol class="custom-breadcrumb">
+            <li class="custom-breadcrumb-item">
+                <a th:href="@{${link1}}" th:text="${title1}" class="breadcrumb-link"></a>
+            </li>
+            <li class="custom-breadcrumb-item">
+                <a th:text="${title2}" class="breadcrumb-link"></a>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<div th:fragment="breadcrumb3WithLink(title1, title2, title3, link1)" class="my-3">
+    <nav aria-label="breadcrumb">
+        <ol class="custom-breadcrumb">
+            <li class="custom-breadcrumb-item">
+                <a th:href="@{${link1}}" th:text="${title1}" class="breadcrumb-link"></a>
+            </li>
+            <li class="custom-breadcrumb-item">
+                <span th:text="${title2}" class="breadcrumb-link"></span>
+            </li>
+            <li class="custom-breadcrumb-item active">
+                <span th:text="${title3}" class="breadcrumb-active"></span>
+            </li>
+        </ol>
+    </nav>
+</div>

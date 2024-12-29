@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .preview-image {
+            max-width: 300px;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        .certificate-image-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .certificate-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .selected .certificate-image {
+            border-color: #0d6efd;
+        }
+        .selection-overlay {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(13, 110, 253, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .selected .selection-overlay {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <form id="certificateForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Certificate Template</label>
+                <div id="imagePreview" class="mb-2">
+                    <!-- Preview will be shown here -->
+                </div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imageModal">
+                    Choose Certificate
+                </button>
+            </div>
+
+            <button type="submit" class="btn btn-success">Generate Certificate</button>
+        </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Select Certificate Template</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted text-center mb-3">Click on a template to select it</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="certificate-image-container">
+                                <img src="https://picsum.photos/seed/cert1/800/500" 
+                                     class="certificate-image" 
+                                     alt="Certificate Template 1"
+                                     data-template-id="1">
+                                <div class="selection-overlay">Selected</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="certificate-image-container">
+                                <img src="https://picsum.photos/seed/cert2/800/500" 
+                                     class="certificate-image" 
+                                     alt="Certificate Template 2"
+                                     data-template-id="2">
+                                <div class="selection-overlay">Selected</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="certificate-image-container">
+                                <img src="https://picsum.photos/seed/cert3/800/500" 
+                                     class="certificate-image" 
+                                     alt="Certificate Template 3"
+                                     data-template-id="3">
+                                <div class="selection-overlay">Selected</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="certificate-image-container">
+                                <img src="https://picsum.photos/seed/cert4/800/500" 
+                                     class="certificate-image" 
+                                     alt="Certificate Template 4"
+                                     data-template-id="4">
+                                <div class="selection-overlay">Selected</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="certificate-image-container">
+                                <img src="https://picsum.photos/seed/cert5/800/500" 
+                                     class="certificate-image" 
+                                     alt="Certificate Template 5"
+                                     data-template-id="5">
+                                <div class="selection-overlay">Selected</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="certificate-image-container">
+                                <img src="https://picsum.photos/seed/cert6/800/500" 
+                                     class="certificate-image" 
+                                     alt="Certificate Template 6"
+                                     data-template-id="6">
+                                <div class="selection-overlay">Selected</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addButton" disabled>Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalElement = document.getElementById('imageModal');
+            const modal = new bootstrap.Modal(modalElement);
+            const imagePreview = document.getElementById('imagePreview');
+            const addButton = document.getElementById('addButton');
+            const certificateContainers = document.querySelectorAll('.certificate-image-container');
+            let selectedImage = null;
+            let selectedTemplateId = null;
+
+            // Handle image selection
+            certificateContainers.forEach(container => {
+                container.addEventListener('click', function() {
+                    // Remove selection from all containers
+                    certificateContainers.forEach(c => c.classList.remove('selected'));
+                    
+                    // Add selection to clicked container
+                    this.classList.add('selected');
+                    const img = this.querySelector('.certificate-image');
+                    selectedImage = img.src;
+                    selectedTemplateId = img.dataset.templateId;
+                    addButton.disabled = false;
+                });
+            });
+
+            // Handle add button click
+            addButton.addEventListener('click', function() {
+                if (selectedImage) {
+                    imagePreview.innerHTML = `
+                        <div class="alert alert-success mb-2">Template ${selectedTemplateId} selected successfully!</div>
+                        <img src="${selectedImage}" 
+                             class="preview-image mb-2" 
+                             alt="Selected certificate">
+                        <input type="hidden" name="templateUrl" value="${selectedImage}">
+                        <input type="hidden" name="templateId" value="${selectedTemplateId}">
+                    `;
+                    
+                    // Properly close the modal
+                    modal.hide();
+                    document.body.classList.remove('modal-open');
+                    const modalBackdrop = document.querySelector('.modal-backdrop');
+                    if (modalBackdrop) {
+                        modalBackdrop.remove();
+                    }
+                    
+                    // Reset selection
+                    certificateContainers.forEach(c => c.classList.remove('selected'));
+                    addButton.disabled = true;
+                    selectedImage = null;
+                    selectedTemplateId = null;
+                }
+            });
+
+            // Reset selection when modal is closed
+            modalElement.addEventListener('hidden.bs.modal', function () {
+                certificateContainers.forEach(c => c.classList.remove('selected'));
+                addButton.disabled = true;
+                selectedImage = null;
+                selectedTemplateId = null;
+                document.body.classList.remove('modal-open');
+                const modalBackdrop = document.querySelector('.modal-backdrop');
+                if (modalBackdrop) {
+                    modalBackdrop.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<div th:fragment="sidebar" id="sidebar" class="d-flex flex-column">
+	<img th:src="@{/images/LogoTVPSS.svg}" alt="TVPSS Logo">
+
+
+	<nav class="nav flex-column">
+		<div th:switch="${role}">
+			<div th:case="'superadmin'"
+				th:include="fragments/sidebar/superadmin-sidebar :: superadmin-sidebar"></div>
+				
+			<div th:case="'stateadmin'"
+				th:include="fragments/sidebar/stateadmin-sidebar :: stateadmin-sidebar"></div>
+
+			<div th:case="'ppdadmin'"
+				th:include="fragments/sidebar/ppdadmin-sidebar :: ppdadmin-sidebar"></div>
+				
+			<div th:case="'schooladmin'"
+				th:include="fragments/sidebar/schooladmin-sidebar :: schooladmin-sidebar"></div>
+		</div>
+	</nav>
+
+	<div class="mt-auto">
+		<a th:href="@{/resetpassword}"
+			th:classappend="${currentPage == 'resetpassword' ? ' active pe-none' : ''}"
+			class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-gear"></i>
+			Tetapan
+		</a> <a th:href="@{/SuperAdmin/logout}" class="nav-link px-3 mx-3 mt-2">
+			<i class="bi bi-box-arrow-right"></i> Log Keluar
+		</a>
+	</div>
+</div>

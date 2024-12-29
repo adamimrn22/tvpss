@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-between align-items-center">
+	<div class="p-3 pb-0">
+		<div
+			th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
+	</div>
+
+	<div class="end-btn ">
+		<div>
+			<a th:href="@{/StudentAchievement/addStudentAchievement}" class="btn btn-primary"> <span
+				style="margin-right: 8px;">Hantar Pencapaian Pelajar Baharu </span>
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+					viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+				        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+				        <path d="M12 5l0 14" />
+				        <path d="M5 12l14 0" />
+				    </svg>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="card m-2 p-3">
+
+	<h3 class="mb-2" style="color: var(--primary)">Pencapaian Pelajar</h3>
+
+	<table class="table table-sm">
+		<thead class="th-header">
+			<tr class="text-center">
+				<th>Bil</th>
+				<th class="text-start">Kod Pencapaian</th>
+				<th class="text-start">Tarikh</th>
+				<th>Status</th>
+				<th>Aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Rows -->
+			<tr class="align-middle">
+
+				<td class="text-center">1</td>
+				<td>AE2121</td>
+				<td>2 Januari 2024</td>
+				<td class="text-center"><span
+					class="badge rounded-pill bg-warning">Pending</span></td>
+				<td class="table-actions"><a class="btn btn-primary btn-sm"
+					th:href="@{/StudentAchievement/viewStudentAchievementDetail}"> <svg
+							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+							<path
+								d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg><span
+						class="mx-1">Lihat Permohonan</span>
+				</a>
+
+					<button class="btn hover-delete" data-bs-toggle="modal"
+						data-bs-target="#deleteModal" data-id="1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24" fill="currentColor"
+							class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path
+								d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+								<path
+								d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
+					</button></td>
+			</tr>
+
+
+
+		</tbody>
+	</table>
+
+	<ul class="pagination justify-content-start m-3">
+		<li class="page-item"><a class="page-link" href="#"
+			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+		</a></li>
+		<li class="page-item active"><a class="page-link" href="#">1</a>
+		</li>
+		<li class="page-item"><a class="page-link" href="#">2</a></li>
+		<li class="page-item"><a class="page-link" href="#"
+			aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+		</a></li>
+	</ul>
+</div>
+
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 9911">
+	<div id="successToast"
+		class="toast align-items-center text-bg-success border-0" role="alert"
+		aria-live="assertive" aria-atomic="true">
+		<div class="d-flex">
+			<div class="toast-body">Data berjaya dipadam.</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto"
+				data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	</div>
+</div>
+
+
+

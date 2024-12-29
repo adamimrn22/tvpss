@@ -1,3 +1,11 @@
-C:\Users\adami\Desktop\Spring Workspace\tvpss\src\main\java\com\beyondtech\tvpss\config\WebAppConfig.java
-C:\Users\adami\Desktop\Spring Workspace\tvpss\src\main\java\com\beyondtech\tvpss\controller\users\DashboardController.java
-C:\Users\adami\Desktop\Spring Workspace\tvpss\src\main\java\com\beyondtech\tvpss\controller\users\ManageUserController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\auth\ResetPasswordController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\config\DatabaseConfig.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\config\WebAppConfig.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\DashboardController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\GenerateCertificateController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\ManageEquipmentController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\ManageUserController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\SchoolInformationController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\SchoolVersionStatusController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\StudentAchievementController.java
+C:\Users\adami\Desktop\Internet Programming\Project\tvpss\src\main\java\com\beyondtech\tvpss\controller\StudentApplicationController.java

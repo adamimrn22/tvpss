@@ -1,0 +1,96 @@
+
+<!-- Add User Modal -->
+<div th:fragment="addEquipmentModal">
+	<div class="modal fade" id="addEquipmentModal" tabindex="-1"
+		aria-labelledby="addUserModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addEquipmentModalLabel"
+						style="color: #515B92">Tambah Barang Baharu</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="/StarMIS_TVPSS/SuperAdmin/Pengguna/TambahPengguna"
+						method="post">
+						<div class="p-3 pt-0">
+							<div>
+								<!-- Set the width here -->
+								<div class="floating-form-group">
+									<input type="text" class="floating-input" placeholder=" ">
+									<label class="floating-input-label">Nama Barang</label>
+								</div>
+							</div>
+							<div>
+								<!-- Set the width here -->
+								<div class="floating-form-group">
+									<input type="text" class="floating-input" placeholder=" ">
+									<label class="floating-input-label">Jenis Barang</label>
+								</div>
+							</div>
+							<div>
+								<!-- Set the width here -->
+								<div class="floating-form-group">
+									<input type="text" class="floating-input" placeholder=" ">
+									<label class="floating-input-label">Lokasi</label>
+								</div>
+							</div>
+
+
+							<div class="date-picker-container">
+								<div class="floating-form-group " >
+									<input class="floating-datepicker" type="text" id="dateInput"
+										placeholder="" readonly style="min-width: 430px"> <label
+										class="floating-datepicker-label">Pilih Tarikh</label>
+								</div>
+								<div id="datePicker" class="custom-date-picker">
+									<div class="date-picker-header">
+										<button id="prevMonth" type="button">&lt;</button>
+										<span id="monthYearDisplay"></span>
+										<button id="nextMonth" type="button">&gt;</button>
+									</div>
+									<div id="calendarView">
+										<table class="table-datepicker">
+											<thead>
+												<tr>
+													<th class="th-datepicker">Sun</th>
+													<th class="th-datepicker">Mon</th>
+													<th class="th-datepicker">Tue</th>
+													<th class="th-datepicker">Wed</th>
+													<th class="th-datepicker">Thu</th>
+													<th class="th-datepicker">Fri</th>
+													<th class="th-datepicker">Sat</th>
+												</tr>
+											</thead>
+											<tbody id="datePickerBody" class="mb-3"></tbody>
+										</table>
+									</div>
+									<div id="yearView" class="hidden-toggle year-picker"></div>
+								</div>
+							</div>
+
+							<div class="floating-form-group">
+								<select class="floating-select" id="userTypeSelect">
+									<option value="" selected disabled hidden></option>
+									<option value="super-admin">Berfungsi</option>
+									<option value="admin-state">Tidak Berfungsi</option>
+									<option value="admin-ppd">Penyelenggaraan</option>
+								</select> <label class="floating-select-label">Status Barang</label>
+							</div>
+							
+							
+						</div>
+					</form>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-sm" data-bs-dismiss="modal">Batal</button>
+					<button class="btn btn-primary btn-sm" type="submit">Tambah
+						Pengguna</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
