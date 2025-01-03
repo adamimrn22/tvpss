@@ -7,7 +7,7 @@
 				</p>
 				<p class="card-dashboard-number">5</p>
 			</div>
-			<p class="card-dashboard-title">Bilangan Pengguna Super Admin</p>
+			<p class="card-dashboard-title" th:text="#{dashboard.superadmin}"></p>
 		</div>
 		<div class="col card-dashboard">
 			<div class="card-dashboard-content">
@@ -16,7 +16,7 @@
 				</p>
 				<p class="card-dashboard-number ps-3">5</p>
 			</div>
-			<p class="card-dashboard-title">Bilangan Pengguna State Admin</p>
+			<p class="card-dashboard-title" th:text="#{dashboard.stateAdmin}"></p>
 		</div>
 		<div class="col card-dashboard">
 			<div class="card-dashboard-content">
@@ -25,7 +25,7 @@
 				</p>
 				<p class="card-dashboard-number ps-3">25</p>
 			</div>
-			<p class="card-dashboard-title">Bilangan Pengguna PPD Admin</p>
+			<p class="card-dashboard-title" th:text="#{dashboard.ppdAdmin}"></p>
 		</div>
 		<div class="col card-dashboard">
 			<div class="card-dashboard-content">
@@ -34,16 +34,15 @@
 				</p>
 				<p class="card-dashboard-number ps-3">250</p>
 			</div>
-			<p class="card-dashboard-title">Bilangan Pengguna School Admin</p>
+			<p class="card-dashboard-title" th:text="#{dashboard.schoolAdmin}"></p>
 		</div>
 	</div>
 </div>
 
-
 <div class="dashboard-graph">
 	<div class="card-graph graph-1">
 		<div>
-			<p>Bilangan Pengguna mengikut jenis</p>
+			<p th:text="#{dashboard.userCountByType}"></p>
 		</div>
 		<div class="card-canvas">
 			<canvas id="barChart"></canvas>
@@ -52,14 +51,15 @@
 
 	<div class="card-graph graph-2">
 		<div class="p-3">
-			<p class="p-0 m-0">Bilangan Pengguna Mengikut Daerah</p>
+			<p class="p-0 m-0" th:text="#{dashboard.userCountByDistrict}"></p>
 			<hr>
 			<div style="width: 200px;">
 				<div class="floating-form-group">
 					<select class="floating-select" value="">
 						<option value="" selected disabled hidden></option>
-						<option value="1">Skudai</option>
-					</select> <label class="floating-select-label">Jenis Daerah</label>
+						<option value="1" th:text="#{dashboard.district1}"></option>
+					</select>
+					<label class="floating-select-label" th:text="#{dashboard.selectDistrict}"></label>
 				</div>
 			</div>
 			<hr>
@@ -71,13 +71,12 @@
 
 	<div class="card-graph graph-3">
 		<div>
-			<p>Log Pengguna</p>
+			<p th:text="#{dashboard.userLog}"></p>
 		</div>
 		<div class="canvas-graph">
 			<canvas id="lineChart"></canvas>
 		</div>
 	</div>
-
 </div>
 
 <th:block th:include="fragments/chartscripts :: chartscripts"></th:block>

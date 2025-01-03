@@ -50,13 +50,25 @@
 		</div>
 
 		<div class="dropdown">
-			<a class="btn dropdown-toggle  language-style" href="#" role="button"
-				data-bs-toggle="dropdown" aria-expanded="false"> BM </a>
-
+			<a class="btn dropdown-toggle language-style" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<span th:text="${#locale}"></span> <!-- Display the current locale -->
+			</a>
 			<ul class="dropdown-menu">
-				<li><a class="dropdown-item" href="#">BM</a></li>
-				<li><a class="dropdown-item" href="#">EN</a></li>
+				<li>
+					<form action="/change-language" method="post" style="display: inline;">
+						<input type="hidden" name="lang" value="ms">
+						<button type="submit" class="dropdown-item">BM</button>
+					</form>
+				</li>
+				<li>
+					<form action="/change-language" method="post" style="display: inline;">
+						<input type="hidden" name="lang" value="en">
+						<button type="submit" class="dropdown-item">EN</button>
+					</form>
+				</li>
 			</ul>
 		</div>
+
+
 	</div>
 </div>

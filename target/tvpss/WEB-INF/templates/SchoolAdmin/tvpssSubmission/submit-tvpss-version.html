@@ -1,238 +1,214 @@
 <div
 	th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}">
 </div>
-
 <div id="maklumatSekolahForm" class="card p-3">
-	<h3 style="color: var(--primary)">Maklumat Sekolah</h3>
+	<h3 style="color: var(--primary)" th:text="#{schooladmin.schooltvpss.schoolInformation}"></h3>
 	<form id="formStep1">
 		<div class="form-section row">
 			<!-- School Name -->
 			<div class="col-12">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="schoolName"
-						placeholder=" " name="schoolName"> <label
-						class="floating-input-label">Nama Sekolah</label>
+					<input type="text" class="floating-input" id="schoolName" placeholder=" " name="schoolName">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.schoolName}"></label>
 				</div>
 			</div>
 
 			<!-- Address 1, Address 2, Postcode, State -->
 			<div class="col-12 col-md-6 col-lg-3">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address1"
-						placeholder=" " name="address1"> <label
-						class="floating-input-label">Alamat Sekolah 1</label>
+					<input type="text" class="floating-input" id="address1" placeholder=" " name="address1">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.address1}"></label>
 				</div>
 			</div>
 			<div class="col-12 col-md-6 col-lg-3">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address2"
-						placeholder=" " name="address2"> <label
-						class="floating-input-label">Alamat Sekolah 2</label>
+					<input type="text" class="floating-input" id="address2" placeholder=" " name="address2">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.address2}"></label>
 				</div>
 			</div>
 			<div class="col-12 col-md-6 col-lg-3">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="postcode"
-						placeholder=" " name="postcode"> <label
-						class="floating-input-label">Poskod</label>
+					<input type="text" class="floating-input" id="postcode" placeholder=" " name="postcode">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.postcode}"></label>
 				</div>
 			</div>
 			<div class="col-12 col-md-6 col-lg-3">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="state"
-						placeholder=" " name="state"> <label
-						class="floating-input-label">Negeri</label>
+					<input type="text" class="floating-input" id="state" placeholder=" " name="state">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.state}"></label>
 				</div>
 			</div>
 
 			<!-- Phone, Email, and Fax -->
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="phone"
-						placeholder=" " name="phone"> <label
-						class="floating-input-label">No Telefon</label>
+					<input type="text" class="floating-input" id="phone" placeholder=" " name="phone">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.phone}"></label>
 				</div>
 			</div>
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<input type="email" class="floating-input" id="email"
-						placeholder=" " name="email"> <label
-						class="floating-input-label">Email</label>
+					<input type="email" class="floating-input" id="email" placeholder=" " name="email">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.email}"></label>
 				</div>
 			</div>
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="fax" placeholder=" "
-						name="fax"> <label class="floating-input-label">No
-						Fax</label>
+					<input type="text" class="floating-input" id="fax" placeholder=" " name="fax">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.fax}"></label>
 				</div>
 			</div>
 
 			<!-- File Upload -->
 			<div class="col-12">
 				<div class="floating-form-group">
-					<input type="file" class="floating-input" id="fileUpload"
-						name="fileUpload"> <label class="floating-input-label">Muat
-						Naik Logo Sekolah</label>
+					<input type="file" class="floating-input" id="fileUpload" name="fileUpload">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.uploadLogo}"></label>
 				</div>
 			</div>
 
 			<!-- YouTube Link -->
 			<div class="col-12">
 				<div class="floating-form-group">
-					<input type="url" class="floating-input" id="youtubeLink"
-						name="youtubeLink" placeholder=" "> <label
-						class="floating-input-label">Link Video (YouTube)</label>
+					<input type="url" class="floating-input" id="youtubeLink" name="youtubeLink" placeholder=" ">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.youtubeLink}"></label>
 				</div>
 			</div>
 
 			<!-- Next Button -->
 			<div class="col-12 text-end mt-3">
-				<button type="button" id="nextButton" class="btn btn-primary">Seterusnya</button>
+				<button type="button" id="nextButton" class="btn btn-primary" th:text="#{schooladmin.schooltvpss.next}"></button>
 			</div>
 		</div>
 	</form>
 </div>
 
 <div id="maklumatSekolahForm2" class="card p-3" style="display: none;">
-	<h3 style="color: var(--primary)">Maklumat TVPSS Sekolah</h3>
+	<h3 style="color: var(--primary)" th:text="#{schooladmin.schooltvpss.schoolInformation}"></h3>
 	<form id="formStep2">
 		<div class="form-section row">
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="schoolName"
-						placeholder=" " name="schoolName"> <label
-						class="floating-input-label">Syarikat Kolaborasi Agensi 1</label>
+					<input type="text" class="floating-input" id="collabAgency1" placeholder=" " name="collabAgency1">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency1}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address1"
-						placeholder=" " name="address1"> <label
-						class="floating-input-label">Pengerusi Syarikat Agensi 1</label>
+					<input type="text" class="floating-input" id="chairmanAgency1" placeholder=" " name="chairmanAgency1">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency1Chairman}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="schoolName"
-						placeholder=" " name="schoolName"> <label
-						class="floating-input-label">Syarikat Kolaborasi Agensi 2</label>
+					<input type="text" class="floating-input" id="collabAgency2" placeholder=" " name="collabAgency2">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency2}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address1"
-						placeholder=" " name="address1"> <label
-						class="floating-input-label">Pengerusi Syarikat Agensi 2</label>
+					<input type="text" class="floating-input" id="chairmanAgency2" placeholder=" " name="chairmanAgency2">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency2Chairman}"></label>
+				</div>
+			</div>
+
+			<!-- Selects for Item Status, Recording Equipment, Technology Usage -->
+			<div class="col-12 col-md-4">
+				<div class="floating-form-group">
+					<select class="floating-select" id="itemStatusSelect">
+						<option value="" selected disabled hidden></option>
+						<option value="yes">Ada</option>
+						<option value="no">Tiada</option>
+					</select>
+					<label class="floating-select-label" th:text="#{schooladmin.schooltvpss.itemStatus}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<select class="floating-select" id="userTypeSelect">
+					<select class="floating-select" id="recordingEquipmentSelect">
 						<option value="" selected disabled hidden></option>
-						<option value="super-admin">Ada</option>
-						<option value="super-admin">Tiada</option>
-
-					</select> <label class="floating-select-label">Status Barang</label>
+						<option value="yes">Ada</option>
+						<option value="no">Tiada</option>
+					</select>
+					<label class="floating-select-label" th:text="#{schooladmin.schooltvpss.recordingEquipment}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<select class="floating-select" id="userTypeSelect">
+					<select class="floating-select" id="technologyUsageSelect">
 						<option value="" selected disabled hidden></option>
-						<option value="super-admin">Ada</option>
-						<option value="super-admin">Tiada</option>
-
-					</select> <label class="floating-select-label">Peralatan Rakaman</label>
+						<option value="yes">Ada</option>
+						<option value="no">Tiada</option>
+					</select>
+					<label class="floating-select-label" th:text="#{schooladmin.schooltvpss.technologyUsage}"></label>
 				</div>
 			</div>
 
-			<div class="col-12 col-md-4">
-				<div class="floating-form-group">
-					<select class="floating-select" id="userTypeSelect">
-						<option value="" selected disabled hidden></option>
-						<option value="super-admin">Ada</option>
-						<option value="super-admin">Tiada</option>
-
-					</select> <label class="floating-select-label">Pengunaan Teknologi</label>
-				</div>
-			</div>
-
+			<!-- File Upload for Step 2 -->
 			<div class="col-12">
 				<div class="floating-form-group">
-					<input type="file" class="floating-input" id="fileUpload"
-						placeholder=" "> <label class="floating-input-label">Muat
-						Naik Logo Sekolah</label>
+					<input type="file" class="floating-input" id="fileUploadStep2" placeholder=" ">
+					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.uploadLogo}"></label>
 				</div>
 			</div>
-			
+
+			<!-- Hidden Fields for Step 2 -->
 			<input type="hidden" name="hiddenSchoolName" id="hiddenSchoolName">
 			<input type="hidden" name="hiddenAddress1" id="hiddenAddress1">
 			<input type="hidden" name="hiddenAddress2" id="hiddenAddress2">
 			<input type="hidden" name="hiddenPostcode" id="hiddenPostcode">
-			<input type="hidden" name="hiddenState" id="hiddenState"> <input
-				type="hidden" name="hiddenPhone" id="hiddenPhone"> <input
-				type="hidden" name="hiddenEmail" id="hiddenEmail"> <input
-				type="hidden" name="hiddenFax" id="hiddenFax"> <input
-				type="hidden" name="hiddenFileUpload" id="hiddenFileUpload">
+			<input type="hidden" name="hiddenState" id="hiddenState">
+			<input type="hidden" name="hiddenPhone" id="hiddenPhone">
+			<input type="hidden" name="hiddenEmail" id="hiddenEmail">
+			<input type="hidden" name="hiddenFax" id="hiddenFax">
+			<input type="hidden" name="hiddenFileUpload" id="hiddenFileUpload">
 			<input type="hidden" name="hiddenYoutubeLink" id="hiddenYoutubeLink">
 
 			<!-- Submit Button for Step 2 -->
 			<div class="col-12 text-end mt-3">
-
-				<button type="button" id="backButton" class="btn">Kembali</button>
-
-				<button type="submit" class="btn btn-primary">Hantar
-					Maklumat Sekolah</button>
+				<button type="button" id="backButton" class="btn" th:text="#{schooladmin.schooltvpss.back}"></button>
+				<button type="submit" class="btn btn-primary" th:text="#{schooladmin.schooltvpss.submitInformation}"></button>
 			</div>
-
-
 		</div>
 	</form>
 </div>
 
 <script>
-	document
-			.getElementById('nextButton')
-			.addEventListener(
-					'click',
-					function() {
-						// Collect data from the first form
-						var schoolName = document.getElementById('schoolName').value;
-						var address1 = document.getElementById('address1').value;
-						var address2 = document.getElementById('address2').value;
-						var postcode = document.getElementById('postcode').value;
-						var state = document.getElementById('state').value;
-						var phone = document.getElementById('phone').value;
-						var email = document.getElementById('email').value;
-						var fax = document.getElementById('fax').value;
-						var fileUpload = document.getElementById('fileUpload').files[0]; // File is tricky but handled later
-						var youtubeLink = document
-								.getElementById('youtubeLink').value;
+	document.getElementById('nextButton').addEventListener('click', function() {
+		// Collect data from the first form
+		var schoolName = document.getElementById('schoolName').value;
+		var address1 = document.getElementById('address1').value;
+		var address2 = document.getElementById('address2').value;
+		var postcode = document.getElementById('postcode').value;
+		var state = document.getElementById('state').value;
+		var phone = document.getElementById('phone').value;
+		var email = document.getElementById('email').value;
+		var fax = document.getElementById('fax').value;
+		var fileUpload = document.getElementById('fileUpload').files[0];
+		var youtubeLink = document.getElementById('youtubeLink').value;
 
-						// Set hidden fields in Step 2 form to the values from Step 1
-						document.getElementById('hiddenSchoolName').value = schoolName;
-						document.getElementById('hiddenAddress1').value = address1;
-						document.getElementById('hiddenAddress2').value = address2;
-						document.getElementById('hiddenPostcode').value = postcode;
-						document.getElementById('hiddenState').value = state;
-						document.getElementById('hiddenPhone').value = phone;
-						document.getElementById('hiddenEmail').value = email;
-						document.getElementById('hiddenFax').value = fax;
-						document.getElementById('hiddenFileUpload').value = fileUpload ? fileUpload.name
-								: ''; // Save file name (if needed)
-						document.getElementById('hiddenYoutubeLink').value = youtubeLink;
+		// Set hidden fields in Step 2 form to the values from Step 1
+		document.getElementById('hiddenSchoolName').value = schoolName;
+		document.getElementById('hiddenAddress1').value = address1;
+		document.getElementById('hiddenAddress2').value = address2;
+		document.getElementById('hiddenPostcode').value = postcode;
+		document.getElementById('hiddenState').value = state;
+		document.getElementById('hiddenPhone').value = phone;
+		document.getElementById('hiddenEmail').value = email;
+		document.getElementById('hiddenFax').value = fax;
+		document.getElementById('hiddenFileUpload').value = fileUpload ? fileUpload.name : '';
+		document.getElementById('hiddenYoutubeLink').value = youtubeLink;
 
-						// Hide the first form and show the second one
-						document.getElementById('maklumatSekolahForm').style.display = 'none';
-						document.getElementById('maklumatSekolahForm2').style.display = 'block';
-					});
+		// Hide the first form and show the second one
+		document.getElementById('maklumatSekolahForm').style.display = 'none';
+		document.getElementById('maklumatSekolahForm2').style.display = 'block';
+	});
 
 	document.getElementById('backButton').addEventListener('click', function() {
 		// Hide the second form and show the first one

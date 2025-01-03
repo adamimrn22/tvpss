@@ -3,110 +3,99 @@
 </div>
 
 <div class="card p-3 mb-3">
-	<h5 style="color: var(--primary)">Maklumat Sekolah</h5>
+	<h5 style="color: var(--primary)" th:text="#{stateadmin.view.schoolInfo.title}">Maklumat Sekolah</h5>
 	<table class="table table-bordered" style="width: 50%;">
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong>Nama
-					Sekolah</strong></td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.name}">Nama Sekolah</strong></td>
 			<td class="text-start" style="color: var(--gray-500);">Sekolah A</td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700);width: 25%;"><strong>Kod
-					Sekolah</strong></td>
+			<td class="text-start" style="color: var(--gray-700);width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.code}">Kod Sekolah</strong></td>
 			<td class="text-start" style="color: var(--gray-500);">12345</td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong>Pengawai
-					PIC Sekolah</strong></td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.officer}">Pengawai PIC Sekolah</strong></td>
 			<td class="text-start" style="color: var(--gray-500);"><strong>Abu bin Abdul</strong></td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong>Alamat
-					Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Jalan
-				ABC, 123, Kuala Lumpur</td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.address}">Alamat Sekolah</strong></td>
+			<td class="text-start" style="color: var(--gray-500);">Jalan ABC, 123, Kuala Lumpur</td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong>Jenis
-					Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Sekolah
-				Menengah</td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.type}">Jenis Sekolah</strong></td>
+			<td class="text-start" style="color: var(--gray-500);">Sekolah Menengah</td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong>Versi TVPSS Sekolah</strong></td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.version}">Versi TVPSS Sekolah</strong></td>
 			<td class="text-start" style="color: var(--gray-500);"><strong>Versi 1</strong></td>
 		</tr>
 	</table>
-
 </div>
 
 <div class="card p-3">
-	<h5 style="color: var(--primary)">Maklumat TVPSS Sekolah</h5>
+	<h5 style="color: var(--primary)" th:text="#{stateadmin.view.tvpssInfo.title}">Maklumat TVPSS Sekolah</h5>
 
 	<table class="table table-bordered text-center">
 		<thead>
-			<tr>
-				<th class="text-start" style="color: var(--gray-700);">Info</th>
-				<th class="text-start" style="color: var(--gray-700);">Ada/Tiada</th>
-				<th class="text-start" style="color: var(--gray-700);">Butiran</th>
-			</tr>
+		<tr>
+			<th class="text-start" style="color: var(--gray-700);" th:text="#{stateadmin.view.tvpssInfo.info}">Info</th>
+			<th class="text-start" style="color: var(--gray-700);" th:text="#{stateadmin.view.tvpssInfo.status}">Ada / Tiada</th>
+			<th class="text-start" style="color: var(--gray-700);" th:text="#{stateadmin.view.tvpssInfo.detail}">Butiran</th>
+		</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong>Logo TVPSS</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start">
-					<button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-						data-bs-target="#modalLogoTVPSS">View Image</button>
-				</td>
-			</tr>
-			
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong>YouTube Upload</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start">
-					<button class="btn btn-danger btn-sm">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="currentColor"
-							class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path
+		<tr>
+			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.logo}">Logo TVPSS</strong></td>
+			<td class="text-start" style="color: var(--gray-500);">Ada</td>
+			<td class="text-start">
+				<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogoTVPSS" th:text="#{stateadmin.view.buttons.viewImage}">View Image</button>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.youtube}">YouTube Upload</strong></td>
+			<td class="text-start" style="color: var(--gray-500);">Ada</td>
+			<td class="text-start">
+				<button class="btn btn-danger btn-sm">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="currentColor"
+						 class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path
 								d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" /></svg>
-						<span>Link Youtube</span>
-					</button>
-				</td>
-			</tr>
-			
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong>Corner/Mini/TV Studio</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start">
-					 
-				</td>
-			</tr>
-			
-			<tr>
-				<td class="text-start" style="color: var(--gray-700); width:25%"><strong>Rakaman Dalam Sekolah</strong></td>
-				<td class="text-start" style="color: var(--gray-500); width:25%">Ada</td>
-				<td class="text-start">
-				 
-				</td>
-			</tr>
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong>Berkolaborasi Syarikat
-						Luar</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start">
-					 
-				</td>
-			</tr>
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong>Penggunaan Teknologi
-						Green Screen</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start"> 
-				</td>
-			</tr>
+					<span th:text="#{stateadmin.view.buttons.linkYoutube}">Link Youtube</span>
+				</button>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.studio}">Corner/Mini/TV Studio</strong></td>
+			<td class="text-start" style="color: var(--gray-500);">Ada</td>
+			<td class="text-start">
+
+			</td>
+		</tr>
+
+		<tr>
+			<td class="text-start" style="color: var(--gray-700); width:25%"><strong th:text="#{stateadmin.view.tvpssInfo.recording}">Rakaman Dalam Sekolah</strong></td>
+			<td class="text-start" style="color: var(--gray-500); width:25%">Ada</td>
+			<td class="text-start">
+
+			</td>
+		</tr>
+		<tr>
+			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.collaboration}">Berkolaborasi Syarikat Luar</strong></td>
+			<td class="text-start" style="color: var(--gray-500);">Ada</td>
+			<td class="text-start">
+
+			</td>
+		</tr>
+		<tr>
+			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.greenScreen}">Penggunaan Teknologi Green Screen</strong></td>
+			<td class="text-start" style="color: var(--gray-500);">Ada</td>
+			<td class="text-start">
+			</td>
+		</tr>
 		</tbody>
 	</table>
 </div>

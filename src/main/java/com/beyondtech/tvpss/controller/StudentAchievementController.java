@@ -28,7 +28,7 @@ public class StudentAchievementController {
 		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
-		model.addAttribute("content", "SchoolAdmin/studentAchievement/add-student-chievement");
+		model.addAttribute("content", "SchoolAdmin/studentAchievement/add-student-achievement");
 		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");
 		model.addAttribute("breadcrumbTitle2", "Semua Pencapaian");
 

@@ -6,8 +6,7 @@
 			</p>
 			<p class="card-dashboard-number ps-3">25</p>
 		</div>
-		<p class="card-dashboard-title">Bilangan Permohonan Sijil Telah
-			Dijana</p>
+		<p class="card-dashboard-title" th:text="#{stateadmin.dashboard.generatedCertificates}">Bilangan Permohonan Sijil Telah Dijana</p>
 	</div>
 	<div class="col card-dashboard">
 		<div class="card-dashboard-content">
@@ -16,7 +15,7 @@
 			</p>
 			<p class="card-dashboard-number ps-3 text-warning">25</p>
 		</div>
-		<p class="card-dashboard-title">Bilangan Pending Validasi</p>
+		<p class="card-dashboard-title" th:text="#{stateadmin.dashboard.pendingValidations}">Bilangan Pending Validasi</p>
 	</div>
 	<div class="col card-dashboard">
 		<div class="card-dashboard-content">
@@ -25,15 +24,14 @@
 			</p>
 			<p class="card-dashboard-number ps-3">250</p>
 		</div>
-		<p class="card-dashboard-title">Bilangan Sekolah di Johor</p>
+		<p class="card-dashboard-title" th:text="#{stateadmin.dashboard.schoolsInJohor}">Bilangan Sekolah di Johor</p>
 	</div>
 </div>
-
 
 <div class="dashboard-graph p-0 mt-3">
 	<div class="card-graph graph-1">
 		<div>
-			<p>Bilangan Sekolah Mengikut Versi</p>
+			<p th:text="#{stateadmin.dashboard.schoolsByVersion}">Bilangan Sekolah Mengikut Versi</p>
 		</div>
 		<div class="card-canvas">
 			<canvas id="barChart"></canvas>
@@ -42,17 +40,18 @@
 
 	<div class="card-graph graph-2">
 		<div class="p-3">
-			<p class="p-0 m-0">Bilangan Versi TVPSS Mengikut Daerah</p>
+			<p class="p-0 m-0" th:text="#{stateadmin.dashboard.schoolsByDistrict}">Bilangan Versi TVPSS Mengikut Daerah</p>
 			<hr>
 			<div>
 				<div class="floating-form-group">
 					<select class="floating-select" value="1">
 						<option value="" selected disabled hidden></option>
 						<option value="1">Versi 1</option>
-						<option value="1">Versi 2</option>
-						<option value="1">Versi 3</option>
-						<option value="1">Versi 4</option>
-					</select> <label class="floating-select-label">Jenis Versi</label>
+						<option value="2">Versi 2</option>
+						<option value="3">Versi 3</option>
+						<option value="4">Versi 4</option>
+					</select>
+					<label class="floating-select-label" th:text="#{stateadmin.dashboard.versionType}">Jenis Versi</label>
 				</div>
 			</div>
 			<hr>
@@ -63,68 +62,69 @@
 	</div>
 </div>
 
-
 <div class="card p-0 m-0 mt-2">
 	<table class="table ">
 		<thead class="th-header">
-			<tr class="text-center">
-				<th style="color: var(--text-gray-600)">Bil</th>
-				<th style="color: var(--text-gray-600)">Nama Sekolah</th>
-				<th style="color: var(--text-gray-600)">Alamat Email</th>
-				<th style="color: var(--text-gray-600)">PIC</th>
-				<th style="color: var(--text-gray-600)">Versi</th>
-				<th style="color: var(--text-gray-600)">Link</th>
-			</tr>
+		<tr class="text-center">
+			<th style="color: var(--text-gray-600)" th:text="#{stateadmin.dashboard.no}">Bil</th>
+			<th style="color: var(--text-gray-600)" th:text="#{stateadmin.dashboard.schoolName}">Nama Sekolah</th>
+			<th style="color: var(--text-gray-600)" th:text="#{stateadmin.dashboard.emailAddress}">Alamat Email</th>
+			<th style="color: var(--text-gray-600)" th:text="#{stateadmin.dashboard.pic}">PIC</th>
+			<th style="color: var(--text-gray-600)" th:text="#{stateadmin.dashboard.version}">Versi</th>
+			<th style="color: var(--text-gray-600)" th:text="#{stateadmin.dashboard.link}">Link</th>
+		</tr>
 		</thead>
 		<tbody>
-			<!-- Rows -->
-			<tr class="text-center align-middle">
-				<td>1</td>
-				<td>SMK Mutiara Rini</td>
-				<td>smkmutiararini@moe.gov.my</td>
-				<td>Abu John Doe</td>
-				<td>1</td>
-				<td class="table-actions text-center">
-					<button class="btn btn-danger btn-sm">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="currentColor"
-							class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path
-								d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" /></svg>
-						<span>Link Youtube</span>
-					</button>
-				</td>
-			</tr>
+		<!-- Rows -->
+		<tr class="text-center align-middle">
+			<td>1</td>
+			<td>SMK Mutiara Rini</td>
+			<td>smkmutiararini@moe.gov.my</td>
+			<td>Abu John Doe</td>
+			<td>1</td>
+			<td class="table-actions text-center">
+				<button class="btn btn-danger btn-sm">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="currentColor"
+						 class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path
+								d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" />
+					</svg>
+					<span th:text="#{stateadmin.dashboard.youtubeLink}">Link Youtube</span>
+				</button>
+			</td>
+		</tr>
 
-			<tr class="text-center align-middle">
-				<td>2</td>
-				<td>SMK Skudai</td>
-				<td>smkskudai@moe.gov.my</td>
-				<td>Abu Skudai Doe</td>
-				<td>2</td>
-				<td class="table-actions text-center">
-					 Tiada Youtube
-				</td>
-			</tr>
+		<tr class="text-center align-middle">
+			<td>2</td>
+			<td>SMK Skudai</td>
+			<td>smkskudai@moe.gov.my</td>
+			<td>Abu Skudai Doe</td>
+			<td>2</td>
+			<td class="table-actions text-center">
+				<span th:text="#{stateadmin.dashboard.noYouTubeLink}">Tiada Youtube</span>
+			</td>
+		</tr>
 
-			<!-- Add more rows as needed -->
+		<!-- Add more rows as needed -->
 		</tbody>
 	</table>
 
 	<nav aria-label="Page navigation">
 		<ul class="pagination justify-content-start m-3">
 			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									 aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 			</a></li>
 			<li class="page-item active"><a class="page-link" href="#">1</a>
 			</li>
 			<li class="page-item"><a class="page-link" href="#">2</a></li>
 			<li class="page-item"><a class="page-link" href="#"
-				aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									 aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 			</a></li>
 		</ul>
 	</nav>
 </div>
 
+<!-- Include chart scripts -->
 <th:block th:include="fragments/chartscripts :: chartscripts"></th:block>

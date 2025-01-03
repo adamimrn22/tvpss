@@ -1,93 +1,54 @@
-<!-- Add User Modal -->
+<!-- Edit Equipment Modal -->
 <div th:fragment="editEquipmentModal">
-	<div class="modal fade" id="editEquipmentModal" tabindex="-1"
-		aria-labelledby="editEquipmentLabel" aria-hidden="true">
+	<div class="modal fade" id="editEquipmentModal" tabindex="-1" aria-labelledby="editEquipmentLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="editEquipmentLabel"
-						style="color: #515B92">Kemaskini Barang</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+					<h5 class="modal-title" id="editEquipmentLabel" style="color: #515B92" th:text="#{schooladmin.manageequipment.edit.updateItem}">Kemaskini Barang</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="/StarMIS_TVPSS/SuperAdmin/Pengguna/TambahPengguna"
-						method="post">
+					<form action="/StarMIS_TVPSS/SuperAdmin/Pengguna/TambahPengguna" method="post">
 						<div class="p-3 pt-0">
 							<div>
-								<!-- Set the width here -->
 								<div class="floating-form-group">
 									<input type="text" class="floating-input" placeholder=" " id="editItemName">
-									<label class="floating-input-label" for="editItemName">Nama Barang</label>
+									<label class="floating-input-label" for="editItemName" th:text="#{schooladmin.manageequipment.edit.itemName}">Nama Barang</label>
 								</div>
 							</div>
 							<div>
-								<!-- Set the width here -->
 								<div class="floating-form-group">
 									<input type="text" class="floating-input" placeholder=" " id="editItemType">
-									<label class="floating-input-label" for="editItemType">Jenis Barang</label>
+									<label class="floating-input-label" for="editItemType" th:text="#{schooladmin.manageequipment.edit.itemType}">Jenis Barang</label>
 								</div>
 							</div>
 							<div>
-								<!-- Set the width here -->
 								<div class="floating-form-group">
 									<input type="text" class="floating-input" placeholder=" " id="editItemLocation">
-									<label class="floating-input-label" for="editItemLocation">Lokasi</label>
+									<label class="floating-input-label" for="editItemLocation" th:text="#{schooladmin.manageequipment.edit.location}">Lokasi</label>
 								</div>
 							</div>
-
-
 							<div class="date-picker-container">
 								<div class="floating-form-group">
-									<input class="floating-datepicker" type="text" id="editDateInput"
-										value="2024-12-24" readonly style="min-width: 430px"> 
-									<label class="floating-datepicker-label" for="editDateInput">Pilih Tarikh</label>
-								</div>
-								<div id="editDatePicker" class="custom-date-picker">
-									<div class="date-picker-header">
-										<button id="editPrevMonth" type="button">&lt;</button>
-										<span id="editMonthYearDisplay"></span>
-										<button id="editNextMonth" type="button">&gt;</button>
-									</div>
-									<div id="editCalendarView">
-										<table class="table-datepicker">
-											<thead>
-												<tr>
-													<th class="th-datepicker">Sun</th>
-													<th class="th-datepicker">Mon</th>
-													<th class="th-datepicker">Tue</th>
-													<th class="th-datepicker">Wed</th>
-													<th class="th-datepicker">Thu</th>
-													<th class="th-datepicker">Fri</th>
-													<th class="th-datepicker">Sat</th>
-												</tr>
-											</thead>
-											<tbody id="editDatePickerBody" class="mb-3"></tbody>
-										</table>
-									</div>
-									<div id="editYearView" class="hidden-toggle year-picker"></div>
+									<input class="floating-datepicker" type="text" id="editDateInput" value="2024-12-24" style="min-width: 430px">
+									<label class="floating-datepicker-label" for="editDateInput" th:text="#{schooladmin.manageequipment.edit.dateSelect}">Pilih Tarikh</label>
 								</div>
 							</div>
-
 							<div class="floating-form-group">
 								<select class="floating-select" id="editUserTypeSelect">
 									<option value="" selected disabled hidden></option>
-									<option value="super-admin">Berfungsi</option>
-									<option value="admin-state">Tidak Berfungsi</option>
-									<option value="admin-ppd">Penyelenggaraan</option>
-								</select> 
-								<label class="floating-select-label" for="editUserTypeSelect">Status Barang</label>
+									<option value="super-admin" th:text="#{schooladmin.manageequipment.edit.working}">Berfungsi</option>
+									<option value="admin-state" th:text="#{schooladmin.manageequipment.edit.notWorking}">Tidak Berfungsi</option>
+									<option value="admin-ppd" th:text="#{schooladmin.manageequipment.edit.maintenance}">Penyelenggaraan</option>
+								</select>
+								<label class="floating-select-label" for="editUserTypeSelect" th:text="#{schooladmin.manageequipment.edit.status}">Status Barang</label>
 							</div>
-							
-							
 						</div>
 					</form>
-
-
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-sm" data-bs-dismiss="modal">Batal</button>
-					<button class="btn btn-primary btn-sm" type="submit">Tambah Pengguna</button>
+					<button type="button" class="btn btn-sm" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.edit.cancelButton}">Batal</button>
+					<button class="btn btn-primary btn-sm" type="submit" th:text="#{schooladmin.manageequipment.edit.updateButton}">Kemaskini Barang</button>
 				</div>
 			</div>
 		</div>

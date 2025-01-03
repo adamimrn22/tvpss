@@ -4,178 +4,167 @@
 			th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
 	</div>
 
-	<div class="end-btn ">
+	<div class="end-btn">
 		<div>
 			<button class="btn btn-primary" data-bs-toggle="modal"
-				data-bs-target="#addEquipmentModal" data-id="1"
-				style="display: flex; align-items: center;">
-				<span style="margin-right: 8px;">Tambah Barang Baharu </span>
+					data-bs-target="#addEquipmentModal" data-id="1"
+					style="display: flex; align-items: center;">
+				<span style="margin-right: 8px;" th:text="#{schooladmin.manageequipment.addNewItem}"></span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-					viewBox="0 0 24 24" fill="none" stroke="currentColor"
-					stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-				        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-				        <path d="M12 5l0 14" />
-				        <path d="M5 12l14 0" />
-				    </svg>
+					 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					 class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M12 5l0 14" />
+					<path d="M5 12l14 0" />
+				</svg>
 			</button>
-
 		</div>
 	</div>
 </div>
 
-<div class="card m-2 p-3">
-
-	<h3 style="color: var(--primary)">Bilangan Barang</h3>
-	<div class="d-flex justify-content-end">
-		<button class="btn btn-outline-danger  btn-sm	">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-				viewBox="0 0 24 24" fill="none" stroke="currentColor"
-				stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-				class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf">
+	<div class="card m-2 p-3">
+		<h3 style="color: var(--primary)" th:text="#{schooladmin.manageequipment.itemCount}"></h3>
+		<div class="d-flex justify-content-end">
+			<button class="btn btn-outline-danger btn-sm">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+					 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					 class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf">
 					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
 					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
 					<path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
 					<path d="M17 18h2" />
 					<path d="M20 15h-3v6" />
-					<path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" /></svg>
-			<span class="mx-1">Eksport PDF</span>
-		</button>
-		<button class="btn btn-outline-success btn-sm ms-2">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-				viewBox="0 0 24 24" fill="none" stroke="currentColor"
-				stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-				class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-xls">
+					<path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" />
+				</svg>
+				<span class="mx-1" th:text="#{schooladmin.manageequipment.exportPdf}"></span>
+			</button>
+			<button class="btn btn-outline-success btn-sm ms-2">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+					 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					 class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-xls">
 					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
 					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
 					<path d="M4 15l4 6" />
 					<path d="M4 21l4 -6" />
-					<path
-					d="M17 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" />
-					<path d="M11 15v6h3" /></svg>
-			<span class="mx-1">Eksport Excel</span>
-		</button>
-		<button class="btn btn-outline-danger btn-sm ms-2">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-				viewBox="0 0 24 24" fill="currentColor"
-				class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
-				<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-				
-				<path
-					d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-				
-				<path
-					d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
-			<span class="mx-1">Buang Barang Dipilih</span>
-		</button>
-	</div>
-	<table class="table table-sm">
-		<thead class="th-header">
+					<path d="M17 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" />
+					<path d="M11 15v6h3" />
+				</svg>
+				<span class="mx-1" th:text="#{schooladmin.manageequipment.exportExcel}"></span>
+			</button>
+			<button class="btn btn-outline-danger btn-sm ms-2">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+					 viewBox="0 0 24 24" fill="currentColor"
+					 class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+					<path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
+				</svg>
+				<span class="mx-1" th:text="#{schooladmin.manageequipment.deleteSelectedItems}"></span>
+			</button>
+		</div>
+		<table class="table table-sm">
+			<thead class="th-header">
 			<tr class="text-center">
 				<th><input class="custom-checkbox" type="checkbox"></th>
-				<th>Bil</th>
-				<th class="text-start">Nama Peralatan</th>
-				<th class="text-start">Jenis</th>
-				<th>Lokasi</th>
-				<th>Tarikh Diperolehi</th>
-				<th>Status Barang</th>
-				<th>Aksi</th>
+				<th th:text="#{schooladmin.manageequipment.serialNumber}"></th>
+				<th class="text-start" th:text="#{schooladmin.manageequipment.itemName}"></th>
+				<th class="text-start" th:text="#{schooladmin.manageequipment.itemType}"></th>
+				<th th:text="#{schooladmin.manageequipment.location}"></th>
+				<th th:text="#{schooladmin.manageequipment.acquisitionDate}"></th>
+				<th th:text="#{schooladmin.manageequipment.itemStatus}"></th>
+				<th th:text="#{schooladmin.manageequipment.actions}"></th>
 			</tr>
-		</thead>
-		<tbody>
+			</thead>
+			<tbody>
 			<!-- Rows -->
 			<tr class="text-center align-middle">
 				<th><input class="custom-checkbox" type="checkbox"></th>
-
 				<td>1</td>
 				<td class="text-start">Nikon</td>
 				<td class="text-start">Kamera</td>
 				<td>Skudai</td>
 				<td>2 Januari 2024</td>
-				<td><span class="badge rounded-pill bg-success">Berfungsi</span></td>
+				<td><span class="badge rounded-pill bg-success" th:text="#{schooladmin.manageequipment.working}">Berfungsi</span></td>
 				<td class="table-actions">
 					<button class="btn hover-edit" data-bs-toggle="modal"
-						data-bs-target="#editEquipmentModal" data-id="1">
+							data-bs-target="#editEquipmentModal" data-id="1">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
-								d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-								<path
-								d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-								<path d="M16 5l3 3" /></svg>
+							 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+							<path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+							<path d="M16 5l3 3" />
+						</svg>
 					</button>
 
 					<button class="btn hover-delete" data-bs-toggle="modal"
-						data-bs-target="#deleteModal" data-id="1">
+							data-bs-target="#deleteModal" data-id="1">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="currentColor"
-							class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
-								d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-								<path
-								d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
+							 viewBox="0 0 24 24" fill="currentColor"
+							 class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+							<path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
+						</svg>
 					</button>
 				</td>
 			</tr>
+			</tbody>
+		</table>
 
-
-
-		</tbody>
-	</table>
-
-	<ul class="pagination justify-content-start m-3">
-		<li class="page-item"><a class="page-link" href="#"
-			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-		</a></li>
-		<li class="page-item active"><a class="page-link" href="#">1</a>
-		</li>
-		<li class="page-item"><a class="page-link" href="#">2</a></li>
-		<li class="page-item"><a class="page-link" href="#"
-			aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-		</a></li>
-	</ul>
-</div>
-
-<div class="position-fixed top-0 end-0 p-3" style="z-index: 9911">
-	<div id="successToast"
-		class="toast align-items-center text-bg-success border-0" role="alert"
-		aria-live="assertive" aria-atomic="true">
-		<div class="d-flex">
-			<div class="toast-body">Data berjaya dipadam.</div>
-			<button type="button" class="btn-close btn-close-white me-2 m-auto"
-				data-bs-dismiss="toast" aria-label="Close"></button>
-		</div>
+		<ul class="pagination justify-content-start m-3">
+			<li class="page-item"><a class="page-link" href="#"
+									 aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+			</a></li>
+			<li class="page-item active"><a class="page-link" href="#">1</a>
+			</li>
+			<li class="page-item"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#"
+									 aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+			</a></li>
+		</ul>
 	</div>
-</div>
 
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1"
-	aria-labelledby="deleteModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="deleteModalLabel">Adakah anda pasti
-					mahu memadam bagi data barang ini?</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal"
-					aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<p>Ini akan hilang selama-lamanya, data tidak dapat dipulihkan.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn" data-bs-dismiss="modal">Batal</button>
-				<button type="button" class="btn btn-danger" id="confirmDelete">Padam</button>
+	<div class="position-fixed top-0 end-0 p-3" style="z-index: 9911">
+		<div id="successToast"
+			 class="toast align-items-center text-bg-success border-0" role="alert"
+			 aria-live="assertive" aria-atomic="true">
+			<div class="d-flex">
+				<div class="toast-body" th:text="#{schooladmin.manageequipment.successMessage}">Data berjaya dipadam.</div>
+				<button type="button" class="btn-close btn-close-white me-2 m-auto"
+						data-bs-dismiss="toast" aria-label="Close"></button>
 			</div>
 		</div>
 	</div>
-</div>
+
+	<!-- Delete Confirmation Modal -->
+	<div class="modal fade" id="deleteModal" tabindex="-1"
+		 aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteModalLabel" th:text="#{schooladmin.manageequipment.confirmDeleteTitle}">Adakah anda pasti
+						mahu memadam bagi data barang ini?</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p th:text="#{schooladmin.manageequipment.confirmDeleteMessage}">Ini akan hilang selama-lamanya, data tidak dapat dipulihkan.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.cancel}">Batal</button>
+					<button type="button" class="btn btn-danger" id="confirmDelete" th:text="#{schooladmin.manageequipment.delete}">Padam</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <div
 	th:replace="~{SchoolAdmin/manageEquipment/add-equipment-modal :: addEquipmentModal}"></div>

@@ -1,22 +1,23 @@
 <div class="d-flex justify-content-between align-items-center">
 	<div class="p-3 pb-0">
-		    <div th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
+		<div th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
 	</div>
 
 	<div class="end-btn ">
 		<div>
 			<button class="btn btn-primary" data-bs-toggle="modal"
-				data-bs-target="#addUserModal" data-id="1"
-				style="display: flex; align-items: center;">
-				<span style="margin-right: 8px;">Tambah Pengguna Baharu </span>
+					data-bs-target="#addUserModal" data-id="1"
+					style="display: flex; align-items: center;"
+					th:title="#{user.addNewUserTooltip}">
+				<span style="margin-right: 8px;" th:text="#{user.addNewUserButton}"></span>
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-					viewBox="0 0 24 24" fill="none" stroke="currentColor"
-					stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-				        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-				        <path d="M12 5l0 14" />
-				        <path d="M5 12l14 0" />
-				    </svg>
+					 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					 class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M12 5l0 14" />
+					<path d="M5 12l14 0" />
+				</svg>
 			</button>
 
 		</div>
@@ -26,164 +27,101 @@
 <div class="card m-2 p-0">
 	<table class="table table-sm">
 		<thead class="th-header">
-			<tr class="text-center">
-				<th>Bil</th>
-				<th class="text-start">Nama Penuh</th>
-				<th class="text-start">Alamat Email</th>
-				<th>Daerah</th>
-				<th>Jenis Pengguna</th>
-				<th>Aksi</th>
-			</tr>
+		<tr class="text-center">
+			<th th:text="#{user.table.columnNumber}"></th>
+			<th class="text-start" th:text="#{user.table.columnFullName}"></th>
+			<th class="text-start" th:text="#{user.table.columnEmail}"></th>
+			<th th:text="#{user.table.columnDistrict}"></th>
+			<th th:text="#{user.table.columnUserType}"></th>
+			<th th:text="#{user.table.columnAction}"></th>
+		</tr>
 		</thead>
 		<tbody>
-			<!-- Rows -->
-			<tr class="text-center align-middle">
-				<td>1</td>
-				<td class="text-start">Ahmad bin Mohamad</td>
-				<td class="text-start">ahmad.mohamad@moe-dl.edu.my</td>
-				<td>Skudai</td>
-				<td><span class="badge badge-super-admin">SUPER ADMIN</span></td>
-				<td class="table-actions">
-					<button class="btn hover-edit" data-bs-toggle="modal"
+		<!-- Rows -->
+		<tr class="text-center align-middle">
+			<td>1</td>
+			<td class="text-start">Ahmad bin Mohamad</td>
+			<td class="text-start">ahmad.mohamad@moe-dl.edu.my</td>
+			<td>Skudai</td>
+			<td><span class="badge badge-super-admin">SUPER ADMIN</span></td>
+			<td class="table-actions">
+				<button class="btn hover-edit" data-bs-toggle="modal"
 						data-bs-target="#editUserModal" data-id="1">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						 class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path
 								d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-								<path
+						<path
 								d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-								<path d="M16 5l3 3" /></svg>
-					</button>
+						<path d="M16 5l3 3" /></svg>
+				</button>
 
-					<button class="btn hover-delete" data-bs-toggle="modal"
+				<button class="btn hover-delete" data-bs-toggle="modal"
 						data-bs-target="#deleteModal" data-id="1">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="currentColor"
-							class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="currentColor"
+						 class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path
 								d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-								<path
+						<path
 								d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
-					</button>
-				</td>
-			</tr>
-
-
-
+				</button>
+			</td>
+		</tr>
 		</tbody>
 	</table>
 
 	<ul class="pagination justify-content-start m-3">
 		<li class="page-item"><a class="page-link" href="#"
-			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								 aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 		</a></li>
 		<li class="page-item active"><a class="page-link" href="#">1</a>
 		</li>
 		<li class="page-item"><a class="page-link" href="#">2</a></li>
 		<li class="page-item"><a class="page-link" href="#"
-			aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								 aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 		</a></li>
 	</ul>
 </div>
 
 <div class="position-fixed top-0 end-0 p-3" style="z-index: 9911">
 	<div id="successToast"
-		class="toast align-items-center text-bg-success border-0" role="alert"
-		aria-live="assertive" aria-atomic="true">
+		 class="toast align-items-center text-bg-success border-0" role="alert"
+		 aria-live="assertive" aria-atomic="true">
 		<div class="d-flex">
-			<div class="toast-body">Data berjaya dipadam.</div>
+			<div class="toast-body" th:text="#{user.toastMessage}"></div>
 			<button type="button" class="btn-close btn-close-white me-2 m-auto"
-				data-bs-dismiss="toast" aria-label="Close"></button>
+					data-bs-dismiss="toast" aria-label="Close"></button>
 		</div>
 	</div>
 </div>
-
 
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1"
-	aria-labelledby="deleteModalLabel" aria-hidden="true">
+	 aria-labelledby="deleteModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="deleteModalLabel">Adakah anda pasti
-					mahu memadam bagi data pengguna?</h5>
+				<h5 class="modal-title" id="deleteModalLabel" th:text="#{user.deleteModalTitle}"></h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal"
-					aria-label="Close"></button>
+						aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<p>Ini akan hilang selama-lamanya, data tidak dapat dipulihkan.</p>
+				<p th:text="#{user.deleteModalBody}"></p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn" data-bs-dismiss="modal">Batal</button>
-				<button type="button" class="btn btn-danger" id="confirmDelete">Padam</button>
+				<button type="button" class="btn" data-bs-dismiss="modal" th:text="#{user.deleteModalCancelButton}"></button>
+				<button type="button" class="btn btn-danger" id="confirmDelete" th:text="#{user.deleteModalConfirmButton}"></button>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div
-	th:replace="~{SuperAdmin/UsersManagement/add-user-modal :: addUserModal}"></div>
+		th:replace="~{SuperAdmin/UsersManagement/add-user-modal :: addUserModal}"></div>
 <div
-	th:replace="~{SuperAdmin/UsersManagement/edit-user-modal :: editUserModal}"></div>
-
-
-
-<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			const deleteModal = document.getElementById("deleteModal");
-			const successToast = new bootstrap.Toast(document
-					.getElementById("successToast"));
-
-			// Show Toast on Confirm Delete
-			document.getElementById("confirmDelete").addEventListener(
-					"click",
-					function() {
-						// Close Modal
-						const modalInstance = bootstrap.Modal
-								.getInstance(deleteModal);
-						modalInstance.hide();
-
-						// Show Success Toast
-						successToast.show();
-					});
-		});
-	</script>
-
-
-<script>
-        document.querySelectorAll('.floating-select').forEach(select => {
-            select.addEventListener('change', function () {
-                this.setAttribute('value', this.value);
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const userTypeSelect = document.getElementById("userTypeSelect");
-            const daerahGroup = document.getElementById("daerahGroup");
-            const schoolGroup = document.getElementById("schoolGroup");
-
-            // Listen for changes in the "Jenis Pengguna" dropdown
-            userTypeSelect.addEventListener("change", function () {
-                const selectedValue = userTypeSelect.value;
-
-                if (selectedValue === "admin-ppd") {
-                    // Show only the Daerah dropdown
-                    daerahGroup.style.display = "block";
-                    schoolGroup.style.display = "none";
-                } else if (selectedValue === "admin-school") {
-                    // Show both Daerah and School dropdowns
-                    daerahGroup.style.display = "block";
-                    schoolGroup.style.display = "block";
-                } else {
-                    // Hide both dropdowns for other user types
-                    daerahGroup.style.display = "none";
-                    schoolGroup.style.display = "none";
-                }
-            });
-        });
- 	</script>
-
+		th:replace="~{SuperAdmin/UsersManagement/edit-user-modal :: editUserModal}"></div>
