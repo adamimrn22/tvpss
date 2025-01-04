@@ -14,81 +14,88 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="schoolName"
-						placeholder=" "> <label class="floating-input-label">Kad
-						Pengenalan Pelajar</label>
+					<input type="text" class="floating-input" id="schoolName" placeholder=" ">
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.kad_pengenalan_pelajar}">
+						Kad Pengenalan Pelajar</label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address1"
-						placeholder=" "> <label class="floating-input-label">Nama
-						Penuh Pelajar</label>
-				</div>
-			</div>
-			<div class="col-12 col-md-6">
-				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address2"
-						placeholder=" "> <label class="floating-input-label">Alamat
-						Email</label>
-				</div>
-			</div>
-			<div class="col-12 col-md-6">
-				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="postcode"
-						placeholder=" "> <label class="floating-input-label">Tarikh
-						Permohonan</label>
-				</div>
-			</div>
-			<div class="col-12 col-md-6">
-				<div class="floating-form-group">
-					<button class="floating-input btn-resume" type="button">
-						<span>Lihat Pautan Resume</span>
-					</button>
-					<label class="floating-input-label">Pautan Resume</label>
+					<input type="text" class="floating-input" id="address1" placeholder=" ">
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.nama_penuh_pelajar}">
+						Nama Penuh Pelajar</label>
 				</div>
 			</div>
 
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" id="address2" placeholder=" ">
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.alamat_email}">
+						Alamat Email</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" id="postcode" placeholder=" ">
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.tarikh_permohonan}">
+						Tarikh Permohonan</label>
+				</div>
+			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
 					<button class="floating-input btn-resume" type="button">
-						<span>Lihat Pautan Media Sosial</span>
+						<span th:text="#{schooladmin.validateapplication.lihat_pautan_resume}">Lihat Pautan Resume</span>
 					</button>
-					<label class="floating-input-label">Pautan Media Sosial</label>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.pautan_resume}">
+						Pautan Resume</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<button class="floating-input btn-resume" type="button">
+						<span th:text="#{schooladmin.validateapplication.lihat_pautan_media_sosial}">Lihat Pautan Media Sosial</span>
+					</button>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.pautan_media_sosial}">
+						Pautan Media Sosial</label>
 				</div>
 			</div>
 
 			<div class="col-12">
 				<div class="floating-form-group">
 					<select class="floating-select" id="userTypeSelect">
-						<option value="" selected disabled hidden>Pilih Status
-							Permohonan</option>
-						<option value="super-admin">Lulus Permohonan</option>
-						<option value="admin-state">Tolak Permohonan</option>
-					</select> <label class="floating-select-label">Status Permohonan</label>
+						<option value="" selected disabled hidden
+							th:text="#{schooladmin.validateapplication.pilih_status_permohonan}">
+							Pilih Status Permohonan</option>
+						<option value="super-admin" th:text="#{schooladmin.validateapplication.lulus_permohonan}">
+							Lulus Permohonan</option>
+						<option value="admin-state" th:text="#{schooladmin.validateapplication.tolak_permohonan}">
+							Tolak Permohonan</option>
+					</select>
+					<label class="floating-select-label" th:text="#{schooladmin.validateapplication.status_permohonan}">
+						Status Permohonan</label>
 				</div>
 			</div>
 
-			<div class="col-12 reason-textfield" id="reasonTextField"
-				style="display: none;">
+			<div class="col-12 reason-textfield" id="reasonTextField" style="display: none;">
 				<div class="floating-form-group">
 					<textarea id="reasonInput" name="reasonPenolakan"
-						style="height: 200px; resize: none; width: 100%;"
-						class="floating-input"></textarea>
-					<label class="floating-input-label" for="reasonInput">Alasan
-						Penolakan</label>
-
+						style="height: 200px; resize: none; width: 100%;" class="floating-input"></textarea>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.alasan_penolakan}">
+						Alasan Penolakan</label>
 				</div>
 			</div>
 
 			<!-- Submit Button -->
 			<div class="col-12 text-end mt-3">
-				<a class="btn me-2" th:href="@{${breadcrumbLink1}}"> Kembali </a>
+				<a class="btn me-2" th:href="@{${breadcrumbLink1}}" th:text="#{schooladmin.validateapplication.kembali}">
+					Kembali</a>
 
-				<button type="submit" class="btn btn-primary">Kemaskini
-					Permohonan</button>
+				<button type="submit" class="btn btn-primary" th:text="#{schooladmin.validateapplication.kemaskini_permohonan}">
+					Kemaskini Permohonan</button>
 			</div>
 
 		</div>

@@ -6,75 +6,80 @@
     link1=${breadcrumbLink1}, 
 )}">
 </div>
-
 <div class="card p-3">
 	<div class="form-section row">
 
 		<div class="col-12 col-md-6">
 			<div class="floating-form-group">
-				<input type="text" class="floating-input" id="schoolName"
-					value="" readonly> <label class="floating-input-label">Kad
-					Pengenalan Pelajar</label>
+				<input type="text" class="floating-input" id="schoolName" value="" readonly>
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.kad_pengenalan_pelajar}">
+					Kad Pengenalan Pelajar</label>
 			</div>
 		</div>
 
 		<div class="col-12 col-md-6">
 			<div class="floating-form-group">
-				<input type="text" class="floating-input" id="address1"
-					value="" readonly> <label class="floating-input-label">Nama
-					Penuh Pelajar</label>
-			</div>
-		</div>
-		<div class="col-12 col-md-6">
-			<div class="floating-form-group">
-				<input type="text" class="floating-input" id="address2"
-					value="" readonly> <label class="floating-input-label">Alamat
-					Email</label>
-			</div>
-		</div>
-		<div class="col-12 col-md-6">
-			<div class="floating-form-group">
-				<input type="text" class="floating-input" id="postcode"
-					value="" readonly> <label class="floating-input-label">Tarikh
-					Permohonan</label>
-			</div>
-		</div>
-		<div class="col-12 col-md-6">
-			<div class="floating-form-group">
-				<button class="floating-input btn-resume" type="button">
-					<span>Lihat Pautan Resume</span>
-				</button>
-				<label class="floating-input-label">Pautan Resume</label>
+				<input type="text" class="floating-input" id="address1" value="" readonly>
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.nama_penuh_pelajar}">
+					Nama Penuh Pelajar</label>
 			</div>
 		</div>
 
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<input type="text" class="floating-input" id="address2" value="" readonly>
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.alamat_email}">
+					Alamat Email</label>
+			</div>
+		</div>
+
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<input type="text" class="floating-input" id="postcode" value="" readonly>
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.tarikh_permohonan}">
+					Tarikh Permohonan</label>
+			</div>
+		</div>
 
 		<div class="col-12 col-md-6">
 			<div class="floating-form-group">
 				<button class="floating-input btn-resume" type="button">
-					<span>Lihat Pautan Media Sosial</span>
+					<span th:text="#{schooladmin.validateapplication.rejected.lihat_pautan_resume}">
+						Lihat Pautan Resume</span>
 				</button>
-				<label class="floating-input-label">Pautan Media Sosial</label>
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.pautan_resume}">
+					Pautan Resume</label>
+			</div>
+		</div>
+
+		<div class="col-12 col-md-6">
+			<div class="floating-form-group">
+				<button class="floating-input btn-resume" type="button">
+					<span th:text="#{schooladmin.validateapplication.rejected.lihat_pautan_media_sosial}">
+						Lihat Pautan Media Sosial</span>
+				</button>
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.pautan_media_sosial}">
+					Pautan Media Sosial</label>
 			</div>
 		</div>
 
 		<div class="col-12">
 			<div class="floating-form-group">
-				<input type="text" class="floating-input" id="postcode"
-					value="Lulus" readonly> <label class="floating-input-label">Status Permohonan</label>
+				<input type="text" class="floating-input" id="postcode" value="Ditolak" readonly
+					th:value="#{schooladmin.validateapplication.rejected.status_permohonan_tolak}">
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.status_permohonan}">
+					Status Permohonan</label>
 			</div>
 		</div>
 		
 		<div class="col-12 reason-textfield" id="reasonTextField">
-				<div class="floating-form-group">
-					<textarea id="reasonInput" name="reasonPenolakan"
-						style="height: 200px; resize: none; width: 100%;"
-						class="floating-input" readonly></textarea>
-					<label class="floating-input-label" for="reasonInput">Alasan
-						Penolakan</label>
-
-				</div>
+			<div class="floating-form-group">
+				<textarea id="reasonInput" name="reasonPenolakan" style="height: 200px; resize: none; width: 100%;"
+					class="floating-input" readonly></textarea>
+				<label class="floating-input-label" th:text="#{schooladmin.validateapplication.rejected.alasan_penolakan}">
+					Alasan Penolakan</label>
 			</div>
+		</div>
 
 	</div>
 </div>

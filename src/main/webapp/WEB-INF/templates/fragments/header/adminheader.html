@@ -55,13 +55,13 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li>
-					<form action="/change-language" method="post" style="display: inline;">
+					<form th:action="@{/change-language}" method="post" style="display: inline;">
 						<input type="hidden" name="lang" value="ms">
 						<button type="submit" class="dropdown-item">BM</button>
 					</form>
 				</li>
 				<li>
-					<form action="/change-language" method="post" style="display: inline;">
+					<form th:action="@{/change-language}" method="post" style="display: inline;">
 						<input type="hidden" name="lang" value="en">
 						<button type="submit" class="dropdown-item">EN</button>
 					</form>

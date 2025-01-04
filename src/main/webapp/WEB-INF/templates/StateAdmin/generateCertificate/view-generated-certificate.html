@@ -1,0 +1,58 @@
+<div class="p-3 pb-0">
+	<div
+		th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
+</div>
+
+<div class="p-3">
+	<!-- Main Form -->
+	<div class="card">
+		<div class="card-body">
+			<a class="btn btn-success btn-sm" th:href="@{/GenerateCertificate}">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+					viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M5 12l14 0" />
+					<path d="M5 12l6 6" />
+					<path d="M5 12l6 -6" /></svg> <span class="mx-1"
+				th:text="#{stateadmin.generatecert.button.back}">Kembali</span>
+			</a>
+
+			<h5 class="my-3"
+				th:text="#{stateadmin.generatecert.viewdetails.title}">Senarai
+				Pelajar</h5>
+			<table class="table" id="selectedStudentsTable">
+				<thead>
+					<tr>
+						<th style="width: 10%"
+							th:text="#{stateadmin.generatecert.viewdetails.table.header.id}">
+							ID</th>
+						<th style="width: 20%"
+							th:text="#{stateadmin.generatecert.viewdetails.table.header.name}">
+							Nama</th>
+						<th style="width: 15%"
+							th:text="#{stateadmin.generatecert.viewdetails.table.header.date}">
+							Tarikh</th>
+						<th style="width: 20%"
+							th:text="#{stateadmin.generatecert.viewdetails.table.header.achievement_type}">
+							Jenis Pencapaian</th>
+						<th style="width: 25%"
+							th:text="#{stateadmin.generatecert.viewdetails.table.header.achievement_info}">
+							Maklumat Pencapaian</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="width: 10%">012100</td>
+						<td style="width: 20%">ABU</td>
+						<td style="width: 15%">22/2/2024</td>
+						<td style="width: 20%">Sukan</td>
+						<td style="width: 25%">Menang</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
