@@ -4,148 +4,264 @@
 
 <div class="d-flex flex-wrap gap-3">
 	<div class="card p-3 mb-3" style="flex: 1 1 calc(50% - 1rem);">
-		<h5 style="color: var(--primary)" th:text="#{adminppd.validate.schoolInfo}">Maklumat Sekolah</h5>
+		<h5 style="color: var(--primary)"
+			th:text="#{adminppd.validate.schoolInfo}">Maklumat Sekolah</h5>
 		<table class="table table-bordered">
 			<tr>
-				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{adminppd.validate.schoolName}">Nama Sekolah</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Sekolah A</td>
+				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong
+					th:text="#{adminppd.validate.schoolName}">Nama Sekolah</strong></td>
+				<td class="text-start" style="color: var(--gray-500);">Sekolah
+					A</td>
 			</tr>
 			<tr>
-				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{adminppd.validate.schoolCode}">Kod Sekolah</strong></td>
+				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong
+					th:text="#{adminppd.validate.schoolCode}">Kod Sekolah</strong></td>
 				<td class="text-start" style="color: var(--gray-500);">12345</td>
 			</tr>
 			<tr>
-				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{adminppd.validate.schoolOfficer}">Pengawai PIC Sekolah</strong></td>
-				<td class="text-start" style="color: var(--gray-500);"><strong>Abu bin Abdul</strong></td>
+				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong
+					th:text="#{adminppd.validate.schoolOfficer}">Pengawai PIC
+						Sekolah</strong></td>
+				<td class="text-start" style="color: var(--gray-500);"><strong>Abu
+						bin Abdul</strong></td>
 			</tr>
 			<tr>
-				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{adminppd.validate.schoolAddress}">Alamat Sekolah</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Jalan ABC, 123, Kuala Lumpur</td>
+				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong
+					th:text="#{adminppd.validate.schoolAddress}">Alamat
+						Sekolah</strong></td>
+				<td class="text-start" style="color: var(--gray-500);">Jalan
+					ABC, 123, Kuala Lumpur</td>
 			</tr>
 			<tr>
-				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{adminppd.validate.schoolType}">Jenis Sekolah</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Sekolah Menengah</td>
+				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong
+					th:text="#{adminppd.validate.schoolType}">Jenis Sekolah</strong></td>
+				<td class="text-start" style="color: var(--gray-500);">Sekolah
+					Menengah</td>
 			</tr>
 			<tr>
-				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{adminppd.validate.schoolVersion}">Versi TVPSS Sekolah</strong></td>
-				<td class="text-start" style="color: var(--gray-500);"><strong>Versi 1</strong></td>
+				<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong
+					th:text="#{adminppd.validate.schoolVersion}">Versi TVPSS
+						Sekolah</strong></td>
+				<td class="text-start" style="color: var(--gray-500);"><strong>Versi
+						1</strong></td>
 			</tr>
 		</table>
 
-		<h5 style="color: var(--primary)" th:text="#{adminppd.validate.schoolInfoTVPSS}">Maklumat TVPSS Sekolah</h5>
+		<h5 style="color: var(--primary)"
+			th:text="#{adminppd.validate.schoolInfoTVPSS}">Maklumat TVPSS
+			Sekolah</h5>
 
 		<table class="table table-bordered text-center">
 			<thead>
-			<tr>
-				<th class="text-start" style="color: var(--gray-700);"><span th:text="#{adminppd.validate.tvpssInfo.info}">Info</span></th>
-				<th class="text-start" style="color: var(--gray-700);"><span th:text="#{adminppd.validate.tvpssInfo.status}">Ada/Tiada</span></th>
-				<th class="text-start" style="color: var(--gray-700);"><span th:text="#{adminppd.validate.tvpssInfo.detail}">Butiran</span></th>
-			</tr>
+				<tr>
+					<th class="text-start" style="color: var(--gray-700);"><span
+						th:text="#{adminppd.validate.tvpssInfo.info}">Info</span></th>
+					<th class="text-start" style="color: var(--gray-700);"><span
+						th:text="#{adminppd.validate.tvpssInfo.status}">Ada/Tiada</span></th>
+					<th class="text-start" style="color: var(--gray-700);"><span
+						th:text="#{adminppd.validate.tvpssInfo.detail}">Butiran</span></th>
+				</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{adminppd.validate.logoTVPSS}">Logo TVPSS</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start">
-					<button class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogoTVPSS" th:text="#{adminppd.validate.logoTVPSSView}">Lihat Logo</button>
-				</td>
-			</tr>
+				<tr>
+					<td class="text-start" style="color: var(--gray-700);"><strong
+						th:text="#{adminppd.validate.logoTVPSS}">Logo TVPSS</strong></td>
+					<td class="text-start" style="color: var(--gray-500);">Ada</td>
+					<td class="text-start">
+						<button class="btn btn-sm" data-bs-toggle="modal"
+							data-bs-target="#modalLogoTVPSS"
+							th:text="#{adminppd.validate.logoTVPSSView}">Lihat Logo</button>
+					</td>
+				</tr>
 
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{adminppd.validate.youtubeUpload}">YouTube Upload</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start">
-					<button class="btn btn-outline-danger btn-sm">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
+				<tr>
+					<td class="text-start" style="color: var(--gray-700);"><strong
+						th:text="#{adminppd.validate.youtubeUpload}">YouTube
+							Upload</strong></td>
+					<td class="text-start" style="color: var(--gray-500);">Ada</td>
+					<td class="text-start">
+						<button class="btn btn-outline-danger btn-sm">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24" fill="currentColor"
+								class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" />
+							<path
+									d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" />
 						</svg>
-						<span th:text="#{adminppd.validate.youtubeLink}">Link Youtube</span>
-					</button>
-				</td>
-			</tr>
+							<span th:text="#{adminppd.validate.youtubeLink}">Link
+								Youtube</span>
+						</button>
+					</td>
+				</tr>
 
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{adminppd.validate.tvStudio}">Corner/Mini/TV Studio</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start"></td>
-			</tr>
+				<tr>
+					<td class="text-start" style="color: var(--gray-700);"><strong
+						th:text="#{adminppd.validate.tvStudio}">Corner/Mini/TV
+							Studio</strong></td>
+					<td class="text-start" style="color: var(--gray-500);">Ada</td>
+					<td class="text-start"></td>
+				</tr>
 
-			<tr>
-				<td class="text-start" style="color: var(--gray-700); width: 25%"><strong th:text="#{adminppd.validate.recordingSchool}">Rakaman Dalam Sekolah</strong></td>
-				<td class="text-start" style="color: var(--gray-500); width: 25%">Ada</td>
-				<td class="text-start"></td>
-			</tr>
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{adminppd.validate.outsideCollaboration}">Berkolaborasi Syarikat Luar</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start"></td>
-			</tr>
-			<tr>
-				<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{adminppd.validate.greenScreen}">Penggunaan Teknologi Green Screen</strong></td>
-				<td class="text-start" style="color: var(--gray-500);">Ada</td>
-				<td class="text-start"></td>
-			</tr>
+				<tr>
+					<td class="text-start" style="color: var(--gray-700); width: 25%"><strong
+						th:text="#{adminppd.validate.recordingSchool}">Rakaman
+							Dalam Sekolah</strong></td>
+					<td class="text-start" style="color: var(--gray-500); width: 25%">Ada</td>
+					<td class="text-start"></td>
+				</tr>
+				<tr>
+					<td class="text-start" style="color: var(--gray-700);"><strong
+						th:text="#{adminppd.validate.outsideCollaboration}">Berkolaborasi
+							Syarikat Luar</strong></td>
+					<td class="text-start" style="color: var(--gray-500);">Ada</td>
+					<td class="text-start"></td>
+				</tr>
+				<tr>
+					<td class="text-start" style="color: var(--gray-700);"><strong
+						th:text="#{adminppd.validate.greenScreen}">Penggunaan
+							Teknologi Green Screen</strong></td>
+					<td class="text-start" style="color: var(--gray-500);">Ada</td>
+					<td class="text-start"></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
 
-	<div class="card p-3 mb-3 gradient-container-card" style="flex: 1 1 calc(50% - 1rem);">
+	<div class="card p-3 mb-3 gradient-container-card"
+		style="flex: 1 1 calc(50% - 1rem);">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="text-center mb-3">
-					<h1 style="color: var(--primary)" th:text="#{adminppd.validate.requirements}">PENUHI KEPERLUAN</h1>
-					<p class="text-secondary h5" th:text="#{adminppd.validate.upgradeVersion}">Naik Taraf Status Versi</p>
+					<h1 style="color: var(--primary)"
+						th:text="#{adminppd.validate.requirements}">PENUHI KEPERLUAN</h1>
+					<p class="text-secondary h5"
+						th:text="#{adminppd.validate.upgradeVersion}">Naik Taraf
+						Status Versi</p>
 					<div class="version-number my-3">
-						<span>3</span> <span class="arrow">→</span> <span class="new-version">4</span>
+						<span id="currentVersion">1</span> <span class="arrow">→</span> <span
+							id="newVersion" class="new-version">4</span>
 					</div>
 				</div>
 
 				<div class="card shadow-sm p-3">
+					<!-- Version 1 Requirements -->
 					<div class="form-check my-2">
-						<input class="custom-checkbox" type="checkbox" id="flexCheckDefault">
-						<label class="custom-checkbox-label ms-3 text-secondary" for="flexCheckDefault" th:text="#{adminppd.validate.logoTVPSS}">Logo TVPSS Sekolah</label>
+						<input class="custom-checkbox" type="checkbox" id="logoTVPSS">
+						<label class="custom-checkbox-label ms-3 text-secondary"
+							for="logoTVPSS" th:text="#{adminppd.validate.logoTVPSS}">Logo
+							TVPSS Sekolah</label>
 					</div>
 
 					<div class="form-check my-2">
-						<input class="custom-checkbox" type="checkbox" id="flexCheckDefault">
-						<label class="custom-checkbox-label ms-3 text-secondary" for="flexCheckDefault" th:text="#{adminppd.validate.tvStudio}">Corner/Mini/TV Studio</label>
+						<input class="custom-checkbox" type="checkbox" id="cornerStudio">
+						<label class="custom-checkbox-label ms-3 text-secondary"
+							for="cornerStudio" th:text="#{adminppd.validate.tvStudio}">Corner/Mini/TV
+							Studio</label>
+					</div>
+
+					<!-- Version 2 Requirements -->
+					<div class="form-check my-2">
+						<input class="custom-checkbox" type="checkbox"
+							id="inSchoolRecording"> <label for="inSchoolRecording"
+							class="custom-checkbox-label ms-3 text-secondary"
+							th:text="#{adminppd.validate.recordingSchool}">Rakaman
+							dalaman Sekolah</label>
 					</div>
 
 					<div class="form-check my-2">
-						<input class="custom-checkbox" type="checkbox" id="flexCheckDefault">
-						<label class="custom-checkbox-label ms-3 text-secondary" for="flexCheckDefault" th:text="#{adminppd.validate.youtubeUpload}">Upload di Youtube</label>
+						<input class="custom-checkbox" type="checkbox"
+							id="uploadToYoutube"> <label for="uploadToYoutube"
+							class="custom-checkbox-label ms-3 text-secondary"
+							th:text="#{adminppd.validate.youtubeUpload}">Upload di
+							Youtube</label>
+					</div>
+
+					<!-- Version 3 Requirements -->
+					<div class="form-check my-2">
+						<input class="custom-checkbox" type="checkbox"
+							id="outsideCollaboration"> <label
+							for="outsideCollaboration"
+							class="custom-checkbox-label ms-3 text-secondary"
+							th:text="#{adminppd.validate.outsideCollaboration}">Berkolaborat
+							dengan agensi luar</label>
 					</div>
 
 					<div class="form-check my-2">
-						<input class="custom-checkbox" type="checkbox" id="flexCheckDefault">
-						<label class="custom-checkbox-label ms-3 text-secondary" for="flexCheckDefault" th:text="#{adminppd.validate.recordingSchool}">Rakaman dalam dan luar Sekolah</label>
+						<input class="custom-checkbox" type="checkbox"
+							id="inOutSchoolRecording"> <label for="inOutSchoolRecording"
+							class="custom-checkbox-label ms-3 text-secondary"
+							th:text="#{adminppd.validate.recordingInOutSchool}">Rakaman
+							dalaman dan luar Sekolah</label>
 					</div>
 
+					<!-- Version 4 Requirements -->
 					<div class="form-check my-2">
-						<input class="custom-checkbox" type="checkbox" id="flexCheckDefault">
-						<label class="custom-checkbox-label ms-3 text-secondary" for="flexCheckDefault" th:text="#{adminppd.validate.outsideCollaboration}">Berkolaborat dengan agensi luar</label>
-					</div>
-
-					<div class="form-check my-2">
-						<input class="custom-checkbox" type="checkbox" id="flexCheckDefault">
-						<label class="custom-checkbox-label ms-3 text-secondary" for="flexCheckDefault" th:text="#{adminppd.validate.greenScreen}">Penggunaan Teknologi ‘Green Screen’</label>
+						<input class="custom-checkbox" type="checkbox" id="greenScreen">
+						<label class="custom-checkbox-label ms-3 text-secondary"
+							for="greenScreen" th:text="#{adminppd.validate.greenScreen}">Penggunaan
+							Teknologi ‘Green Screen’</label>
 					</div>
 
 					<div class="m-2">
-						<button class="btn btn-danger btn-sm w-100" th:text="#{adminppd.validate.updateTVPSSStatus}">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-send">
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path d="M10 14l11 -11" />
-								<path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
-							</svg>
+						<button class="btn btn-danger btn-sm w-100">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24" fill="none" stroke="currentColor"
+								stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+								class="icon icon-tabler icons-tabler-outline icon-tabler-send">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 14l11 -11" />
+                    <path
+									d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
+                </svg>
 							<span>Kemaskini Status TVPSS</span>
 						</button>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 
 </div>
-<div th:include="~{StateAdmin/schoolVersionStatus/tvpss-modal :: tvpssinfomodal}"></div>
+<div
+	th:include="~{StateAdmin/schoolVersionStatus/tvpss-modal :: tvpssinfomodal}"></div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    // Get all the checkboxes
+	    const checkboxes = document.querySelectorAll('.custom-checkbox');
+	    const newVersionSpan = document.getElementById('newVersion');
+
+	    // Function to check the version
+	    function checkVersion() {
+	        let version = parseInt(document.getElementById('currentVersion').textContent);
+
+	        // Check if the requirements for Version 2 are met
+	        const version1Requirements = document.getElementById('logoTVPSS').checked && document.getElementById('cornerStudio').checked;
+	        const version2Requirements = version1Requirements && document.getElementById('inSchoolRecording').checked && document.getElementById('uploadToYoutube').checked;
+	        const version3Requirements = version2Requirements && document.getElementById('outsideCollaboration').checked && document.getElementById('inOutSchoolRecording').checked;
+	        const version4Requirements = version3Requirements && document.getElementById('greenScreen').checked;
+
+	        // Determine the version based on the requirements
+	        if (version4Requirements) {
+	            version = 4;
+	        } else if (version3Requirements) {
+	            version = 3;
+	        } else if (version2Requirements) {
+	            version = 2;
+	        }
+
+	        // Update the displayed new-version number
+	        newVersionSpan.textContent = version;
+	    }
+
+	    // Attach event listeners to checkboxes
+	    checkboxes.forEach(checkbox => {
+	        checkbox.addEventListener('change', checkVersion);
+	    });
+
+	    // Initial check when the page loads
+	    checkVersion();
+	});
+
+	</script>
