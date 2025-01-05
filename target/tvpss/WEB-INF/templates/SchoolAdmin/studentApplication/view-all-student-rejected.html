@@ -7,17 +7,17 @@
 
 	<div class="custom-nav mb-3">
 		<a class="custom-nav-link" th:href="@{/StudentApplication}">
-			<span th:text="#{schooladmin.view.approved.pending}">Pending</span>
+			<span th:text="#{schooladmin.viewpermohonan.pending}">Pending</span>
 		</a>
 		<a class="custom-nav-link" th:href="@{/StudentApplication/Approved}">
-			<span th:text="#{schooladmin.view.approved.lulus}">Lulus</span>
+			<span th:text="#{schooladmin.viewpermohonan.lulus}">Lulus</span>
 		</a>
 		<a class="custom-nav-link active">
-			<span th:text="#{schooladmin.view.approved.ditolak}">Ditolak</span>
+			<span th:text="#{schooladmin.viewpermohonan.ditolak}">Ditolak</span>
 		</a>
 	</div>
 
-	<h3 style="color: var(--primary)" th:text="#{schooladmin.view.approved.maklumatPelajar}">Maklumat Pelajar</h3>
+	<h3 style="color: var(--primary)" th:text="#{schooladmin.viewpermohonan.maklumatPelajar}">Maklumat Pelajar</h3>
 
 	<div class="d-flex justify-content-end">
 		<button class="btn btn-outline-danger btn-sm">
@@ -33,7 +33,7 @@
 				<path d="M20 15h-3v6" />
 				<path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" />
 			</svg>
-			<span class="mx-1" th:text="#{schooladmin.view.approved.eksportPdf}">Eksport PDF</span>
+			<span class="mx-1" th:text="#{schooladmin.viewpermohonan.eksportPdf}">Eksport PDF</span>
 		</button>
 		<button class="btn btn-outline-success btn-sm ms-2">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -49,7 +49,7 @@
 						d="M17 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" />
 				<path d="M11 15v6h3" />
 			</svg>
-			<span class="mx-1" th:text="#{schooladmin.view.approved.eksportExcel}">Eksport Excel</span>
+			<span class="mx-1" th:text="#{schooladmin.viewpermohonan.eksportExcel}">Eksport Excel</span>
 		</button>
 	</div>
 
@@ -57,13 +57,13 @@
 		<div>
 			<div class="floating-form-group" style="width: 400px">
 				<input type="text" class="floating-input" placeholder=" ">
-				<label class="floating-input-label" th:text="#{schooladmin.view.approved.cariNamaPelajar}">Cari Nama Pelajar...</label>
+				<label class="floating-input-label" th:text="#{schooladmin.viewpermohonan.cariNamaPelajar}">Cari Nama Pelajar...</label>
 			</div>
 		</div>
 
 		<div class="d-flex align-items-center">
 			<div class="d-flex align-items-center mx-4">
-				<label for="entries" class="mx-3" th:text="#{schooladmin.view.approved.tunjuk}">Tunjuk</label>
+				<label for="entries" class="mx-3" th:text="#{schooladmin.viewpermohonan.tunjuk}">Tunjuk</label>
 				<select id="entries" class="form-select w-auto me-2">
 					<option>5</option>
 					<option selected>10</option>
@@ -71,7 +71,7 @@
 					<option>50</option>
 					<option>100</option>
 				</select>
-				<span th:text="#{schooladmin.view.approved.entri}">Entri</span>
+				<span th:text="#{schooladmin.viewpermohonan.entri}">Entri</span>
 			</div>
 		</div>
 	</div>
@@ -80,12 +80,12 @@
 		<thead>
 		<tr>
 			<th><input class="custom-checkbox" type="checkbox"></th>
-			<th th:text="#{schooladmin.view.approved.bil}">Bil</th>
-			<th th:text="#{schooladmin.view.approved.namaPelajar}">Nama Penuh Pelajar</th>
-			<th class="text-center" th:text="#{schooladmin.view.approved.kadPengenalan}">Kad Pengenalan</th>
-			<th class="text-center" th:text="#{schooladmin.view.approved.tingkatan}">Tingkatan</th>
-			<th class="text-center" th:text="#{schooladmin.view.approved.jawatan}">Jawatan</th>
-			<th class="text-center" th:text="#{schooladmin.view.approved.aksi}">Aksi</th>
+			<th th:text="#{schooladmin.viewpermohonan.bil}">Bil</th>
+			<th th:text="#{schooladmin.viewpermohonan.namaPelajar}">Nama Penuh Pelajar</th>
+			<th class="text-center" th:text="#{schooladmin.viewpermohonan.kadPengenalan}">Kad Pengenalan</th>
+			<th class="text-center" th:text="#{schooladmin.viewpermohonan.tingkatan}">Tingkatan</th>
+			<th class="text-center" th:text="#{schooladmin.viewpermohonan.jawatan}">Jawatan</th>
+			<th class="text-center" th:text="#{schooladmin.viewpermohonan.aksi}">Aksi</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -104,7 +104,7 @@
 						<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
 						<path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
 					</svg>
-					<span class="mx-1" th:text="#{schooladmin.view.approved.lihatPermohonan}">Lihat Permohonan</span>
+					<span class="mx-1" th:text="#{schooladmin.viewpermohonan.lihatPermohonan}">Lihat Permohonan</span>
 				</a>
 			</td>
 		</tr>

@@ -1,212 +1,120 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Certificate Generator</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .preview-image {
-            max-width: 300px;
-            max-height: 200px;
-            object-fit: contain;
-        }
-        .certificate-image-container {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-        .certificate-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        .selected .certificate-image {
-            border-color: #0d6efd;
-        }
-        .selection-overlay {
-            display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(13, 110, 253, 0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .selected .selection-overlay {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <form id="certificateForm">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" required>
-            </div>
+<div class="p-3">
+	<!-- Main Form -->
+	<div class="card">
+		<div class="card-body">
+			<a class="btn btn-success btn-sm" th:href="@{/GenerateCertificate}">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+					viewBox="0 0 24 24" fill="none" stroke="currentColor"
+					stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path d="M5 12l14 0" />
+					<path d="M5 12l6 6" />
+					<path d="M5 12l6 -6" /></svg> <span class="mx-1"
+				th:text="#{stateadmin.generatecert.button.back}">Kembali</span>
+			</a>
 
-            <div class="mb-3">
-                <label class="form-label">Certificate Template</label>
-                <div id="imagePreview" class="mb-2">
-                    <!-- Preview will be shown here -->
-                </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imageModal">
-                    Choose Certificate
-                </button>
-            </div>
+			<h5 class="my-3" th:text="#{stateadmin.generatecert.generate.title}">
+				Senarai Pelajar</h5>
+			<table class="table" id="selectedStudentsTable">
+				<thead>
+					<tr>
+						<th style="width: 10%"
+							th:text="#{stateadmin.generatecert.generate.table.header.id}">
+							ID</th>
+						<th style="width: 20%"
+							th:text="#{stateadmin.generatecert.generate.table.header.name}">
+							Nama</th>
+						<th style="width: 15%"
+							th:text="#{stateadmin.generatecert.generate.table.header.date}">
+							Tarikh</th>
+						<th style="width: 20%"
+							th:text="#{stateadmin.generatecert.generate.table.header.achievement_type}">
+							Jenis Pencapaian</th>
+						<th style="width: 25%"
+							th:text="#{stateadmin.generatecert.generate.table.header.achievement_info}">
+							Maklumat Pencapaian</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td style="width: 10%">012100</td>
+						<td style="width: 20%">ABU</td>
+						<td style="width: 15%">22/2/2024</td>
+						<td style="width: 20%">Sukan</td>
+						<td style="width: 25%">Menang</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-            <button type="submit" class="btn btn-success">Generate Certificate</button>
-        </form>
-    </div>
+	<form id="certificateForm">
+		<div class="mb-3">
+			<div id="imagePreview" class="mb-2">
+				<!-- Preview will be shown here -->
+			</div>
+			<button type="button" class="btn btn-success" data-bs-toggle="modal"
+				data-bs-target="#imageModal"
+				th:text="#{stateadmin.generatecert.generate.choose_certificate}">
+				Pilih Sijil</button>
+		</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="imageModal" tabindex="-1">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Select Certificate Template</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="text-muted text-center mb-3">Click on a template to select it</p>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="certificate-image-container">
-                                <img src="https://picsum.photos/seed/cert1/800/500" 
-                                     class="certificate-image" 
-                                     alt="Certificate Template 1"
-                                     data-template-id="1">
-                                <div class="selection-overlay">Selected</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="certificate-image-container">
-                                <img src="https://picsum.photos/seed/cert2/800/500" 
-                                     class="certificate-image" 
-                                     alt="Certificate Template 2"
-                                     data-template-id="2">
-                                <div class="selection-overlay">Selected</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="certificate-image-container">
-                                <img src="https://picsum.photos/seed/cert3/800/500" 
-                                     class="certificate-image" 
-                                     alt="Certificate Template 3"
-                                     data-template-id="3">
-                                <div class="selection-overlay">Selected</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="certificate-image-container">
-                                <img src="https://picsum.photos/seed/cert4/800/500" 
-                                     class="certificate-image" 
-                                     alt="Certificate Template 4"
-                                     data-template-id="4">
-                                <div class="selection-overlay">Selected</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="certificate-image-container">
-                                <img src="https://picsum.photos/seed/cert5/800/500" 
-                                     class="certificate-image" 
-                                     alt="Certificate Template 5"
-                                     data-template-id="5">
-                                <div class="selection-overlay">Selected</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="certificate-image-container">
-                                <img src="https://picsum.photos/seed/cert6/800/500" 
-                                     class="certificate-image" 
-                                     alt="Certificate Template 6"
-                                     data-template-id="6">
-                                <div class="selection-overlay">Selected</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="addButton" disabled>Add</button>
-                </div>
-            </div>
-        </div>
-    </div>
+		<button type="submit" class="btn btn-primary text-end"
+			th:text="#{stateadmin.generatecert.generate.generate_certificate}">
+			Jana Sijil</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const modalElement = document.getElementById('imageModal');
-            const modal = new bootstrap.Modal(modalElement);
-            const imagePreview = document.getElementById('imagePreview');
-            const addButton = document.getElementById('addButton');
-            const certificateContainers = document.querySelectorAll('.certificate-image-container');
-            let selectedImage = null;
-            let selectedTemplateId = null;
+		<a class="btn btn-sm" th:href="@{/GenerateCertificate}"> <svg
+				xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+				viewBox="0 0 24 24" fill="none" stroke="currentColor"
+				stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+				class="icon icon-tabler icons-tabler-outline icon-tabler-cancel">
+				<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+				<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+				<path d="M18.364 5.636l-12.728 12.728" /></svg> <span class="mx-1"
+			th:text="#{stateadmin.generatecert.button.revert}">Batal</span>
+		</a>
+	</form>
 
-            // Handle image selection
-            certificateContainers.forEach(container => {
-                container.addEventListener('click', function() {
-                    // Remove selection from all containers
-                    certificateContainers.forEach(c => c.classList.remove('selected'));
-                    
-                    // Add selection to clicked container
-                    this.classList.add('selected');
-                    const img = this.querySelector('.certificate-image');
-                    selectedImage = img.src;
-                    selectedTemplateId = img.dataset.templateId;
-                    addButton.disabled = false;
-                });
-            });
+	<!-- Modal -->
+	<div class="modal fade" id="imageModal" tabindex="-1">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"
+						th:text="#{stateadmin.generatecert.generate.select_certificate_template}">
+						Pilih Template Sijil</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					<p class="text-muted text-center mb-3">Click on a template to
+						select it</p>
+					<div class="row">
+						<!-- Template Images -->
+						<!-- Same as previous for each template -->
+						<!-- Example for Template 1 -->
+						<div class="col-md-4">
+							<div class="certificate-image-container">
+								<img src="https://picsum.photos/seed/cert1/800/500"
+									class="certificate-image" alt="Certificate Template 1"
+									data-template-id="1">
+								<div class="selection-overlay">Selected</div>
+							</div>
+						</div>
+						<!-- Repeat for other templates -->
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal"
+						th:text="#{stateadmin.generatecert.generate.close}">
+						Tutup</button>
+					<button type="button" class="btn btn-primary" id="addButton"
+						disabled th:text="#{stateadmin.generatecert.generate.add}">
+						Tambah</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            // Handle add button click
-            addButton.addEventListener('click', function() {
-                if (selectedImage) {
-                    imagePreview.innerHTML = `
-                        <div class="alert alert-success mb-2">Template ${selectedTemplateId} selected successfully!</div>
-                        <img src="${selectedImage}" 
-                             class="preview-image mb-2" 
-                             alt="Selected certificate">
-                        <input type="hidden" name="templateUrl" value="${selectedImage}">
-                        <input type="hidden" name="templateId" value="${selectedTemplateId}">
-                    `;
-                    
-                    // Properly close the modal
-                    modal.hide();
-                    document.body.classList.remove('modal-open');
-                    const modalBackdrop = document.querySelector('.modal-backdrop');
-                    if (modalBackdrop) {
-                        modalBackdrop.remove();
-                    }
-                    
-                    // Reset selection
-                    certificateContainers.forEach(c => c.classList.remove('selected'));
-                    addButton.disabled = true;
-                    selectedImage = null;
-                    selectedTemplateId = null;
-                }
-            });
-
-            // Reset selection when modal is closed
-            modalElement.addEventListener('hidden.bs.modal', function () {
-                certificateContainers.forEach(c => c.classList.remove('selected'));
-                addButton.disabled = true;
-                selectedImage = null;
-                selectedTemplateId = null;
-                document.body.classList.remove('modal-open');
-                const modalBackdrop = document.querySelector('.modal-backdrop');
-                if (modalBackdrop) {
-                    modalBackdrop.remove();
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+</div>
