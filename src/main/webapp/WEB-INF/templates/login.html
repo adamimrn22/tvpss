@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TVPSS Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+            padding: 2.5rem;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+        }
+
+        .logo-container img {
+            max-width: 350px;
+            height: auto;
+        }
+
+        .floating-form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .floating-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #dee2e6;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .floating-input:focus {
+            border-color: #515B92;
+            box-shadow: 0 0 0 2px rgba(81, 91, 146, 0.2);
+        }
+
+        .floating-input-label {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            padding: 0 0.25rem;
+            color: #6c757d;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .floating-input:focus + .floating-input-label,
+        .floating-input:not(:placeholder-shown) + .floating-input-label {
+            top: 0;
+            transform: translateY(-50%) scale(0.85);
+            color: #515B92;
+        }
+
+        .login-btn {
+            background: #515B92;
+            border: none;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .login-btn:hover {
+            background: #424b7a;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .show-password-checkbox {
+            font-size: 0.875rem;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem; /* Added bottom margin for spacing */
+        }
+
+        .show-password-checkbox input[type="checkbox"] {
+            accent-color: #515B92; /* Make the checkbox color match the primary color */
+        }
+
+    </style>
+</head>
+<body>
+<div class="login-container">
+
+    <div class="logo-container">
+        <img th:src="@{/images/LogoTVPSS.svg}" alt="TVPSS Logo">
+    </div>
+
+    <div th:if="${error}" class="alert alert-danger">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="floating-form-group">
+            <input type="email" class="floating-input" id="email" name="username" placeholder="" required>
+            <label for="email" class="floating-input-label">Email MOE</label>
+        </div>
+
+        <div class="floating-form-group">
+            <input type="password" class="floating-input" id="password" name="password" placeholder="" required>
+            <label for="password" class="floating-input-label">Kata Laluan</label>
+        </div>
+
+        <div class="show-password-checkbox">
+            <input type="checkbox" id="showPassword" onclick="togglePassword()">
+            <label for="showPassword" class="ms-2">Tunjuk Kata Laluan</label>
+        </div>
+
+        <button type="submit" class="login-btn">Log Masuk</button>
+    </form>
+
+</div>
+
+<script>
+    function togglePassword() {
+        var passwordField = document.getElementById("password");
+        var showPasswordCheckbox = document.getElementById("showPassword");
+
+        if (showPasswordCheckbox.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+</script>
+
+</body>
+</html>

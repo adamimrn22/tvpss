@@ -12,7 +12,6 @@ public class GenerateCertificateController {
 	@GetMapping("")
 	public String viewAllCert(Model model) {
 		model.addAttribute("pageTitle", "Generate Certificate");
-		model.addAttribute("role", "stateadmin");
 		model.addAttribute("currentPage", "GenerateCertificate");
 		model.addAttribute("headerText", "Jana Sijil Pelajar");
 		model.addAttribute("content", "StateAdmin/generateCertificate/view-all-generate-certificate");
@@ -25,7 +24,6 @@ public class GenerateCertificateController {
 	@GetMapping("/certGen")
 	public String generateCert(Model model) {
 		model.addAttribute("pageTitle", "Generate Certificate");
-		model.addAttribute("role", "stateadmin");
 		model.addAttribute("currentPage", "GenerateCertificate");
 		model.addAttribute("headerText", "Jana Sijil Pelajar");
 		model.addAttribute("content", "StateAdmin/generateCertificate/generate-certificate");
@@ -38,7 +36,6 @@ public class GenerateCertificateController {
 	@GetMapping("/viewGeneratedCert")
 	public String viewGeneratedCertDetail(Model model) {
 		model.addAttribute("pageTitle", "Generate Certificate");
-		model.addAttribute("role", "stateadmin");
 		model.addAttribute("currentPage", "GenerateCertificate");
 		model.addAttribute("headerText", "Jana Sijil Pelajar");
 		model.addAttribute("content", "StateAdmin/generateCertificate/view-generated-certificate");

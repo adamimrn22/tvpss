@@ -1,18 +1,18 @@
 <!-- fragments/head/dashboard-head.html -->
 <th:block th:fragment="chartscripts">
 	<!-- Directly use the role as the th:switch expression -->
-	<th:block th:switch="${currentPage}">
+	<th:block th:switch="${role}">
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<script th:case="'superadmin'"
 			th:src="@{/js/SuperAdmin/SuperAdminChart.js}" type="text/javascript"></script>
 			
-		<script th:case="'StateAdmin'" th:src="@{/js/StateAdmin/StateAdminChart.js}"
+		<script th:case="'stateadmin'" th:src="@{/js/StateAdmin/StateAdminChart.js}"
 			type="text/javascript"></script>
 			
-		<script th:case="'AdminPPD'" th:src="@{/js/PPDAdmin/PPDAdminChart.js}"
+		<script th:case="'ppdadmin'" th:src="@{/js/PPDAdmin/PPDAdminChart.js}"
 			type="text/javascript"></script>
 		
-		<script th:case="'SchoolAdmin'" th:src="@{/js/SchoolAdmin/SchoolAdminChart.js}"
+		<script th:case="'schooladmin'" th:src="@{/js/SchoolAdmin/SchoolAdminChart.js}"
 			type="text/javascript"></script>
 	</th:block>
 </th:block>

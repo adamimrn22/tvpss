@@ -12,7 +12,6 @@ public class StudentAchievementController {
 	@GetMapping("")
 	public String viewAllStudentAchievement(Model model) {
 		model.addAttribute("pageTitle", "View Student Achievement");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
 		model.addAttribute("content", "SchoolAdmin/studentAchievement/view-all-student-achievement");
@@ -25,7 +24,6 @@ public class StudentAchievementController {
 	@GetMapping("/addStudentAchievement")
 	public String addStudentAchievement(Model model) {
 		model.addAttribute("pageTitle", "View Student Achievement");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
 		model.addAttribute("content", "SchoolAdmin/studentAchievement/add-student-achievement");
@@ -38,7 +36,6 @@ public class StudentAchievementController {
 	@GetMapping("/viewStudentAchievementDetail")
 	public String viewStudentAchievementDetail(Model model) {
 		model.addAttribute("pageTitle", "View Student Achievement Detail");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
 		model.addAttribute("content", "SchoolAdmin/studentAchievement/view-student-achievement-detail");

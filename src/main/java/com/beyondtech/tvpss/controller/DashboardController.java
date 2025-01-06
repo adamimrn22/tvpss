@@ -1,5 +1,8 @@
 package com.beyondtech.tvpss.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,46 +10,44 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DashboardController {
 
-	@GetMapping("/SuperAdmin")
-	public String showsSADashboard(Model model) {
-		model.addAttribute("pageTitle", "Dashboard");
-		model.addAttribute("role", "superadmin");
-		model.addAttribute("currentPage", "superadmin");
-		model.addAttribute("content", "SuperAdmin/dashboard");
-		model.addAttribute("headerText", "Selamat Datang Pengguna");
+	@GetMapping("/")
+	public String showDashboard(Model model) {
+		// Get the current authentication object
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		return "layouts/admin-layouts";
+		if (authentication != null && authentication.isAuthenticated()) {
+			String roleModel = authentication.getAuthorities().iterator().next().getAuthority(); // Get the role
+			model.addAttribute("headerText", "Selamat Datang");
+			model.addAttribute("pageTitle", " Dashboard");
+
+			// Call method to get content based on role
+			setRoleBasedContent(model, roleModel);
+		}
+
+		return "layouts/admin-layouts"; // Return the same layout for all roles
 	}
 
-	@GetMapping("/StateAdmin")
-	public String showASTDashboard(Model model) {
-		model.addAttribute("pageTitle", "Dashboard");
-		model.addAttribute("role", "stateadmin");
-		model.addAttribute("currentPage", "StateAdmin");
-		model.addAttribute("content", "StateAdmin/dashboard");
-		model.addAttribute("headerText", "Selamat Datang Pengguna");
-
-		return "layouts/admin-layouts";
-	}
-
-	@GetMapping("/AdminPPD")
-	public String showPAashboard(Model model) {
-		model.addAttribute("pageTitle", "Dashboard");
-		model.addAttribute("role", "ppdadmin");
-		model.addAttribute("currentPage", "AdminPPD");
-		model.addAttribute("content", "PpdAdmin/dashboard");
-		model.addAttribute("headerText", "Selamat Datang Pengguna");
-
-		return "layouts/admin-layouts";
-	}
-
-	@GetMapping("/SchoolAdmin")
-	public String showsASDashboard(Model model) {
-		model.addAttribute("pageTitle", "Dashboard");
-		model.addAttribute("role", "schooladmin");
-		model.addAttribute("currentPage", "SchoolAdmin");
-		model.addAttribute("content", "SchoolAdmin/dashboard");
-		model.addAttribute("headerText", "Selamat Datang Pengguna");
-		return "layouts/admin-layouts";
+	private void setRoleBasedContent(Model model, String role) {
+		// Method to determine content based on role
+		switch (role) {
+			case "ROLE_superadmin":
+				model.addAttribute("content", "SuperAdmin/dashboard");
+				model.addAttribute("currentPage", "SuperAdmin");
+				break;
+			case "ROLE_stateadmin":
+				model.addAttribute("content", "StateAdmin/dashboard");
+				model.addAttribute("currentPage", "StateAdmin");
+				break;
+			case "ROLE_ppdadmin":
+				model.addAttribute("content", "PpdAdmin/dashboard");
+				model.addAttribute("currentPage", "AdminPPD");
+				break;
+			case "ROLE_schooladmin":
+				model.addAttribute("content", "SchoolAdmin/dashboard");
+				model.addAttribute("currentPage", "SchoolAdmin");
+				break;
+			default:
+				break;
+		}
 	}
 }

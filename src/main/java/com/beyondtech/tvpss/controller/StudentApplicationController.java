@@ -12,7 +12,6 @@ public class StudentApplicationController {
 	@GetMapping("")
 	public String viewStudentApplication(Model model) {
 		model.addAttribute("pageTitle", "View Student Application");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-all-student-pending");
@@ -25,7 +24,6 @@ public class StudentApplicationController {
 	@GetMapping("/validate")
 	public String validateStudentApplication(Model model) {
 		model.addAttribute("pageTitle", "Validate Student Application");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentApplication");
 		model.addAttribute("headerText", "Maklumat Pemohon");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/validate-student-application");
@@ -39,7 +37,6 @@ public class StudentApplicationController {
 	@GetMapping("/Approved")
 	public String viewStudentApplicationApprove(Model model) {
 		model.addAttribute("pageTitle", "Student Approved");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-all-student-approved");
@@ -52,7 +49,6 @@ public class StudentApplicationController {
 	@GetMapping("/Approved/Detail")
 	public String viewStudentApplicationApproveDetail(Model model) {
 		model.addAttribute("pageTitle", "Student Approved  Details");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-student-application-approve-detail");
@@ -67,7 +63,6 @@ public class StudentApplicationController {
 	@GetMapping("/Rejected")
 	public String viewStudentApplicationRejected(Model model) {
 		model.addAttribute("pageTitle", "Student Rejected");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-all-student-rejected");
@@ -80,7 +75,6 @@ public class StudentApplicationController {
 	@GetMapping("/Rejected/Detail")
 	public String viewStudentApplicationRejectedDetail(Model model) {
 		model.addAttribute("pageTitle", "Student Rejected Details");
-		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPage", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-student-application-rejected-detail");

@@ -1,7 +1,10 @@
 package com.beyondtech.tvpss.controller;
 
 import java.nio.file.AccessDeniedException;
+import java.util.Objects;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,21 +28,22 @@ public class SchoolVersionStatusController {
 
 	@GetMapping("/InformasiTVPSS")
 	public String viewAllSchoolStatus(Model model) throws AccessDeniedException {
-		String role = "ppdadmin";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String role = (String) model.getAttribute("role");
 		model.addAttribute("pageTitle", "Status TVPSS");
-		if (role == "ppdadmin") {
-			model.addAttribute("role", "ppdadmin");
+		if (Objects.equals(role, "ppdadmin")) {
 			model.addAttribute("currentPage", "AdminPPDInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
 			model.addAttribute("content", "PpdAdmin/SchoolVersionStatus/view-all-school");
-		} else if (role == "stateadmin") {
-			model.addAttribute("role", "stateadmin");
+
+		} else if (Objects.equals(role, "stateadmin")) {
 			model.addAttribute("currentPage", "StateAdminInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
 			model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-all-school");
 		} else {
 			throw new AccessDeniedException("Access Denied");
 		}
+
 		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
 		model.addAttribute("breadcrumbTitle2", "Semua Sekolah");
 
