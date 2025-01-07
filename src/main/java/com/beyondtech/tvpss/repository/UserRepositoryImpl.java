@@ -33,6 +33,22 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public List<User> findAllPaginated(int page, int size) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<User> query = session.createQuery("FROM User", User.class);
+        query.setFirstResult((page - 1) * size);
+        query.setMaxResults(size);
+        return query.getResultList();
+    }
+
+    @Override
+    public long getTotalCount() {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Long> query = session.createQuery("SELECT COUNT(u) FROM User u", Long.class);
+        return query.uniqueResult();
+    }
+
+    @Override
     public void save(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(user);
@@ -51,5 +67,11 @@ public class UserRepositoryImpl implements UserRepository {
         query.setParameter("emailAddress", emailAddress);
         Long count = query.uniqueResult();
         return count > 0;
+    }
+
+    @Override
+    public void delete(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        session.remove(user);
     }
 }

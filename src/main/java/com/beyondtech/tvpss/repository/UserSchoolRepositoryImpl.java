@@ -1,5 +1,6 @@
 package com.beyondtech.tvpss.repository;
 
+import com.beyondtech.tvpss.model.User;
 import com.beyondtech.tvpss.model.UserSchool;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,4 +32,5 @@ public class UserSchoolRepositoryImpl implements UserSchoolRepository {
         Session session = sessionFactory.getCurrentSession();
         session.merge(userSchool);
     }
+
 }

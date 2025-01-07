@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <title>Welcome to TVPSS StarMis</title>
 </head>
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);">
-<div>
-    <table style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);">    
+    <table style="width: 100%;">
         <tr>
             <td style="padding: 30px; text-align: center; background-color: #515B92; color: #fff; border-top-left-radius: 8px; border-top-right-radius: 8px;">
                 <h2 style="margin: 0; font-size: 24px;">Selamat Datang ke TVPSS StarMis!</h2>
                 <p style="font-size: 18px; margin-top: 10px;">Selamat Sejahtera, <strong th:text="${name}">User</strong>,</p>
             </td>
         </tr>
-        <tr>
+        <tr style="background-color: #ffffff;">
             <td style="padding: 30px; font-size: 16px; color: #333;">
                 <p style="margin-top: 0;">Akaun anda telah berjaya dicipta. Berikut adalah butiran log masuk anda:</p>
                 <div style="background-color: #f8f9fc; border-radius: 6px; padding: 20px; margin: 20px 0;">
@@ -26,6 +25,10 @@
                             <td style="padding: 12px; color: #515B92; font-weight: bold;">Katalaluan:</td>
                             <td style="padding: 12px; font-family: monospace;" th:text="${password}">Password</td>
                         </tr>
+                        <tr>
+                            <td style="padding: 12px; color: #515B92; font-weight: bold;">Alamat Email:</td>
+                            <td style="padding: 12px; font-family: monospace;" th:text="${email}">email</td>
+                        </tr>
                     </table>
                 </div>
                 <div style="background-color: #fff4e5; border-left: 4px solid #ffa726; padding: 15px; margin: 20px 0; border-radius: 4px;">
@@ -37,11 +40,10 @@
             </td>
         </tr>
         <tr>
-            <td style="padding: 20px; background-color: #f8f9fc; color: #666; font-size: 12px; text-align: center; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; border-top: 1px solid #e1e4ee;">
+            <td style="margin-top: 20px; color: #666; font-size: 12px; text-align: center; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; border-top: 1px solid #e1e4ee;">
                 <p style="margin: 0;"><strong>Nota:</strong> Ini adalah e-mel yang dijana secara automatik. Sila jangan balas kepada e-mel ini.</p>
             </td>
         </tr>
     </table>
-</div>
 </body>
 </html>

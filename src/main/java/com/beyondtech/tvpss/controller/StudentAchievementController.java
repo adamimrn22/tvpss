@@ -12,7 +12,7 @@ public class StudentAchievementController {
 	@GetMapping("")
 	public String viewAllStudentAchievement(Model model) {
 		model.addAttribute("pageTitle", "View Student Achievement");
-		model.addAttribute("currentPage", "StudentAchievement");
+		model.addAttribute("currentPageDirectory", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
 		model.addAttribute("content", "SchoolAdmin/studentAchievement/view-all-student-achievement");
 		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");
@@ -24,7 +24,7 @@ public class StudentAchievementController {
 	@GetMapping("/addStudentAchievement")
 	public String addStudentAchievement(Model model) {
 		model.addAttribute("pageTitle", "View Student Achievement");
-		model.addAttribute("currentPage", "StudentAchievement");
+		model.addAttribute("currentPageDirectory", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
 		model.addAttribute("content", "SchoolAdmin/studentAchievement/add-student-achievement");
 		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");
@@ -36,7 +36,7 @@ public class StudentAchievementController {
 	@GetMapping("/viewStudentAchievementDetail")
 	public String viewStudentAchievementDetail(Model model) {
 		model.addAttribute("pageTitle", "View Student Achievement Detail");
-		model.addAttribute("currentPage", "StudentAchievement");
+		model.addAttribute("currentPageDirectory", "StudentAchievement");
 		model.addAttribute("headerText", "Pencapaian Pelajar");
 		model.addAttribute("content", "SchoolAdmin/studentAchievement/view-student-achievement-detail");
 		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");

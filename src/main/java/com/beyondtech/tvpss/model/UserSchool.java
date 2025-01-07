@@ -6,15 +6,23 @@ import jakarta.persistence.*;
 @Table(name = "user_school")
 public class UserSchool {
 
+//    ALTER TABLE user_school
+//    DROP FOREIGN KEY FKmyjs8jnfhemn4vnfypdcla7nk;  -- Drop the current constraint
+//
+//    ALTER TABLE user_school
+//    ADD CONSTRAINT FKmyjs8jnfhemn4vnfypdcla7nk
+//    FOREIGN KEY (user_id)
+//    REFERENCES user(id)
+//    ON DELETE CASCADE;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "school_code", nullable = false)  // Store the school_code directly here
+    @Column(name = "school_code", nullable = false)
     private String schoolCode;
 
     public Long getId() {

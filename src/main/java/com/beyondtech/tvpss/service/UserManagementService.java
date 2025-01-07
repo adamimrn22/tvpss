@@ -1,7 +1,6 @@
 package com.beyondtech.tvpss.service;
 
 import com.beyondtech.tvpss.exception.UserException;
-import com.beyondtech.tvpss.facade.UserManagementFacade;
 import com.beyondtech.tvpss.model.Role;
 import com.beyondtech.tvpss.model.School;
 import com.beyondtech.tvpss.model.User;
@@ -9,8 +8,8 @@ import com.beyondtech.tvpss.model.UserSchool;
 import com.beyondtech.tvpss.repository.RoleRepository;
 import com.beyondtech.tvpss.repository.UserRepository;
 import com.beyondtech.tvpss.repository.UserSchoolRepository;
+import com.beyondtech.tvpss.utils.PageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UserManagementService {
@@ -54,6 +54,7 @@ public class UserManagementService {
                 .map(UserSchool::getSchoolCode)
                 .orElse(null);
     }
+
 
     @Transactional
     public void addNewUser(String name, String email, String password, String district, String roleName, String schoolCode) {
@@ -120,6 +121,23 @@ public class UserManagementService {
         result.put("user", user);
         result.put("schoolCode", schoolCode);
         return result;
+    }
+
+    public PageResponse<User> getAllUsersPageable(int page, int size) {
+        List<User> users = userRepository.findAllPaginated(page, size);
+        long total = userRepository.getTotalCount();
+        return new PageResponse<>(users, page, size, total);
+    }
+
+    @Transactional
+    public void deleteUser(Long userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+
+            userRepository.delete(user.get());
+        } else {
+            throw new RuntimeException("User not found with id: " + userId);
+        }
     }
 
 }

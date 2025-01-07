@@ -21,7 +21,7 @@ public class UserManagementFacade {
 
     public void addUser(String name, String email, String password, String district, String role, String schoolCode) {
         try {
-            //userManagementService.addNewUser(name, email, password, district, role, schoolCode);
+            userManagementService.addNewUser(name, email, password, district, role, schoolCode);
             emailService.sendPasswordEmail(new User(name, email), password);
         }catch (Exception e){
             e.printStackTrace();

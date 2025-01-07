@@ -11,7 +11,7 @@ public class ManageEquipmentController {
 	@GetMapping("")
 	public String viewAllEquipment(Model model) {
 		model.addAttribute("pageTitle", "Equipment Management");
-		model.addAttribute("currentPage", "EquipmentManagement");
+		model.addAttribute("currentPageDirectory", "EquipmentManagement");
 		model.addAttribute("headerText", "Pengurusan Barang");
 		model.addAttribute("content", "SchoolAdmin/manageEquipment/view-all-equipment");
 		model.addAttribute("breadcrumbTitle1", "Pengurusan Barang");

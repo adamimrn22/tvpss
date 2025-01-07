@@ -1,16 +1,16 @@
 <!-- ppdadmin-sidebar.html -->
 <div th:fragment="stateadmin-sidebar">
 	<a th:href="@{/}"
-		th:classappend="${currentPage == 'StateAdmin' ? ' active pe-none' : ''}"
+		th:classappend="${currentPageDirectory == 'StateAdmin' ? ' active pe-none' : ''}"
 		class="nav-link px-3 mx-3"> <i class="bi bi-house-door"></i> Dashboard
 	</a>
 	
 	 <a th:href="@{/GenerateCertificate}"
-	 	th:classappend="${currentPage == 'GenerateCertificate' ? ' active pe-none' : ''}"
+	 	th:classappend="${currentPageDirectory == 'GenerateCertificate' ? ' active pe-none' : ''}"
 	 	class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-patch-check"></i> Jana Sijil Pelajar </a> 
 	 	
 	  <a th:href="@{/InformasiTVPSS}"
-		th:classappend="${currentPage == 'StateAdminInformasiTVPSS' ? ' active pe-none' : ''}"
+		th:classappend="${currentPageDirectory == 'StateAdminInformasiTVPSS' ? ' active pe-none' : ''}"
 		class="nav-link px-3 mx-3 mt-2"> <i class="bi bi-info-circle"></i>
 		Informasi TVPSS Sekolah
 	</a>

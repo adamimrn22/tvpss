@@ -12,7 +12,7 @@ public class StudentApplicationController {
 	@GetMapping("")
 	public String viewStudentApplication(Model model) {
 		model.addAttribute("pageTitle", "View Student Application");
-		model.addAttribute("currentPage", "StudentApplication");
+		model.addAttribute("currentPageDirectory", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-all-student-pending");
 		model.addAttribute("breadcrumbTitle1", "Permohonan Krew");
@@ -24,7 +24,7 @@ public class StudentApplicationController {
 	@GetMapping("/validate")
 	public String validateStudentApplication(Model model) {
 		model.addAttribute("pageTitle", "Validate Student Application");
-		model.addAttribute("currentPage", "StudentApplication");
+		model.addAttribute("currentPageDirectory", "StudentApplication");
 		model.addAttribute("headerText", "Maklumat Pemohon");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/validate-student-application");
 		model.addAttribute("breadcrumbTitle1", "Permohonan Krew");
@@ -37,7 +37,7 @@ public class StudentApplicationController {
 	@GetMapping("/Approved")
 	public String viewStudentApplicationApprove(Model model) {
 		model.addAttribute("pageTitle", "Student Approved");
-		model.addAttribute("currentPage", "StudentApplication");
+		model.addAttribute("currentPageDirectory", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-all-student-approved");
 		model.addAttribute("breadcrumbTitle1", "Permohonan Krew");
@@ -49,7 +49,7 @@ public class StudentApplicationController {
 	@GetMapping("/Approved/Detail")
 	public String viewStudentApplicationApproveDetail(Model model) {
 		model.addAttribute("pageTitle", "Student Approved  Details");
-		model.addAttribute("currentPage", "StudentApplication");
+		model.addAttribute("currentPageDirectory", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-student-application-approve-detail");
 		model.addAttribute("breadcrumbTitle1", "Permohonan Krew");
@@ -63,7 +63,7 @@ public class StudentApplicationController {
 	@GetMapping("/Rejected")
 	public String viewStudentApplicationRejected(Model model) {
 		model.addAttribute("pageTitle", "Student Rejected");
-		model.addAttribute("currentPage", "StudentApplication");
+		model.addAttribute("currentPageDirectory", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-all-student-rejected");
 		model.addAttribute("breadcrumbTitle1", "Permohonan Krew");
@@ -75,7 +75,7 @@ public class StudentApplicationController {
 	@GetMapping("/Rejected/Detail")
 	public String viewStudentApplicationRejectedDetail(Model model) {
 		model.addAttribute("pageTitle", "Student Rejected Details");
-		model.addAttribute("currentPage", "StudentApplication");
+		model.addAttribute("currentPageDirectory", "StudentApplication");
 		model.addAttribute("headerText", "Permohonan Krew");
 		model.addAttribute("content", "SchoolAdmin/studentApplication/view-student-application-rejected-detail");
 		model.addAttribute("breadcrumbTitle1", "Permohonan Krew");

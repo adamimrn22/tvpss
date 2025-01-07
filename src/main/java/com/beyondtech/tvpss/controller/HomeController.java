@@ -20,7 +20,7 @@ public class HomeController {
     @GetMapping("/resetpassword")
     public String ResetPassword(Model model) {
         model.addAttribute("pageTitle", "ResetPassword");
-        model.addAttribute("currentPage", "resetpassword");
+        model.addAttribute("currentPageDirectory", "resetpassword");
         model.addAttribute("content", "reset-password");
         model.addAttribute("headerText", "Tukar Kata Laluan");
 

@@ -32,7 +32,7 @@ public class EmailService {
         Context context = new Context();
         context.setVariable("name", user.getName());
         context.setVariable("password", password);
-
+        context.setVariable("email", user.getEmailAddress());
         // Process the template
         String htmlContent = templateEngine.process("mail/userSuccessEmail", context);
 
@@ -40,6 +40,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
+        helper.setFrom("admintvpss@moe.gov.my");
         helper.setTo(user.getEmailAddress());
         helper.setSubject("Your Account Password");
         helper.setText(htmlContent, true); // true indicates HTML content

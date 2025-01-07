@@ -225,4 +225,15 @@ document.addEventListener('DOMContentLoaded', function () {
     editUserModal.addEventListener('hidden.bs.modal', function () {
         resetModalData('editUserModal');
     });
+
+});
+
+document.querySelectorAll('.hover-delete').forEach(button => {
+    button.addEventListener('click', function () {
+        // Get the user ID from the data-id attribute
+        var userId = this.getAttribute('data-id');
+
+        // Set the userId value in the hidden input inside the modal
+        document.getElementById('userIdToDelete').value = userId;
+    });
 });

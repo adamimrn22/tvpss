@@ -28,19 +28,19 @@ public class DashboardController {
 		switch (role) {
 			case "ROLE_superadmin":
 				model.addAttribute("content", "SuperAdmin/dashboard");
-				model.addAttribute("currentPage", "SuperAdmin");
+				model.addAttribute("currentPageDirectory", "SuperAdmin");
 				break;
 			case "ROLE_stateadmin":
 				model.addAttribute("content", "StateAdmin/dashboard");
-				model.addAttribute("currentPage", "StateAdmin");
+				model.addAttribute("currentPageDirectory", "StateAdmin");
 				break;
 			case "ROLE_ppdadmin":
 				model.addAttribute("content", "PpdAdmin/dashboard");
-				model.addAttribute("currentPage", "AdminPPD");
+				model.addAttribute("currentPageDirectory", "AdminPPD");
 				break;
 			case "ROLE_schooladmin":
 				model.addAttribute("content", "SchoolAdmin/dashboard");
-				model.addAttribute("currentPage", "SchoolAdmin");
+				model.addAttribute("currentPageDirectory", "SchoolAdmin");
 				break;
 			default:
 				break;

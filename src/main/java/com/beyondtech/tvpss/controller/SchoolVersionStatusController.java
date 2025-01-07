@@ -16,7 +16,7 @@ public class SchoolVersionStatusController {
 	public String submitSchoolVersion(Model model) {
 		model.addAttribute("pageTitle", "TVPSS Submission");
 		model.addAttribute("role", "schooladmin");
-		model.addAttribute("currentPage", "SubmitTVPSSVersion");
+		model.addAttribute("currentPageDirectory", "SubmitTVPSSVersion");
 		model.addAttribute("headerText", "Info Status TVPSS");
 		model.addAttribute("content", "SchoolAdmin/tvpssSubmission/submit-tvpss-version");
 
@@ -32,12 +32,12 @@ public class SchoolVersionStatusController {
 		String role = (String) model.getAttribute("role");
 		model.addAttribute("pageTitle", "Status TVPSS");
 		if (Objects.equals(role, "ppdadmin")) {
-			model.addAttribute("currentPage", "AdminPPDInformasiTVPSS");
+			model.addAttribute("currentPageDirectory", "AdminPPDInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
 			model.addAttribute("content", "PpdAdmin/SchoolVersionStatus/view-all-school");
 
 		} else if (Objects.equals(role, "stateadmin")) {
-			model.addAttribute("currentPage", "StateAdminInformasiTVPSS");
+			model.addAttribute("currentPageDirectory", "StateAdminInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
 			model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-all-school");
 		} else {
@@ -54,7 +54,7 @@ public class SchoolVersionStatusController {
 	public String viewValidateSchoolVersion(Model model) {
 		model.addAttribute("pageTitle", "Validate School Version");
 		model.addAttribute("role", "ppdadmin");
-		model.addAttribute("currentPage", "AdminPPDInformasiTVPSS");
+		model.addAttribute("currentPageDirectory", "AdminPPDInformasiTVPSS");
 		model.addAttribute("headerText", "Info Status TVPSS");
 		model.addAttribute("content", "PpdAdmin/SchoolVersionStatus/validate-school");
 		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
@@ -67,7 +67,7 @@ public class SchoolVersionStatusController {
 	public String viewSchoolDetailsStateAdmin(Model model) {
 		model.addAttribute("pageTitle", "School Details");
 		model.addAttribute("role", "stateadmin");
-		model.addAttribute("currentPage", "StateAdminInformasiTVPSS");
+		model.addAttribute("currentPageDirectory", "StateAdminInformasiTVPSS");
 		model.addAttribute("headerText", "Info Status TVPSS");
 		model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-school-status-detail");
 

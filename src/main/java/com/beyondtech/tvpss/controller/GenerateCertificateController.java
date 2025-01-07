@@ -12,7 +12,7 @@ public class GenerateCertificateController {
 	@GetMapping("")
 	public String viewAllCert(Model model) {
 		model.addAttribute("pageTitle", "Generate Certificate");
-		model.addAttribute("currentPage", "GenerateCertificate");
+		model.addAttribute("currentPageDirectory", "GenerateCertificate");
 		model.addAttribute("headerText", "Jana Sijil Pelajar");
 		model.addAttribute("content", "StateAdmin/generateCertificate/view-all-generate-certificate");
 		model.addAttribute("breadcrumbTitle1", "Jana Sijil Pelajar");
@@ -24,7 +24,7 @@ public class GenerateCertificateController {
 	@GetMapping("/certGen")
 	public String generateCert(Model model) {
 		model.addAttribute("pageTitle", "Generate Certificate");
-		model.addAttribute("currentPage", "GenerateCertificate");
+		model.addAttribute("currentPageDirectory", "GenerateCertificate");
 		model.addAttribute("headerText", "Jana Sijil Pelajar");
 		model.addAttribute("content", "StateAdmin/generateCertificate/generate-certificate");
 		model.addAttribute("breadcrumbTitle1", "Jana Sijil Pelajar");
@@ -36,7 +36,7 @@ public class GenerateCertificateController {
 	@GetMapping("/viewGeneratedCert")
 	public String viewGeneratedCertDetail(Model model) {
 		model.addAttribute("pageTitle", "Generate Certificate");
-		model.addAttribute("currentPage", "GenerateCertificate");
+		model.addAttribute("currentPageDirectory", "GenerateCertificate");
 		model.addAttribute("headerText", "Jana Sijil Pelajar");
 		model.addAttribute("content", "StateAdmin/generateCertificate/view-generated-certificate");
 		model.addAttribute("breadcrumbTitle1", "Jana Sijil Pelajar");
