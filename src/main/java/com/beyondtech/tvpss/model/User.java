@@ -17,12 +17,22 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "email_address")
     private String emailAddress;
-    private String state;
+    private String state = "Johor";
     private String district;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role", nullable = false)
     private Role role;
+
+    @Transient
+    private School school;
+
+    public User() {}
+
+    public User(String name, String email) {
+        this.name = name;
+        this.emailAddress = email;
+    }
 
     public Long getId() {
         return id;
@@ -74,6 +84,14 @@ public class User implements UserDetails {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 
     @Override

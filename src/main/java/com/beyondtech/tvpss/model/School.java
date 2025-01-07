@@ -1,24 +1,34 @@
 package com.beyondtech.tvpss.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "school")
 public class School {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "school_code", unique = true)
-    private String schoolCode;
-
     private String name;
+    private String code;
     private String address1;
     private String address2;
     private String postcode;
-    private String state;
     private String district;
+    private String state;
+    private String phoneNumber;
+    private String email;
+    private String fax;
+    private String principalName;
+
+    public School() {}
+    public School(Long id, String name, String code, String address1, String address2, String postcode, String district, String state, String phoneNumber, String email, String fax, String principalName) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.postcode = postcode;
+        this.district = district;
+        this.state = state;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.fax = fax;
+        this.principalName = principalName;
+    }
 
     public Long getId() {
         return id;
@@ -28,20 +38,20 @@ public class School {
         this.id = id;
     }
 
-    public String getSchoolCode() {
-        return schoolCode;
-    }
-
-    public void setSchoolCode(String schoolCode) {
-        this.schoolCode = schoolCode;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getAddress1() {
@@ -68,6 +78,14 @@ public class School {
         this.postcode = postcode;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
     public String getState() {
         return state;
     }
@@ -76,11 +94,37 @@ public class School {
         this.state = state;
     }
 
-    public String getDistrict() {
-        return district;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getPrincipalName() {
+        return principalName;
+    }
+
+    public void setPrincipalName(String principalName) {
+        this.principalName = principalName;
+    }
+
+
 }

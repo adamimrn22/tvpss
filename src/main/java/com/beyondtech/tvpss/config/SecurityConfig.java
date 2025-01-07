@@ -20,10 +20,12 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/resources/**", "/images/**", "/css/**", "/js/**").permitAll()
-			.requestMatchers("/SuperAdmin/**").hasRole("superadmin").requestMatchers("/StateAdmin/**").hasRole("stateadmin")
+			.requestMatchers("/SuperAdmin/**").hasRole("superadmin")
+			.requestMatchers("/StateAdmin/**").hasRole("stateadmin")
 			.requestMatchers("/AdminPPD/**").hasRole("ppdadmin")
 			.requestMatchers("/SchoolAdmin/**").hasRole("schooladmin")
 			.requestMatchers("/InformasiTVPSS").hasAnyRole("stateadmin", "ppdadmin")
+			.requestMatchers("/schools/district/**").authenticated()
 			.anyRequest().authenticated())
 			.formLogin(form -> form.loginPage("/login").permitAll().defaultSuccessUrl("/"))
 			.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login").permitAll())

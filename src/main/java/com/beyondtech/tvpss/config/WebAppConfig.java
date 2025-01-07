@@ -7,10 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -92,5 +89,13 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addInterceptor(localeChangeInterceptor());
 	}
 
+//	@Override
+//	public void addCorsMappings(CorsRegistry registry) {
+//		registry.addMapping("/api/**")  // Adjust this pattern to match your API endpoints
+//				.allowedOrigins("http://localhost:8080")  // Allow requests from frontend (localhost:8080)
+//				.allowedMethods("GET", "POST", "PUT", "DELETE")  // Allow these methods
+//				.allowedHeaders("*")  // Allow all headers
+//				.allowCredentials(true);  // Allow cookies if you're using session-based authentication
+//	}
 
 }

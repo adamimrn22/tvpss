@@ -6,12 +6,12 @@ public class AdminTvpssSpringWebApplicationInitializer extends AbstractAnnotatio
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { RootConfig.class }; // Root configuration class for your application
+		return new Class<?>[] { RootConfig.class }; // Root configuration class
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { WebAppConfig.class }; // Web configuration class for your application
+		return new Class<?>[] { WebAppConfig.class }; // Web configuration class
 	}
 
 	@Override
@@ -21,6 +21,6 @@ public class AdminTvpssSpringWebApplicationInitializer extends AbstractAnnotatio
 
 	@Override
 	protected String getServletName() {
-		return "tvpss-dispatcher"; // Use a unique name for your dispatcher servlet
+		return "tvpss-dispatcher"; //  dispatcher servlet
 	}
 }

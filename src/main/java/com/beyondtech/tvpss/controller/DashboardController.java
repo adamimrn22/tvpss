@@ -12,23 +12,19 @@ public class DashboardController {
 
 	@GetMapping("/")
 	public String showDashboard(Model model) {
-		// Get the current authentication object
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		if (authentication != null && authentication.isAuthenticated()) {
 			String roleModel = authentication.getAuthorities().iterator().next().getAuthority(); // Get the role
 			model.addAttribute("headerText", "Selamat Datang");
 			model.addAttribute("pageTitle", " Dashboard");
-
-			// Call method to get content based on role
 			setRoleBasedContent(model, roleModel);
 		}
 
-		return "layouts/admin-layouts"; // Return the same layout for all roles
+		return "layouts/admin-layouts";
 	}
 
 	private void setRoleBasedContent(Model model, String role) {
-		// Method to determine content based on role
 		switch (role) {
 			case "ROLE_superadmin":
 				model.addAttribute("content", "SuperAdmin/dashboard");
