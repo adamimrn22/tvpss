@@ -1,0 +1,47 @@
+<!-- Edit User Modal -->
+<div th:fragment="viewUserDetailModal">
+    <div class="modal fade" id="viewUserDetailModal" tabindex="-1"
+         aria-labelledby="viewUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewUserModalLabel" style="color: #515B92" th:text="#{user.editUserModal.title}"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="#{user.editUserModal.closeButton}"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="p-3 pt-0">
+                            <!-- Full Name -->
+                            <div class="floating-form-group">
+                                <input type="text" class="floating-input" placeholder=" " id="viewFullName" readonly>
+                                <label class="floating-input-label" th:text="#{user.editUserModal.fullNameLabel}"></label>
+                            </div>
+                            <!-- Email -->
+                            <div class="floating-form-group">
+                                <input type="text" class="floating-input" placeholder=" " id="viewEmail" readonly>
+                                <label class="floating-input-label" th:text="#{user.editUserModal.emailLabel}"></label>
+                            </div>
+                            <!-- Role -->
+                            <div class="floating-form-group">
+                                <input type="text" class="floating-input" placeholder=" " id="viewUserTypeSelect" readonly="readonly">
+                                <label class="floating-input-label" th:text="#{user.editUserModal.userTypeLabel}"></label>
+                            </div>
+
+                            <!-- Conditional Daerah (District) and Sekolah (School) -->
+                            <div id="viewDaerahGroup" class="floating-form-group" style="display: none;">
+                                <input type="text" class="floating-input" id="viewDistrict" readonly="readonly">
+                                <label class="floating-input-label" th:text="#{user.editUserModal.districtLabel}"></label>
+                            </div>
+
+                            <div id="viewSchoolGroup" class="floating-form-group" style="display: none;">
+                                <input type="text" class="floating-input" id="viewSchool" readonly="readonly">
+                                <label class="floating-input-label" th:text="#{user.editUserModal.schoolLabel}"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal" th:text="#{user.editUserModal.closeButton}"></button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

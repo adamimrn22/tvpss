@@ -3,50 +3,34 @@
 	<div class="modal fade" id="editUserModal" tabindex="-1"
 		 aria-labelledby="editUserModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="editUserModalLabel" style="color: #515B92" th:text="#{user.editUserModal.title}"></h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="#{user.editUserModal.closeButton}"></button>
-				</div>
-				<div class="modal-body">
-					<form id="editUserForm" action="/StarMIS_TVPSS/SuperAdmin/Pengguna/TambahPengguna" method="post">
-						<input type="hidden" id="userId" name="userId" />
-						<input type="hidden" id="schoolCode" name="schoolCode">
-						<div class="p-3 pt-0">
-							<!-- Full Name -->
-							<div class="floating-form-group">
-								<input type="text" class="floating-input" placeholder=" " id="editFullName">
-								<label class="floating-input-label" th:text="#{user.editUserModal.fullNameLabel}"></label>
-							</div>
-							<!-- Email -->
-							<div class="floating-form-group">
-								<input type="text" class="floating-input" placeholder=" " id="editEmail">
-								<label class="floating-input-label" th:text="#{user.editUserModal.emailLabel}"></label>
-							</div>
-							<!-- Role -->
-							<div class="floating-form-group">
-								<input type="text" class="floating-input" placeholder=" " id="editUserTypeSelect" readonly="readonly">
-								<label class="floating-input-label" th:text="#{user.editUserModal.userTypeLabel}"></label>
-							</div>
-
-							<!-- Conditional Daerah (District) and Sekolah (School) -->
-							<div id="editDaerahGroup" class="floating-form-group" style="display: none;">
-								<input type="text" class="floating-input" id="editDistrict" readonly="readonly">
-								<label class="floating-input-label" th:text="#{user.editUserModal.districtLabel}"></label>
-							</div>
-
-							<div id="editSchoolGroup" class="floating-form-group" style="display: none;">
-								<input type="text" class="floating-input" id="editSchool" readonly="readonly">
-								<label class="floating-input-label" th:text="#{user.editUserModal.schoolLabel}"></label>
-							</div>
+				<div class="modal-content">
+					<form id="editUserForm" th:action="@{/SuperAdmin/Pengguna/edit}" method="POST">
+						<div class="modal-header">
+							<h5 class="modal-title" id="editUserModalLabel" style="color: #515B92" th:text="#{user.editUserModal.title}"></h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="#{user.editUserModal.closeButton}"></button>
+						</div>
+						<div class="modal-body">
+							<input type="hidden" id="editUserId" name="userId" />
+							<input	type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<div class="p-3 pt-0">
+									<!-- Full Name -->
+									<div class="floating-form-group">
+										<input type="text" class="floating-input" placeholder=" " id="editFullName" name="editFullName">
+										<label class="floating-input-label" th:text="#{user.editUserModal.fullNameLabel}"></label>
+									</div>
+									<!-- Email -->
+									<div class="floating-form-group">
+										<input type="text" class="floating-input" placeholder=" " id="editEmail" name="editEmail">
+										<label class="floating-input-label" th:text="#{user.editUserModal.emailLabel}"></label>
+									</div>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-sm" data-bs-dismiss="modal" th:text="#{user.editUserModal.cancelButton}"></button>
+							<button class="btn btn-primary btn-sm" type="submit" th:text="#{user.editUserModal.updateButton}"></button>
 						</div>
 					</form>
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-sm" data-bs-dismiss="modal" th:text="#{user.editUserModal.cancelButton}"></button>
-					<button class="btn btn-primary btn-sm" type="submit" th:text="#{user.editUserModal.updateButton}"></button>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>

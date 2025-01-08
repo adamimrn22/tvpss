@@ -17,4 +17,8 @@ public class UserException extends RuntimeException {
     public static UserException roleNotFound(String roleName) {
         return new UserException("Role " + roleName + " does not exist");
     }
+
+    public static UserException userNotExists(Long id) {
+        return new UserException("User with " + id.toString() + " does not exists");
+    }
 }

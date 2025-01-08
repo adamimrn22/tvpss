@@ -8,7 +8,9 @@ import com.beyondtech.tvpss.model.UserSchool;
 import com.beyondtech.tvpss.repository.RoleRepository;
 import com.beyondtech.tvpss.repository.UserRepository;
 import com.beyondtech.tvpss.repository.UserSchoolRepository;
+import com.beyondtech.tvpss.service.mail.UserManagementMailService;
 import com.beyondtech.tvpss.utils.PageResponse;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,6 +43,12 @@ public class UserManagementService {
     @Autowired
     private RestTemplate restTemplate;
 
+    private final UserManagementMailService userManagementMailService;
+
+    public UserManagementService(UserManagementMailService userManagementMailService) {
+        this.userManagementMailService = userManagementMailService;
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -55,9 +63,33 @@ public class UserManagementService {
                 .orElse(null);
     }
 
+    public Map<String, Object> getUserWithSchoolDetails(Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        String schoolCode = userSchoolRepository.findByUserId(id)
+                .map(UserSchool::getSchoolCode)
+                .orElse(null);
 
-    @Transactional
-    public void addNewUser(String name, String email, String password, String district, String roleName, String schoolCode) {
+        if (user.getRole().getRolename().equals("schooladmin") && schoolCode != null) {
+            School school = schoolService.getSchoolByCode(schoolCode);
+            System.out.println("school data " + school);
+            if (school != null) {
+                user.setSchool(school);
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("user", user);
+        result.put("schoolCode", schoolCode);
+        return result;
+    }
+
+    public PageResponse<User> getAllUsersPageable(int page, int size) {
+        List<User> users = userRepository.findAllPaginated(page, size);
+        long total = userRepository.getTotalCount();
+        return new PageResponse<>(users, page, size, total);
+    }
+
+    public void addNewUser(String name, String email, String password, String district, String roleName, String schoolCode) throws MessagingException {
 
         if (userRepository.existsByEmailAddress(email)) {
             throw UserException.alreadyExists();
@@ -70,9 +102,10 @@ public class UserManagementService {
             throw UserException.fieldNull("Email");
         }
 
-        if (email == null || email.isEmpty()) {
-            throw UserException.fieldNull("Email");
+        if (roleName == null || roleName.trim().isEmpty()) {
+            throw UserException.fieldNull("Role");
         }
+
         Role role = roleRepository.findByRolename(roleName);
 
         if (role == null) {
@@ -98,43 +131,37 @@ public class UserManagementService {
             userSchool.setUser(user);
             userSchoolRepository.save(userSchool);
         }
+
+        userManagementMailService.sendPasswordMail(new User(name, email), password);
     }
 
-    public Map<String, Object> getUserWithSchoolDetails(Long id) {
-        User user = userRepository.findById(id).orElse(null);
-        String schoolCode = userSchoolRepository.findByUserId(id)
-                .map(UserSchool::getSchoolCode)
-                .orElse(null);
+    public void editUser(Long id, String name, String email) {
 
-        System.out.println("school code " + schoolCode);
-        System.out.println("user data test" + user.getRole().getRolename());
-
-        if (user.getRole().getRolename().equals("schooladmin") && schoolCode != null) {
-            School school = schoolService.getSchoolByCode(schoolCode);
-            System.out.println("school data " + school);
-            if (school != null) {
-                user.setSchool(school);
-            }
+        if (name == null || name.isEmpty()) {
+            throw UserException.fieldNull("Name");
+        }
+        if (email == null || email.isEmpty()) {
+            throw UserException.fieldNull("Email");
         }
 
-        Map<String, Object> result = new HashMap<>();
-        result.put("user", user);
-        result.put("schoolCode", schoolCode);
-        return result;
-    }
+        if(id == null){
+            throw UserException.fieldNull("id");
+        }
+        Optional<User> user = userRepository.findById(id);
 
-    public PageResponse<User> getAllUsersPageable(int page, int size) {
-        List<User> users = userRepository.findAllPaginated(page, size);
-        long total = userRepository.getTotalCount();
-        return new PageResponse<>(users, page, size, total);
+        if (user.isPresent()) {
+            userRepository.edit(id, name, email);
+        }else {
+            throw UserException.userNotExists(id);
+        }
     }
 
     @Transactional
-    public void deleteUser(Long userId) {
+    public void deleteUser(Long userId) throws MessagingException {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
-
             userRepository.delete(user.get());
+            userManagementMailService.deleteUserMail(user.get());
         } else {
             throw new RuntimeException("User not found with id: " + userId);
         }

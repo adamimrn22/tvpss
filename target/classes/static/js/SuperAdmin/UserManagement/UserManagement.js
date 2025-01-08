@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function resetModalData(modalId) {
         const modal = document.getElementById(modalId);
         const inputs = modal.querySelectorAll('input');
-        const selects = modal.querySelectorAll('select');
+        // const selects = modal.querySelectorAll('select');
         inputs.forEach(input => input.value = '');
-        selects.forEach(select => select.value = '');
+        // selects.forEach(select => select.value = '');
         daerahGroupAdd.style.display = 'none';
         schoolGroupAdd.style.display = 'none';
     }
@@ -133,30 +133,81 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const addUserModal = document.getElementById('addUserModal');
     const editUserModal = document.getElementById('editUserModal');
+    const viewUserModal = document.getElementById('viewUserDetailModal');
 
+    const viewButtons = document.querySelectorAll('.hover-view');
     const editButtons = document.querySelectorAll('.hover-edit');
-    const editRole = document.getElementById('editUserTypeSelect').value;
+    // const editRole = document.getElementById('editUserTypeSelect').value;
 
     // Conditionally show/hide district and school fields based on the role
     const editDaerahGroup = document.getElementById('editDaerahGroup');
     const editSchoolGroup = document.getElementById('editSchoolGroup');
 
-    if (editRole === 'schooladmin') {
-        editDaerahGroup.style.display = 'block';
-        editSchoolGroup.style.display = 'block';  // Show both district and school fields
-    } else if (editRole === 'ppdadmin') {
-        editDaerahGroup.style.display = 'block';  // Show only district field
-        editSchoolGroup.style.display = 'none';
-    } else {
-        editDaerahGroup.style.display = 'none';  // Hide both district and school fields
-        editSchoolGroup.style.display = 'none';
-    }
+    // if (editRole === 'schooladmin') {
+    //     editDaerahGroup.style.display = 'block';
+    //     editSchoolGroup.style.display = 'block';  // Show both district and school fields
+    // } else if (editRole === 'ppdadmin') {
+    //     editDaerahGroup.style.display = 'block';  // Show only district field
+    //     editSchoolGroup.style.display = 'none';
+    // } else {
+    //     editDaerahGroup.style.display = 'none';  // Hide both district and school fields
+    //     editSchoolGroup.style.display = 'none';
+    // }
+
+    viewButtons.forEach(button => {
+        button.addEventListener('click', async function () {
+            const userId = this.getAttribute('data-id');
+            try {
+                const response = await fetch(baseUrl + `Pengguna/ajax/${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'same-origin'
+                });
+
+                const data = await response.json();
+                const user = data.user;;
+
+                document.getElementById('viewFullName').value = user.name;
+                document.getElementById('viewEmail').value = user.emailAddress;
+                document.getElementById('viewUserTypeSelect').value = user.role.name;
+
+
+                const viewDaerahGroup = document.getElementById('viewDaerahGroup');
+                const viewSchoolGroup = document.getElementById('viewSchoolGroup');
+
+                // Reset display first
+                viewDaerahGroup.style.display = 'none';
+                viewSchoolGroup.style.display = 'none';
+                if (user.role.rolename.toLowerCase() === 'ppdadmin') {
+                    viewDaerahGroup.style.display = 'block';
+                    document.getElementById('viewDistrict').value= user.district;
+                }
+
+                if (user.role.rolename.toLowerCase() === 'schooladmin') {
+                    viewDaerahGroup.style.display = 'block';
+                    viewSchoolGroup.style.display = 'block';
+
+                    document.getElementById('viewDistrict').value= user.district;
+
+                    if (data.schoolCode) {
+                        document.getElementById('viewDistrict').value= user.district;
+                        document.getElementById('viewSchool').value= user.school.name;
+                    } else {
+                        console.log('No school code available for this user');
+                    }
+                }
+            } catch (error) {
+                console.error('Error in edit button click handler:', error);
+            }
+        });
+    });
 
     editButtons.forEach(button => {
         button.addEventListener('click', async function () {
             const userId = this.getAttribute('data-id');
-            console.log('User ID:', userId);
-
             try {
                 const response = await fetch(baseUrl + `Pengguna/ajax/${userId}`, {
                     method: 'GET',
@@ -169,49 +220,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 const data = await response.json();
                 const user = data.user;
-                console.log('Full response data:', data);
-                console.log('User role:', user.role);
-                console.log('School code:', data.schoolCode);
-
-                // Populate basic user data
+                console.log(user)
                 document.getElementById('editFullName').value = user.name;
                 document.getElementById('editEmail').value = user.emailAddress;
-                document.getElementById('editUserTypeSelect').value = user.role.name;
-                document.getElementById('userId').value = user.id;
+                // document.getElementById('editUserTypeSelect').value = user.role.name;
+                document.getElementById('editUserId').value = user.id;
 
-                // Handle role-specific fields
-                const daerahGroup = document.getElementById('editDaerahGroup');
-                const schoolGroup = document.getElementById('editSchoolGroup');
+                // const daerahGroup = document.getElementById('editDaerahGroup');
+                // const schoolGroup = document.getElementById('editSchoolGroup');
 
-                // Reset display first
-                daerahGroup.style.display = 'none';
-                schoolGroup.style.display = 'none';
-                if (user.role.rolename.toLowerCase() === 'ppdadmin') {
-                    daerahGroup.style.display = 'block';
-                    document.getElementById('editDistrict').value= user.district;
-                }
-                console.log('User role name:', user.role.rolename);
-
-                if (user.role.rolename.toLowerCase() === 'schooladmin') {
-                    console.log('User is school admin');
-                    daerahGroup.style.display = 'block';
-                    schoolGroup.style.display = 'block';
-
-                    document.getElementById('editDistrict').value= user.district;
-
-                    if (data.schoolCode) {
-                        document.getElementById('editDistrict').value= user.district;
-                        document.getElementById('editSchool').value= user.school.name;
-                    } else {
-                        console.log('No school code available for this user');
-                    }
-                } else if (user.role.rolename.toLowerCase() === 'ppd-admin') {
-                    console.log('User is PPD admin');
-                    daerahGroup.style.display = 'block';
-                    document.getElementById('editDistrict').value = user.district || '';
-                } else {
-                    console.log('User has different role:', user.role.rolename);
-                }
+                // // Reset display first
+                // daerahGroup.style.display = 'none';
+                // schoolGroup.style.display = 'none';
+                // if (user.role.rolename.toLowerCase() === 'ppdadmin') {
+                //     daerahGroup.style.display = 'block';
+                //     document.getElementById('editDistrict').value= user.district;
+                // }
+                //
+                // if (user.role.rolename.toLowerCase() === 'schooladmin') {
+                //     daerahGroup.style.display = 'block';
+                //     schoolGroup.style.display = 'block';
+                //
+                //     document.getElementById('editDistrict').value= user.district;
+                //
+                //     if (data.schoolCode) {
+                //         document.getElementById('editDistrict').value= user.district;
+                //         document.getElementById('editSchool').value= user.school.name;
+                //     } else {
+                //         console.log('No school code available for this user');
+                //     }
+                // } else if (user.role.rolename.toLowerCase() === 'ppd-admin') {
+                //     console.log('User is PPD admin');
+                //     daerahGroup.style.display = 'block';
+                //     document.getElementById('editDistrict').value = user.district || '';
+                // } else {
+                //     console.log('User has different role:', user.role.rolename);
+                // }
             } catch (error) {
                 console.error('Error in edit button click handler:', error);
             }
@@ -220,6 +264,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addUserModal.addEventListener('hidden.bs.modal', function () {
         resetModalData('addUserModal');
+    });
+
+    viewUserModal.addEventListener('hidden.bs.modal', function(){
+        resetModalData('viewUserModal');
     });
 
     editUserModal.addEventListener('hidden.bs.modal', function () {

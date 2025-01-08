@@ -13,6 +13,7 @@ public interface UserRepository {
     Optional<User> findById(Long id); 
     void save(User user);
     boolean existsByEmailAddress(String emailAddress);
+    boolean edit(Long id, String name, String email);
     void delete(User user);
 
 }

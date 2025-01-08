@@ -1,51 +1,10 @@
 <div th:fragment="header" id="header" xmlns:th="http://www.thymeleaf.org">
 	<div class="user-info">
-		<div class="me-3">
-
-
-			<th:block th:if="${role != 'superadmin'}">
-
-				<!-- Notification Button -->
-				<button type="button" class="btn-noti position-relative"
-					id="notificationDropdown" data-bs-toggle="dropdown"
-					aria-expanded="false">
-					<i class="bi bi-bell"></i> <span
-						class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-						<span class="visually-hidden">New alerts</span>
-					</span>
-				</button>
-
-				<!-- Notification Card (Dropdown) -->
-				<div class="dropdown-menu dropdown-menu-end notification-card"
-					aria-labelledby="notificationDropdown">
-					<div class="">
-						<div class="title-noti">
-							<strong>Pemberitahuan</strong>
-						</div>
-						<div class=" ">
-							<div class="notification-item d-flex align-items-start">
-								<span class="badge bg-warning rounded-circle me-3"> <i
-									class="bi bi-exclamation-triangle-fill"></i>
-								</span>
-								<div>
-									<strong>Pengesahan TVPSS</strong>
-									<p>Permohonan TVPSS ditunggu untuk divalidasi</p>
-									<small class="text-muted">Baru saja</small>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-				</div>
-			</th:block>
-
-		</div>
 
 		<!-- User -->
-		<div class="user-icon">AD</div>
+		<div class="user-icon text-uppercase" th:text="${#strings.substring(currentUser.name, 0, 1) + (#strings.contains(currentUser.name, ' ') ? #strings.substring(#strings.substringAfter(currentUser.name, ' '), 0, 1) : #strings.substring(currentUser.name, 1, 2))}">JD</div>
 		<div class="d-flex flex-column">
-			<span  th:text="${currentUser.getName()}">Adam Doe</span> <span class="role-text"  th:text="${role}">Super
+			<span  th:text="${currentUser.getName()}">Adam Doe</span> <span class="role-text"  th:text="${currentUser.getRole().name}">Super
 				Admin</span>
 		</div>
 

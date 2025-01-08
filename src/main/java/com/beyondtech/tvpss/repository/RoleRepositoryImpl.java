@@ -27,6 +27,6 @@ public class RoleRepositoryImpl implements RoleRepository {
     @Override
     public void save(Role role) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(role);
+        session.persist(role);
     }
 }

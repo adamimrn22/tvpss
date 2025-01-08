@@ -1,11 +1,12 @@
 package com.beyondtech.tvpss.controller;
 
 import com.beyondtech.tvpss.exception.UserException;
-import com.beyondtech.tvpss.facade.UserManagementFacade;
 import com.beyondtech.tvpss.model.User;
+import com.beyondtech.tvpss.service.mail.UserManagementMailService;
 import com.beyondtech.tvpss.service.UserManagementService;
 import com.beyondtech.tvpss.utils.PageResponse;
 import com.beyondtech.tvpss.utils.PasswordUtil;
+import jakarta.mail.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +22,17 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/SuperAdmin/Pengguna")
-public class ManageUserController {
+public class UserManagementController {
 
-	private static final Logger log = LoggerFactory.getLogger(ManageUserController.class);
+	private static final Logger log = LoggerFactory.getLogger(UserManagementController.class);
 
 	@Autowired
 	private MessageSource messageSource;
 	@Autowired
 	private UserManagementService userManagementService;
-	@Autowired
-	private final UserManagementFacade userManagementFacade;
 
-	public ManageUserController(UserManagementService userManagementService, UserManagementFacade userManagementFacade, MessageSource messageSource) {
+	public UserManagementController(UserManagementService userManagementService, MessageSource messageSource) {
 		this.userManagementService = userManagementService;
-		this.userManagementFacade = userManagementFacade;
 		this.messageSource = messageSource;
 	}
 
@@ -82,22 +80,23 @@ public class ManageUserController {
 	public String addUser(
 			@RequestParam("fullName") String fullName,
 			@RequestParam("email") String email,
-			@RequestParam("userType") String userType,
+			@RequestParam("roleName") String roleName,
 			@RequestParam("addUserDistrict") String district,
-			@RequestParam("addUserSchoolCode") String schoolcode,
+			@RequestParam("addUserSchoolCode") String schoolCode,
 			RedirectAttributes redirectAttributes) {
 
 		String password = PasswordUtil.generateRandomPassword(12, true);
 		try {
-			userManagementFacade.addUser(fullName, email, password, district, userType, schoolcode);
-
-			redirectAttributes.addFlashAttribute("success", "User added successfully!");
+			userManagementService.addNewUser(fullName, email, password, district, roleName, schoolCode);
+			redirectAttributes.addFlashAttribute("success", "User berjaya ditambah!");
+			return "redirect:/SuperAdmin/Pengguna";
 		} catch (UserException ex) {
-
 			redirectAttributes.addFlashAttribute("error", ex.getMessage());
-		}
-		return "redirect:/SuperAdmin/Pengguna";
-	}
+			return "redirect:/SuperAdmin/Pengguna";
+		} catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 	@GetMapping("/ajax/{id}")
@@ -106,13 +105,27 @@ public class ManageUserController {
 		return userManagementService.getUserWithSchoolDetails(id);
 	}
 
+	@PostMapping("/edit")
+	public String editUser(@RequestParam("userId") Long id,
+			             @RequestParam("editFullName") String fullName,
+						 @RequestParam("editEmail") String email,
+						 RedirectAttributes redirectAttributes) {
+
+		try{
+			userManagementService.editUser(id, fullName, email);
+			redirectAttributes.addFlashAttribute("success", "User berjaya dikemaskini!");
+		}catch (UserException ex) {
+			redirectAttributes.addFlashAttribute("error", ex.getMessage());
+		}
+		return "redirect:/SuperAdmin/Pengguna";
+	}
+
 	@PostMapping("/delete")
 	public String deleteUser(@RequestParam("userId") Long userId, RedirectAttributes redirectAttributes) {
-		System.out.println(userId);
 		try {
 			userManagementService.deleteUser(userId);
-			redirectAttributes.addFlashAttribute("success", "User deleted successfully!");
-		} catch (UserException ex) {
+			redirectAttributes.addFlashAttribute("success", "User berjaya dipadam!");
+		} catch (UserException | MessagingException ex) {
 			redirectAttributes.addFlashAttribute("error", ex.getMessage());
 		}
 

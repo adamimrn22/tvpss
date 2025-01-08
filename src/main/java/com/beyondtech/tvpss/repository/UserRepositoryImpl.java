@@ -70,6 +70,19 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public boolean edit(Long id, String name, String email) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("UPDATE User SET name = :name, emailAddress = :emailAddress WHERE id = :id");
+
+        query.setParameter("name", name);
+        query.setParameter("emailAddress", email);
+        query.setParameter("id", id);
+        int result = query.executeUpdate();
+
+        return result > 0;
+    }
+
+    @Override
     public void delete(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.remove(user);
