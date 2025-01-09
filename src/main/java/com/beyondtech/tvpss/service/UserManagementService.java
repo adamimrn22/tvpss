@@ -112,8 +112,20 @@ public class UserManagementService {
             throw UserException.roleNotFound(roleName);
         }
 
-        if(district == null || district.isEmpty()) {
-            district = null;
+        if(roleName.equals("ppdadmin") || roleName.equals("schooladmin")) {
+            if(district == null || district.isEmpty()) {
+                throw UserException.fieldNull("district");
+            }
+        }else {
+            if(district == null || district.isEmpty()) {
+                district = null;
+            }
+        }
+
+        if(roleName.equals("schooladmin")){
+            if(schoolCode == null || schoolCode.isEmpty()) {
+                throw UserException.fieldNull("School");
+            }
         }
 
         User user = new User();

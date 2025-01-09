@@ -23,7 +23,7 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="chairmanAgency1" placeholder=" " name="chairmanAgency1">
+					<input type="text" class="floating-input" id="emailAgency1" placeholder=" " name="emailAgency1">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency1Chairman}"></label>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="chairmanAgency2" placeholder=" " name="chairmanAgency2">
+					<input type="text" class="floating-input" id="emailAgency2" placeholder=" " name="emailAgency2">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency2Chairman}"></label>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<select class="floating-select" id="recordingEquipmentSelect">
+					<select class="floating-select" id="recordingEquipmentSelect" name="recordingEquipment" required>
 						<option value="" selected disabled hidden></option>
 						<option value="yes">Ada</option>
 						<option value="no">Tiada</option>
@@ -66,7 +66,7 @@
 
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<select class="floating-select" id="technologyUsageSelect">
+					<select class="floating-select" id="technologyUsageSelect" >
 						<option value="" selected disabled hidden></option>
 						<option value="yes">Ada</option>
 						<option value="no">Tiada</option>

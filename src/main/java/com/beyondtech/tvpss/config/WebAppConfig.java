@@ -27,6 +27,8 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
 		registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
+		registry.addResourceHandler("/uploads/**")
+				.addResourceLocations("file:///uploads/");
 	}
 
 	@Bean
@@ -88,14 +90,4 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 	}
-
-//	@Override
-//	public void addCorsMappings(CorsRegistry registry) {
-//		registry.addMapping("/api/**")  // Adjust this pattern to match your API endpoints
-//				.allowedOrigins("http://localhost:8080")  // Allow requests from frontend (localhost:8080)
-//				.allowedMethods("GET", "POST", "PUT", "DELETE")  // Allow these methods
-//				.allowedHeaders("*")  // Allow all headers
-//				.allowCredentials(true);  // Allow cookies if you're using session-based authentication
-//	}
-
 }

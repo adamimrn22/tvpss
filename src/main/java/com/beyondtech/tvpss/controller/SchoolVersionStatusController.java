@@ -8,12 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class SchoolVersionStatusController {
 
 	@GetMapping("/SubmitTVPSSVersion")
-	public String submitSchoolVersion(Model model) {
+	public String getSchoolVersion(Model model) {
 		model.addAttribute("pageTitle", "TVPSS Submission");
 		model.addAttribute("role", "schooladmin");
 		model.addAttribute("currentPageDirectory", "SubmitTVPSSVersion");
@@ -25,6 +26,12 @@ public class SchoolVersionStatusController {
 
 		return "layouts/admin-layouts";
 	}
+
+	@PostMapping("/SubmitTVPSSVersion")
+	public String submitSchoolVersion(){
+
+	}
+
 
 	@GetMapping("/InformasiTVPSS")
 	public String viewAllSchoolStatus(Model model) throws AccessDeniedException {
