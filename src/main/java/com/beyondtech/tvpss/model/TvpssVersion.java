@@ -12,6 +12,8 @@ public class TvpssVersion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String schoolCode;
+
     private String youtubeLink;
 
     private String collabAgency1;
@@ -22,7 +24,8 @@ public class TvpssVersion {
 
     private String emailAgency2;
 
-    private TvpssStatus tvpssCurrentStatus = TvpssStatus.PENDING_VALIDASI;
+    @Enumerated(EnumType.STRING) // This ensures the enum is stored as a String in the database
+    private TvpssStatus tvpssCurrentStatus = TvpssStatus.PENDING;
 
     private String recordingEquipment;
 
@@ -30,6 +33,7 @@ public class TvpssVersion {
 
     private String logoPath;
 
+    private int tvpssVersion;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
@@ -48,12 +52,22 @@ public class TvpssVersion {
         updatedAt = LocalDateTime.now();
     }
 
+    // Getter and Setter methods
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSchoolCode() {
+        return schoolCode;
+    }
+
+    public void setSchoolCode(String schoolCode) {
+        this.schoolCode = schoolCode;
     }
 
     public String getYoutubeLink() {
@@ -142,5 +156,13 @@ public class TvpssVersion {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getTvpssVersion() {
+        return tvpssVersion;
+    }
+
+    public void setTvpssVersion(int tvpssVersion) {
+        this.tvpssVersion = tvpssVersion;
     }
 }

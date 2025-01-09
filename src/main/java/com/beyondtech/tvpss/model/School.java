@@ -14,6 +14,9 @@ public class School {
     private String fax;
     private String principalName;
 
+    private int tvpssVersion;
+    private TvpssStatus tvpssStatus;
+
     public School() {}
     public School(Long id, String name, String code, String address1, String address2, String postcode, String district, String state, String phoneNumber, String email, String fax, String principalName) {
         this.id = id;
@@ -126,5 +129,39 @@ public class School {
         this.principalName = principalName;
     }
 
+    public int getTvpssVersion() {
+        return tvpssVersion;
+    }
 
+    public void setTvpssVersion(int tvpssVersion) {
+        this.tvpssVersion = tvpssVersion;
+    }
+
+    public TvpssStatus getTvpssStatus() {
+        return tvpssStatus;
+    }
+
+    public void setTvpssStatus(TvpssStatus tvpssStatus) {
+        this.tvpssStatus = tvpssStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", district='" + district + '\'' +
+                ", state='" + state + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", fax='" + fax + '\'' +
+                ", principalName='" + principalName + '\'' +
+                ", tvpssVersion=" + tvpssVersion +
+                ", tvpssStatus=" + tvpssStatus +
+                '}';
+    }
 }

@@ -71,12 +71,19 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr class="text-first">
-			<td>JEA9012</td>
-			<td>SJK (C) Kuo Kuang 2</td>
-			<td>Mr. Tan Ah Kow</td>
-			<td class="text-center">3</td>
-			<td class="text-center" th:text="#{adminppd.view.validated}">Sudah Divalidasi</td>
+		<tr th:each="school : ${schools}">
+			<!-- School Code -->
+			<td th:text="${school.code}">JEA9012</td>
+			<!-- School Name -->
+			<td th:text="${school.name}">SJK (C) Kuo Kuang 2</td>
+			<!-- School Officer (You can map this from the 'principalName' or another field if necessary) -->
+			<td th:text="${school.principalName}">Mr. Tan Ah Kow</td>
+			<!-- School Version (If you have a 'tvpssVersion' in your school object, display it here) -->
+			<td class="text-center" th:text="${school.tvpssVersion}">3</td>
+			<!-- Status (Using the tvpssCurrentStatus value from TvpssVersion) -->
+			<td class="text-center" th:text="${school.tvpssStatus != null ? school.tvpssStatus : 'Not Available'}">
+				Not Available
+			</td>			<!-- Actions -->
 			<td class="text-center">
 				<a class="btn btn-primary btn-sm" th:href="@{/InformasiTVPSS/SchoolValidate}">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -90,48 +97,9 @@
 				</a>
 			</td>
 		</tr>
-		<tr>
-			<td><input class="custom-checkbox" type="checkbox"></td>
-			<td>JEA7890</td>
-			<td>SJK (C) Pu Sze</td>
-			<td>Mdm. Lee Mei Ling</td>
-			<td class="text-center">1</td>
-			<td class="text-center" th:text="#{adminppd.view.notValidated}">Belum Divalidasi</td>
-			<td class="text-center">
-				<a class="btn btn-primary btn-sm">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						 viewBox="0 0 24 24" fill="currentColor"
-						 class="icon icon-tabler icons-tabler-filled icon-tabler-copy-check">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-						<path
-								d="M18.333 6a3.667 3.667 0 0 1 3.667 3.667v8.666a3.667 3.667 0 0 1 -3.667 3.667h-8.666a3.667 3.667 0 0 1 -3.667 -3.667v-8.666a3.667 3.667 0 0 1 3.667 -3.667zm-3.333 -4c1.094 0 1.828 .533 2.374 1.514a1 1 0 1 1 -1.748 .972c-.221 -.398 -.342 -.486 -.626 -.486h-10c-.548 0 -1 .452 -1 1v9.998c0 .32 .154 .618 .407 .805l.1 .065a1 1 0 1 1 -.99 1.738a3 3 0 0 1 -1.517 -2.606v-10c0 -1.652 1.348 -3 3 -3zm1.293 9.293l-3.293 3.292l-1.293 -1.292a1 1 0 0 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 -1.414 -1.414" />
-					</svg>
-					<span class="mx-1" th:text="#{adminppd.view.validation}">Validasi</span>
-				</a>
-			</td>
-		</tr>
-		<tr>
-			<td><input class="custom-checkbox" type="checkbox"></td>
-			<td>JEA3042</td>
-			<td>SK Air Tawar</td>
-			<td>Cik Zurina binti Hanapi</td>
-			<td class="text-center">1</td>
-			<td class="text-center" th:text="#{adminppd.view.validated}">Sudah Divalidasi</td>
-			<td class="text-center">
-				<a class="btn btn-primary btn-sm">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						 viewBox="0 0 24 24" fill="currentColor"
-						 class="icon icon-tabler icons-tabler-filled icon-tabler-copy-check">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-						<path
-								d="M18.333 6a3.667 3.667 0 0 1 3.667 3.667v8.666a3.667 3.667 0 0 1 -3.667 3.667h-8.666a3.667 3.667 0 0 1 -3.667 -3.667v-8.666a3.667 3.667 0 0 1 3.667 -3.667zm-3.333 -4c1.094 0 1.828 .533 2.374 1.514a1 1 0 1 1 -1.748 .972c-.221 -.398 -.342 -.486 -.626 -.486h-10c-.548 0 -1 .452 -1 1v9.998c0 .32 .154 .618 .407 .805l.1 .065a1 1 0 1 1 -.99 1.738a3 3 0 0 1 -1.517 -2.606v-10c0 -1.652 1.348 -3 3 -3zm1.293 9.293l-3.293 3.292l-1.293 -1.292a1 1 0 0 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 -1.414 -1.414" />
-					</svg>
-					<span class="mx-1" th:text="#{adminppd.view.validation}">Validasi</span>
-				</a>
-			</td>
-		</tr>
 		</tbody>
 	</table>
+
 
 	<ul class="pagination justify-content-start m-3">
 		<li class="page-item"><a class="page-link" href="#"

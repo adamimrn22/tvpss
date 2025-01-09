@@ -1,5 +1,7 @@
 package com.beyondtech.tvpss.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +16,7 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
+import java.io.File;
 import java.util.Locale;
 
 @Configuration
@@ -21,14 +24,21 @@ import java.util.Locale;
 @ComponentScan(basePackages = "com.beyondtech.tvpss")
 public class WebAppConfig implements WebMvcConfigurer {
 
+	private static final Logger logger = LoggerFactory.getLogger(WebAppConfig.class);
+	private final String projectRoot = System.getProperty("user.dir");
+
 	// Mapping for static resources
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+		String uploadPath = "file:" + projectRoot + File.separator + "uploads" + File.separator;
+		logger.info("Setting up resource handler for uploads at: {}", uploadPath);
+		System.out.println("Setting up resource handler for uploads at: " + uploadPath);
 		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
 		registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
 		registry.addResourceHandler("/uploads/**")
-				.addResourceLocations("file:///uploads/");
+				.addResourceLocations(uploadPath);
 	}
 
 	@Bean

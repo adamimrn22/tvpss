@@ -3,7 +3,10 @@
 </div>
 <div id="maklumatSekolahForm" class="card p-3">
 	<h3 style="color: var(--primary)" th:text="#{schooladmin.schooltvpss.schoolInformation}"></h3>
-	<form id="formStep1">
+	<form th:action="@{/SubmitTVPSSVersion}" method="post"  enctype="multipart/form-data">
+		<input	type="text" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<input	type="hidden" name="schoolcode" th:value="${schoolCode}" />
+
 		<div class="form-section row">
 			<!-- YouTube Link -->
 			<div class="col-12">
@@ -66,7 +69,7 @@
 
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
-					<select class="floating-select" id="technologyUsageSelect" >
+					<select class="floating-select" id="technologyUsageSelect" name="technologyUsage" required>
 						<option value="" selected disabled hidden></option>
 						<option value="yes">Ada</option>
 						<option value="no">Tiada</option>
@@ -77,11 +80,12 @@
 
 			<div class="col-12">
 				<div class="floating-form-group">
-					<input type="file" class="floating-input" id="fileUploadStep2" placeholder=" ">
+					<input type="file" class="floating-input" id="logo" placeholder=" " name="logo">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.uploadLogo}"></label>
 				</div>
 			</div>
 
+			<button type="submit">Submit</button>
 		</div>
 	</form>
 </div>
