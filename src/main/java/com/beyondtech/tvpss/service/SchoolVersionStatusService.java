@@ -18,7 +18,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -122,6 +124,19 @@ public class SchoolVersionStatusService {
 
         return schools;
     }
+
+    public Map<String, Object> getSchoolVersionWithSchoolData(String schoolCode){
+        School school = schoolService.getSchoolByCode(schoolCode);
+        TvpssVersion version = tvpssVersionRepository.findBySchoolCode(schoolCode);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("school", school);
+        map.put("version", version);
+
+        return map;
+    }
+
+
 
 
 

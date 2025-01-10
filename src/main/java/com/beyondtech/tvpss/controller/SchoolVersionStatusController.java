@@ -3,6 +3,7 @@ package com.beyondtech.tvpss.controller;
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import com.beyondtech.tvpss.model.School;
@@ -16,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -117,8 +119,8 @@ public class SchoolVersionStatusController {
 		return "layouts/admin-layouts";
 	}
 
-	@GetMapping("/InformasiTVPSS/SchoolValidate")
-	public String viewValidateSchoolVersion(Model model) {
+	@GetMapping("/InformasiTVPSS/SchoolValidate/{schoolCode}")
+	public String viewValidateSchoolVersion(@PathVariable("schoolCode") String schoolCode, Model model) {
 		model.addAttribute("pageTitle", "Validate School Version");
 		model.addAttribute("role", "ppdadmin");
 		model.addAttribute("currentPageDirectory", "AdminPPDInformasiTVPSS");
@@ -126,6 +128,10 @@ public class SchoolVersionStatusController {
 		model.addAttribute("content", "PpdAdmin/SchoolVersionStatus/validate-school");
 		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
 		model.addAttribute("breadcrumbTitle2", "Butiran Sekolah");
+
+		Map<String,Object> schoolData = schoolVersionStatusService.getSchoolVersionWithSchoolData(schoolCode);
+
+		model.addAttribute("schoolData", schoolData);
 
 		return "layouts/admin-layouts";
 	}

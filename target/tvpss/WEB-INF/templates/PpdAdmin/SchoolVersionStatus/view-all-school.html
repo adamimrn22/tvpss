@@ -72,20 +72,15 @@
 		</thead>
 		<tbody>
 		<tr th:each="school : ${schools}">
-			<!-- School Code -->
 			<td th:text="${school.code}">JEA9012</td>
-			<!-- School Name -->
 			<td th:text="${school.name}">SJK (C) Kuo Kuang 2</td>
-			<!-- School Officer (You can map this from the 'principalName' or another field if necessary) -->
 			<td th:text="${school.principalName}">Mr. Tan Ah Kow</td>
-			<!-- School Version (If you have a 'tvpssVersion' in your school object, display it here) -->
 			<td class="text-center" th:text="${school.tvpssVersion}">3</td>
-			<!-- Status (Using the tvpssCurrentStatus value from TvpssVersion) -->
-			<td class="text-center" th:text="${school.tvpssStatus != null ? school.tvpssStatus : 'Not Available'}">
+			<td class="text-center" th:text="${school.tvpssStatus != null ? school.tvpssStatus : 'BELUM SUBMIT'}">
 				Not Available
-			</td>			<!-- Actions -->
+			</td>
 			<td class="text-center">
-				<a class="btn btn-primary btn-sm" th:href="@{/InformasiTVPSS/SchoolValidate}">
+				<a class="btn btn-primary btn-sm" th:href="@{/InformasiTVPSS/SchoolValidate/{schoolCode}(schoolCode=${school.code})}">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 						 viewBox="0 0 24 24" fill="currentColor"
 						 class="icon icon-tabler icons-tabler-filled icon-tabler-copy-check">
