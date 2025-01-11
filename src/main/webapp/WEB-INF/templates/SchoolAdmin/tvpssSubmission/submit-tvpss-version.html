@@ -14,14 +14,17 @@
 <div id="maklumatSekolahForm" class="card p-3">
 	<h3 style="color: var(--primary)" th:text="#{schooladmin.schooltvpss.schoolInformation}"></h3>
 	<form th:action="@{/SubmitTVPSSVersion}" method="post"  enctype="multipart/form-data">
-		<input	type="text" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		<input	type="hidden" name="schoolcode" th:value="${schoolCode}" />
+		<input	type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<input	type="hidden" name="schoolcode" th:value="${currentUser.getSchool().getCode()}" />
+		<input	type="hidden" name="schoolcode" th:value="${schoolData['version']?.tvpssVersion != null ? schoolData['version']?.tvpssVersion : ''}">
+
 
 		<div class="form-section row">
 			<!-- YouTube Link -->
 			<div class="col-12">
 				<div class="floating-form-group">
-					<input type="url" class="floating-input" id="youtubeLink" name="youtubeLink" placeholder=" ">
+					<input type="url" class="floating-input" id="youtubeLink" name="youtubeLink"
+						   th:value="${schoolData['version']?.youtubeLink != null ? schoolData['version']?.youtubeLink : ''}">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.youtubeLink}"></label>
 				</div>
 			</div>
@@ -29,28 +32,34 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="collabAgency1" placeholder=" " name="collabAgency1">
+					<input type="text" class="floating-input" id="collabAgency1" name="collabAgency1"
+						   th:value="${schoolData['version']?.collabAgency1 != null ? schoolData['version']?.collabAgency1 : ''}">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency1}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="emailAgency1" placeholder=" " name="emailAgency1">
+					<input type="text" class="floating-input" id="emailAgency1" placeholder=" " name="emailAgency1"
+						   th:value="${schoolData['version']?.emailAgency1 != null ? schoolData['version']?.emailAgency1 : ''}">
+
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency1Chairman}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="collabAgency2" placeholder=" " name="collabAgency2">
+					<input type="text" class="floating-input" id="collabAgency2" name="collabAgency2"
+						   th:value="${schoolData['version']?.collabAgency2 != null ? schoolData['version']?.collabAgency2 : ''}">
+
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency2}"></label>
 				</div>
 			</div>
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="emailAgency2" placeholder=" " name="emailAgency2">
+					<input type="text" class="floating-input" id="emailAgency2" name="emailAgency2"
+						   th:value="${schoolData['version']?.emailAgency2 != null ? schoolData['version']?.emailAgency2 : ''}">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency2Chairman}"></label>
 				</div>
 			</div>
@@ -59,19 +68,20 @@
 				<div class="floating-form-group">
 					<select class="floating-select" id="miniStudio" name="miniStudio" required>
 						<option selected hidden>Sila Pilih Status</option>
-						<option value="yes">Ada</option>
-						<option value="no">Tiada</option>
+						<option value="yes" th:selected="${schoolData['version']?.miniStudio == 'yes'}">Ada</option>
+						<option value="no" th:selected="${schoolData['version']?.miniStudio == 'no'}">Tiada</option>
 					</select>
 					<label class="floating-select-label" th:text="#{schooladmin.schooltvpss.itemStatus}"></label>
 				</div>
 			</div>
 
+
 			<div class="col-12 col-md-4">
 				<div class="floating-form-group">
 					<select class="floating-select" id="recordingEquipmentSelect" name="recordingEquipment" required>
 						<option selected hidden>Sila Pilih Status</option>
-						<option value="yes">Ada</option>
-						<option value="no">Tiada</option>
+						<option value="yes" th:selected="${schoolData['version']?.recordingEquipment == 'yes'}">Ada</option>
+						<option value="no" th:selected="${schoolData['version']?.recordingEquipment == 'no'}">Tiada</option>
 					</select>
 					<label class="floating-select-label" th:text="#{schooladmin.schooltvpss.recordingEquipment}"></label>
 				</div>
@@ -81,8 +91,8 @@
 				<div class="floating-form-group">
 					<select class="floating-select" id="technologyUsageSelect" name="technologyUsage" required>
 						<option selected hidden>Sila Pilih Status</option>
-						<option value="yes">Ada</option>
-						<option value="no">Tiada</option>
+						<option value="yes" th:selected="${schoolData['version']?.technologyUsage == 'yes'}">Ada</option>
+						<option value="no" th:selected="${schoolData['version']?.technologyUsage == 'no'}">Tiada</option>
 					</select>
 					<label class="floating-select-label" th:text="#{schooladmin.schooltvpss.technologyUsage}"></label>
 				</div>
@@ -93,9 +103,20 @@
 					<input type="file" class="floating-input" id="logo" placeholder=" " name="logo">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.uploadLogo}"></label>
 				</div>
+				<button class="btn btn-sm my-3" type="button"
+						data-bs-toggle="modal"
+						data-bs-target="#modalLogoTVPSS"
+						th:if="${schoolData['version']?.logoPath != null}">
+					Lihat Logo TVPSS Kini
+				</button>
 			</div>
 
-			<button type="submit">Submit</button>
+			<div class="text-end">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+
 		</div>
 	</form>
+
 </div>
+<div th:include="~{StateAdmin/schoolVersionStatus/tvpss-modal :: tvpssinfomodal}"></div>

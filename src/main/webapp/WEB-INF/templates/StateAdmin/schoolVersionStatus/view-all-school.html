@@ -110,6 +110,7 @@
 		<thead>
 		<tr>
 			<th th:text="#{stateadmin.schoolInfo.table.code}">Kod Sekolah</th>
+			<th class="text-center" th:text="#{stateadmin.schoolInfo.table.district}">Daerah</th>
 			<th th:text="#{stateadmin.schoolInfo.table.name}">Nama Sekolah</th>
 			<th th:text="#{stateadmin.schoolInfo.table.officer}">Nama Pengetua Sekolah</th>
 			<th class="text-center" th:text="#{stateadmin.schoolInfo.table.version}">Versi</th>
@@ -120,6 +121,7 @@
 		<tbody>
 		<tr class="text-first" th:each="school : ${schools}">
 			<td th:text="${school.code}">JEA9012</td>
+			<td class="text-center"  th:text="${school.district}">SJK (C) Kuo Kuang 2</td>
 			<td th:text="${school.name}">SJK (C) Kuo Kuang 2</td>
 			<td th:text="${school.principalName}">Mr. Tan Ah Kow</td>
 			<td class="text-center" th:text="${school.tvpssVersion}">3</td>

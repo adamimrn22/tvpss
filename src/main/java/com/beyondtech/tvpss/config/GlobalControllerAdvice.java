@@ -1,6 +1,9 @@
 package com.beyondtech.tvpss.config;
 
 import com.beyondtech.tvpss.model.Role;
+import com.beyondtech.tvpss.model.School;
+import com.beyondtech.tvpss.service.SchoolService;
+import com.beyondtech.tvpss.service.UserSchoolService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +19,8 @@ import com.beyondtech.tvpss.repository.UserSchoolRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 @Component
 @ControllerAdvice
 public class GlobalControllerAdvice {
@@ -24,6 +29,10 @@ public class GlobalControllerAdvice {
     private UserRepository userRepository; // Repository to fetch user details
     @Autowired
     private UserSchoolRepository userSchoolRepository; // Repository to fetch school details
+    @Autowired
+    private SchoolService schoolService;
+    @Autowired
+    private UserSchoolService userSchoolService;
 
     @ModelAttribute
     public void addAuthenticatedUserToModel(Model model) {
@@ -38,15 +47,20 @@ public class GlobalControllerAdvice {
                 User user = userRepository.findByEmailAddress(username).orElse(null);
 
                 if (user != null) {
-                    model.addAttribute("currentUser", user);
-
                     Role userRole = user.getRole();
                     if (userRole != null) {
                         model.addAttribute("roleName", userRole.getName());
                         model.addAttribute("role", userRole.getRolename());
+                        if(userRole.getRolename().equals("schooladmin")){
+                            Optional<UserSchool> userSchool = userSchoolService.getUserSchoolByUserId(user.getId());
+                            if(userSchool.isPresent()){
+                                School school = schoolService.getSchoolByCode(userSchool.get().getSchoolCode());
+                                user.setSchool(school);
+                            }
+                        }
                     }
-
-                    userSchoolRepository.findByUserId(user.getId()).ifPresent(userSchool -> model.addAttribute("schoolCode", userSchool.getSchoolCode()));
+                    model.addAttribute("currentUser", user);
+//                    userSchoolRepository.findByUserId(user.getId()).ifPresent(userSchool -> model.addAttribute("schoolCode", userSchool.getSchoolCode()));
                 }
             }
         }

@@ -77,38 +77,57 @@ public class SchoolVersionStatusService {
         Path filePath = Paths.get(UPLOAD_DIR, newFileName);
 
         logger.info("Attempting to save file to: {}", filePath.toString());
-        System.out.println("Attempting to save file to: {} " + filePath.toString());
+
         try {
             Files.createDirectories(filePath.getParent());
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-            logger.info("File saved successfully");
-            System.out.println("Saved");
+            logger.info("File saved successfully: {}", newFileName);
             return newFileName;
         } catch (IOException e) {
             logger.error("Failed to save file", e);
-            System.out.println("FAILED");
             throw e;
         }
     }
 
 
     public TvpssVersion submitTvpssVersion(TvpssVersion tvpssVersion, MultipartFile logo) throws IOException {
+        // First, get the existing version if any
+        TvpssVersion existingVersion = tvpssVersionRepository.findBySchoolCode(tvpssVersion.getSchoolCode());
+
+        // If this is an update, preserve the existing logo path when no new file is uploaded
+        if (existingVersion != null && (logo == null || logo.isEmpty())) {
+            tvpssVersion.setLogoPath(existingVersion.getLogoPath());
+            logger.info("Preserving existing logo path: {}", existingVersion.getLogoPath());
+        }
+
+        // Handle new file upload if provided
         if (logo != null && !logo.isEmpty()) {
             try {
+                // Delete old file if it exists
+                if (existingVersion != null && existingVersion.getLogoPath() != null) {
+                    String oldFileName = existingVersion.getLogoPath().substring(
+                            existingVersion.getLogoPath().lastIndexOf("/") + 1);
+                    Path oldLogoPath = Paths.get(UPLOAD_DIR, oldFileName);
+                    Files.deleteIfExists(oldLogoPath);
+                    System.out.println("Old logo file deleted: {}" +  oldLogoPath);
+                }
+
+                // Upload the new logo
                 String fileName = handleFileUpload(logo);
                 tvpssVersion.setLogoPath(UPLOAD_URL_PATH + fileName);
-                logger.info("File successfully uploaded: {}", fileName);
-                System.out.println("File successfully uploaded: " + fileName);
+                logger.info("New file successfully uploaded: {}", fileName);
+                System.out.println("New file successfully uploaded: {}" +  fileName);
+
             } catch (IOException e) {
-                logger.error("Failed to upload file", e);
+                logger.error("Failed to handle file upload", e);
                 throw e;
             }
         }
 
         tvpssVersion.setTvpssCurrentStatus(TvpssStatus.PENDING);
-
         return tvpssVersionRepository.saveOrUpdate(tvpssVersion);
     }
+
 
     public List<School> getAllSchoolsByDistrict(String district) {
         List<School> schools = schoolService.getSchoolsByDistrict(district);
@@ -162,6 +181,9 @@ public class SchoolVersionStatusService {
     }
 
 
+    public void updateTvpssVersion(String schoolCode, int version){
+        tvpssVersionRepository.updateTvpssVersion(schoolCode, version, TvpssStatus.SUDAH);
+    }
 
 
 

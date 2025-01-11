@@ -9,7 +9,6 @@ import java.util.Objects;
 import com.beyondtech.tvpss.model.School;
 import com.beyondtech.tvpss.model.TvpssVersion;
 import com.beyondtech.tvpss.model.User;
-import com.beyondtech.tvpss.service.SchoolService;
 import com.beyondtech.tvpss.service.SchoolVersionStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -39,13 +38,17 @@ public class SchoolVersionStatusController {
 
 		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
 		model.addAttribute("breadcrumbTitle2", "Submit Versi TVPSS");
+		User currentUser = (User) model.getAttribute("currentUser");
 
+		Map<String,Object> schoolData = schoolVersionStatusService.getSchoolVersionWithSchoolData(currentUser.getSchool().getCode());
+		model.addAttribute("currentUser", currentUser);
+
+		model.addAttribute("schoolData", schoolData);
 		return "layouts/admin-layouts";
 	}
 
 	@PostMapping("/SubmitTVPSSVersion")
 	public String submitSchoolVersion(
-			@RequestParam("schoolcode") String schoolCode,
 			@RequestParam("youtubeLink") String youtubeLink,
 			@RequestParam("collabAgency1") String collabAgency1,
 			@RequestParam("emailAgency1") String emailAgency1,
@@ -73,9 +76,9 @@ public class SchoolVersionStatusController {
 
 			if (currentUser != null) {
 				tvpssVersion.setPic(currentUser);
+				tvpssVersion.setSchoolCode(currentUser.getSchool().getCode());
 			}
 
-			tvpssVersion.setSchoolCode(schoolCode);
 			tvpssVersion.setYoutubeLink(youtubeLink);
 			tvpssVersion.setCollabAgency1(collabAgency1);
 			tvpssVersion.setEmailAgency1(emailAgency1);
@@ -87,11 +90,11 @@ public class SchoolVersionStatusController {
 
             schoolVersionStatusService.submitTvpssVersion(tvpssVersion, logo);
 
-			redirectAttributes.addFlashAttribute("success", "success");
+			redirectAttributes.addFlashAttribute("success", "Data TVPSS Anda Berjaya Dihantar");
 			return "redirect:/SubmitTVPSSVersion";
 
 		} catch (IOException e) {
-			redirectAttributes.addFlashAttribute("error");
+			redirectAttributes.addFlashAttribute("error", e.getMessage());
 			return "redirect:/SubmitTVPSSVersion";
 		}
 	}
@@ -154,6 +157,14 @@ public class SchoolVersionStatusController {
 		model.addAttribute("schoolData", schoolData);
 
 		return "layouts/admin-layouts";
+	}
+
+	@PostMapping("/InformasiTVPSS/validate")
+	public String updateTvpssStatus(@RequestParam("schoolCode") String schoolCode,@RequestParam("versionStatus") int version, RedirectAttributes redirectAttributes) {
+		schoolVersionStatusService.updateTvpssVersion(schoolCode, version);
+
+		redirectAttributes.addFlashAttribute("success", "Status Bagi Kod Sekolah " + schoolCode + " berjaya dikemaskini dengan versi " + version);
+		return "redirect:/InformasiTVPSS";
 	}
 
 	@GetMapping("/InformasiTVPSS/{schoolCode}")
