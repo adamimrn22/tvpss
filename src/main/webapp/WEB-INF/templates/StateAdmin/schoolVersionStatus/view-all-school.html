@@ -111,35 +111,37 @@
 		<tr>
 			<th th:text="#{stateadmin.schoolInfo.table.code}">Kod Sekolah</th>
 			<th th:text="#{stateadmin.schoolInfo.table.name}">Nama Sekolah</th>
-			<th th:text="#{stateadmin.schoolInfo.table.officer}">Nama Pengawai Sekolah</th>
+			<th th:text="#{stateadmin.schoolInfo.table.officer}">Nama Pengetua Sekolah</th>
 			<th class="text-center" th:text="#{stateadmin.schoolInfo.table.version}">Versi</th>
 			<th class="text-center" th:text="#{stateadmin.schoolInfo.table.status}">Status</th>
 			<th class="text-center" th:text="#{stateadmin.schoolInfo.table.action}">Aksi</th>
 		</tr>
 		</thead>
 		<tbody>
-		<tr class="text-first">
-			<td>JEA9012</td>
-			<td>SJK (C) Kuo Kuang 2</td>
-			<td>Mr. Tan Ah Kow</td>
-			<td class="text-center">3</td>
-			<td class="text-center">Sudah Divalidasi</td>
-			<td class="text-center"><a class="btn btn-primary btn-sm"
-									   th:href="@{/InformasiTVPSS/SchoolDetails}">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-					 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-					 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					 class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-					<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-					<path
-							d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-				</svg>
-				<span class="mx-1" th:text="#{stateadmin.schoolInfo.view}">Lihat</span>
-			</a></td>
+		<tr class="text-first" th:each="school : ${schools}">
+			<td th:text="${school.code}">JEA9012</td>
+			<td th:text="${school.name}">SJK (C) Kuo Kuang 2</td>
+			<td th:text="${school.principalName}">Mr. Tan Ah Kow</td>
+			<td class="text-center" th:text="${school.tvpssVersion}">3</td>
+			<td class="text-center" th:text="${school.tvpssStatus != null ? school.tvpssStatus : 'BELUM SUBMIT'}">
+				Not Available
+			</td>
+			<td class="text-center">
+				<a class="btn btn-primary btn-sm" th:href="@{/InformasiTVPSS/{schoolCode}(schoolCode=${school.code})}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						 class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+						<path
+								d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+					</svg>
+					<span class="mx-1" th:text="#{stateadmin.schoolInfo.view}">Lihat</span>
+				</a>
+			</td>
 		</tr>
-		<!-- other rows -->
-		</tbody>
+ 		</tbody>
 	</table>
 
 	<ul class="pagination justify-content-start m-3">

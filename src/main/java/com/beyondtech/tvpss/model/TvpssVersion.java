@@ -27,6 +27,8 @@ public class TvpssVersion {
     @Enumerated(EnumType.STRING) // This ensures the enum is stored as a String in the database
     private TvpssStatus tvpssCurrentStatus = TvpssStatus.PENDING;
 
+    private String miniStudio;
+
     private String recordingEquipment;
 
     private String technologyUsage;
@@ -40,6 +42,10 @@ public class TvpssVersion {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pic", referencedColumnName = "id", nullable = false)
+    private User pic;
 
     @PrePersist
     protected void onCreate() {
@@ -164,5 +170,21 @@ public class TvpssVersion {
 
     public void setTvpssVersion(int tvpssVersion) {
         this.tvpssVersion = tvpssVersion;
+    }
+
+    public String getMiniStudio() {
+        return miniStudio;
+    }
+
+    public void setMiniStudio(String miniStudio) {
+        this.miniStudio = miniStudio;
+    }
+
+    public User getPic() {
+        return pic;
+    }
+
+    public void setPic(User user) {
+        this.pic = user;
     }
 }

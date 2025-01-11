@@ -1,33 +1,45 @@
 <div
-	th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}">
+		th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}">
 </div>
 
 <div class="card p-3 mb-3">
 	<h5 style="color: var(--primary)" th:text="#{stateadmin.view.schoolInfo.title}">Maklumat Sekolah</h5>
-	<table class="table table-bordered" style="width: 50%;">
+	<table class="table table-bordered" style="width: 70%;">
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.name}">Nama Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Sekolah A</td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;">
+				<strong th:text="#{stateadmin.view.schoolInfo.name}">Nama Sekolah</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['school'].name != null ? schoolData['school'].name : 'Tiada'}"></td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700);width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.code}">Kod Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">12345</td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;">
+				<strong th:text="#{stateadmin.view.schoolInfo.code}">Kod Sekolah</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['school'].code != null ? schoolData['school'].code : 'Tiada'}"></td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.officer}">Pengawai PIC Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);"><strong>Abu bin Abdul</strong></td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;">
+				<strong th:text="#{stateadmin.view.schoolInfo.officer}">Pengawai PIC Sekolah</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['version']?.pic?.name != null ? schoolData['version'].pic.name : 'Tiada'}"></td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.address}">Alamat Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Jalan ABC, 123, Kuala Lumpur</td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;">
+				<strong th:text="#{adminppd.validate.schoolOfficerEmail}">Email Pengawai PIC Sekolah</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['version']?.pic?.emailAddress != null ? schoolData['version'].pic.emailAddress : 'Tiada'}"></td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.type}">Jenis Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Sekolah Menengah</td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;">
+				<strong th:text="#{stateadmin.view.schoolInfo.address}">Alamat Sekolah</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['school'].address1 != null && schoolData['school'].address2 != null ? schoolData['school'].address1 + ', ' + schoolData['school'].address2 : 'Tiada'}"></td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700); width: 25%;"><strong th:text="#{stateadmin.view.schoolInfo.version}">Versi TVPSS Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500);"><strong>Versi 1</strong></td>
+			<td class="text-start" style="color: var(--gray-700); width: 25%;">
+				<strong th:text="#{stateadmin.view.schoolInfo.version}">Versi TVPSS Sekolah</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['version']?.tvpssVersion != null ? schoolData['version'].tvpssVersion : 'Tiada'}"></td>
 		</tr>
 	</table>
 </div>
@@ -45,56 +57,71 @@
 		</thead>
 		<tbody>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.logo}">Logo TVPSS</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Ada</td>
-			<td class="text-start">
-				<button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogoTVPSS" th:text="#{stateadmin.view.buttons.viewImage}">View Image</button>
+			<td class="text-start" style="color: var(--gray-700);">
+				<strong th:text="#{stateadmin.view.tvpssInfo.logo}">Logo TVPSS</strong>
 			</td>
-		</tr>
-
-		<tr>
-			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.youtube}">YouTube Upload</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Ada</td>
-			<td class="text-start">
-				<button class="btn btn-danger btn-sm">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						 viewBox="0 0 24 24" fill="currentColor"
-						 class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-						<path
-								d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" /></svg>
-					<span th:text="#{stateadmin.view.buttons.linkYoutube}">Link Youtube</span>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['version']?.logoPath != null ? 'Ada' : 'Tiada'}"></td>
+			<td class="text-start" style="color: var(--gray-500);">
+				<button class="btn btn-sm"
+						data-bs-toggle="modal"
+						data-bs-target="#modalLogoTVPSS"
+						th:if="${schoolData['version']?.logoPath != null}">
+					Lihat Logo
 				</button>
 			</td>
+
 		</tr>
-
 		<tr>
-			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.studio}">Corner/Mini/TV Studio</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Ada</td>
-			<td class="text-start">
-
+			<td class="text-start" style="color: var(--gray-700);">
+				<strong th:text="#{stateadmin.view.tvpssInfo.youtube}">YouTube Upload</strong>
 			</td>
-		</tr>
-
-		<tr>
-			<td class="text-start" style="color: var(--gray-700); width:25%"><strong th:text="#{stateadmin.view.tvpssInfo.recording}">Rakaman Dalam Sekolah</strong></td>
-			<td class="text-start" style="color: var(--gray-500); width:25%">Ada</td>
-			<td class="text-start">
-
+			<td class="text-start" style="color: var(--gray-500);">
+				<span th:text="${schoolData['version']?.youtubeLink != null ? 'Ada' : 'Tiada'}"></span>
 			</td>
-		</tr>
-		<tr>
-			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.collaboration}">Berkolaborasi Syarikat Luar</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Ada</td>
 			<td class="text-start">
-
+				<a class="btn btn-outline-danger btn-sm" th:if="${schoolData['version']?.youtubeLink != null}" th:href="${schoolData['version'].youtubeLink}" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-brand-youtube">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path d="M18 3a5 5 0 0 1 5 5v8a5 5 0 0 1 -5 5h-12a5 5 0 0 1 -5 -5v-8a5 5 0 0 1 5 -5zm-9 6v6a1 1 0 0 0 1.514 .857l5 -3a1 1 0 0 0 0 -1.714l-5 -3a1 1 0 0 0 -1.514 .857z" />
+					</svg>
+					<span th:text="#{adminppd.validate.youtubeLink}">Link Youtube</span>
+				</a>
 			</td>
 		</tr>
 		<tr>
-			<td class="text-start" style="color: var(--gray-700);"><strong th:text="#{stateadmin.view.tvpssInfo.greenScreen}">Penggunaan Teknologi Green Screen</strong></td>
-			<td class="text-start" style="color: var(--gray-500);">Ada</td>
-			<td class="text-start">
+			<td class="text-start" style="color: var(--gray-700);">
+				<strong th:text="#{stateadmin.view.tvpssInfo.studio}">Corner/Mini/TV Studio</strong>
 			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['version']?.miniStudio != null ? (schoolData['version'].miniStudio == 'yes' ? 'Ada' : 'Tiada') : 'Tiada'}"></td>
+			<td class="text-start"></td>
+		</tr>
+		<tr>
+			<td class="text-start" style="color: var(--gray-700); width:25%">
+				<strong th:text="#{stateadmin.view.tvpssInfo.recording}">Rakaman Dalam Sekolah</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['version']?.recordingEquipment != null ? (schoolData['version'].recordingEquipment == 'yes' ? 'Ada' : 'Tiada') : 'Tiada'}"></td>
+			<td class="text-start"></td>
+		</tr>
+		<tr>
+			<td class="text-start" style="color: var(--gray-700);">
+				<strong th:text="#{stateadmin.view.tvpssInfo.collaboration}">Berkolaborasi Syarikat Luar</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);">
+				<span th:text="${schoolData['version']?.collabAgency1 != null || schoolData['version']?.emailAgency1 != null || schoolData['version']?.collabAgency2 != null || schoolData['version']?.emailAgency2 != null ? 'Ada' : 'Tiada'}"></span>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);">
+				<span th:text="${schoolData['version']?.collabAgency1 != null ? 'Collaboration Agency 1: ' + schoolData['version'].collabAgency1 : ''}"></span><br />
+				<span th:text="${schoolData['version']?.emailAgency1 != null ? 'Email Agency 1: ' + schoolData['version'].emailAgency1 : ''}"></span><br />
+				<span th:text="${schoolData['version']?.collabAgency2 != null ? 'Collaboration Agency 2: ' + schoolData['version'].collabAgency2 : ''}"></span><br />
+				<span th:text="${schoolData['version']?.emailAgency2 != null ? 'Email Agency 2: ' + schoolData['version'].emailAgency2 : ''}"></span><br />
+			</td>
+		</tr>
+		<tr>
+			<td class="text-start" style="color: var(--gray-700);">
+				<strong th:text="#{stateadmin.view.tvpssInfo.greenScreen}">Penggunaan Teknologi Green Screen</strong>
+			</td>
+			<td class="text-start" style="color: var(--gray-500);" th:text="${schoolData['version']?.technologyUsage != null ? (schoolData['version'].technologyUsage == 'yes' ? 'Ada' : 'Tiada') : 'Tiada'}"></td>
+			<td class="text-start"></td>
 		</tr>
 		</tbody>
 	</table>

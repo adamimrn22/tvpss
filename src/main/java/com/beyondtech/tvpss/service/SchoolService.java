@@ -50,6 +50,8 @@ public class SchoolService {
         return List.of();
     }
 
+
+
     public School getSchoolByCode(String schoolCode) {
         String url = apiUrl + "/code/" + schoolCode;
         SingleSchoolApiResponse response = restTemplate.getForObject(url, SingleSchoolApiResponse.class);

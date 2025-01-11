@@ -110,11 +110,36 @@ public class SchoolVersionStatusService {
         return tvpssVersionRepository.saveOrUpdate(tvpssVersion);
     }
 
-    public List<School> getAllSchools(String district) {
+    public List<School> getAllSchoolsByDistrict(String district) {
         List<School> schools = schoolService.getSchoolsByDistrict(district);
+
+        System.out.println("district" + district);
+        System.out.println("all school" + schools);
+
 
         for (School school : schools) {
             TvpssVersion version = tvpssVersionRepository.findBySchoolCode(school.getCode());
+
+            System.out.println("the school" + school);
+
+            if (version != null) {
+                school.setTvpssVersion(version.getTvpssVersion());
+                school.setTvpssStatus(version.getTvpssCurrentStatus());
+            }
+        }
+
+        return schools;
+    }
+
+    public List<School> getAllSchool() {
+        List<School> schools = schoolService.getAllSchools();
+        System.out.println("all school" + schools);
+
+
+        for (School school : schools) {
+            TvpssVersion version = tvpssVersionRepository.findBySchoolCode(school.getCode());
+
+            System.out.println("the school" + school);
 
             if (version != null) {
                 school.setTvpssVersion(version.getTvpssVersion());

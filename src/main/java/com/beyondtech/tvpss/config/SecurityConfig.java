@@ -23,7 +23,7 @@ public class SecurityConfig {
 			.requestMatchers("/SuperAdmin/**").hasRole("superadmin")
 			.requestMatchers("/StateAdmin/**").hasRole("stateadmin")
 			.requestMatchers("/AdminPPD/**").hasRole("ppdadmin")
-			.requestMatchers("/SchoolAdmin/**").hasRole("schooladmin")
+			.requestMatchers("/SchoolAdmin/**", "/SubmitTVPSSVersion").hasRole("schooladmin")
 			.requestMatchers("/InformasiTVPSS").hasAnyRole("stateadmin", "ppdadmin")
 			.requestMatchers("/schools/district/**").authenticated()
 			.anyRequest().authenticated())

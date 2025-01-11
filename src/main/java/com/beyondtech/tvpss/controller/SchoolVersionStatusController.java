@@ -49,31 +49,43 @@ public class SchoolVersionStatusController {
 			@RequestParam("youtubeLink") String youtubeLink,
 			@RequestParam("collabAgency1") String collabAgency1,
 			@RequestParam("emailAgency1") String emailAgency1,
+			@RequestParam("miniStudio") String miniStudio,
 			@RequestParam("collabAgency2") String collabAgency2,
 			@RequestParam("emailAgency2") String emailAgency2,
 			@RequestParam("recordingEquipment") String recordingEquipment,
 			@RequestParam("technologyUsage") String technologyUsage,
-			@RequestParam("logo") MultipartFile logo,
+			@RequestParam("logo") MultipartFile logo, Model model,
 			RedirectAttributes redirectAttributes){
 
 		try {
+
+			if(!(recordingEquipment.equals("yes") || recordingEquipment.equals("no")) || !(miniStudio.equals("yes")
+				|| miniStudio.equals("no")) || !(technologyUsage.equals("yes") || technologyUsage.equals("no"))) {
+
+				redirectAttributes.addFlashAttribute("error", "Sila pilih Status ada atau tiada");
+				return "redirect:/SubmitTVPSSVersion";
+			}
+
+
+
+			User currentUser = (User) model.getAttribute("currentUser");
 			TvpssVersion tvpssVersion = new TvpssVersion();
+
+			if (currentUser != null) {
+				tvpssVersion.setPic(currentUser);
+			}
+
 			tvpssVersion.setSchoolCode(schoolCode);
 			tvpssVersion.setYoutubeLink(youtubeLink);
 			tvpssVersion.setCollabAgency1(collabAgency1);
 			tvpssVersion.setEmailAgency1(emailAgency1);
 			tvpssVersion.setCollabAgency2(collabAgency2);
 			tvpssVersion.setEmailAgency2(emailAgency2);
+			tvpssVersion.setMiniStudio(miniStudio);
 			tvpssVersion.setRecordingEquipment(recordingEquipment);
 			tvpssVersion.setTechnologyUsage(technologyUsage);
 
-			if (recordingEquipment == null || recordingEquipment.trim().isEmpty() ||
-					technologyUsage == null || technologyUsage.trim().isEmpty()) {
-				redirectAttributes.addFlashAttribute("errorMessage");
-				return "redirect:/SubmitTVPSSVersion";
-			}
-
-			schoolVersionStatusService.submitTvpssVersion(tvpssVersion, logo);
+            schoolVersionStatusService.submitTvpssVersion(tvpssVersion, logo);
 
 			redirectAttributes.addFlashAttribute("success", "success");
 			return "redirect:/SubmitTVPSSVersion";
@@ -93,19 +105,18 @@ public class SchoolVersionStatusController {
 		model.addAttribute("pageTitle", "Status TVPSS");
 
 		if (Objects.equals(role, "ppdadmin")) {
-
-            List<School> schools = schoolVersionStatusService.getAllSchools(currentUser.getDistrict());
+			List<School> schools = schoolVersionStatusService.getAllSchoolsByDistrict(currentUser.getDistrict());
 			model.addAttribute("schools", schools);
-
-			for (School school : schools) {
-				System.out.println(school);
-			}
 
 			model.addAttribute("currentPageDirectory", "AdminPPDInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
 			model.addAttribute("content", "PpdAdmin/SchoolVersionStatus/view-all-school");
 
 		} else if (Objects.equals(role, "stateadmin")) {
+
+			List<School> schools = schoolVersionStatusService.getAllSchool();
+			model.addAttribute("schools", schools);
+
 			model.addAttribute("currentPageDirectory", "StateAdminInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
 			model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-all-school");
@@ -131,22 +142,34 @@ public class SchoolVersionStatusController {
 
 		Map<String,Object> schoolData = schoolVersionStatusService.getSchoolVersionWithSchoolData(schoolCode);
 
+
+		TvpssVersion version = (TvpssVersion) schoolData.get("version");
+
+		if (version != null) {
+			System.out.println("dataaaa " + version.getTvpssVersion());
+		} else {
+			System.out.println("Version data is not available");
+		}
+
 		model.addAttribute("schoolData", schoolData);
 
 		return "layouts/admin-layouts";
 	}
 
-	@GetMapping("/InformasiTVPSS/SchoolDetails")
-	public String viewSchoolDetailsStateAdmin(Model model) {
+	@GetMapping("/InformasiTVPSS/{schoolCode}")
+	public String viewSchoolDetailsStateAdmin(@PathVariable("schoolCode") String schoolCode,Model model) {
 		model.addAttribute("pageTitle", "School Details");
 		model.addAttribute("role", "stateadmin");
 		model.addAttribute("currentPageDirectory", "StateAdminInformasiTVPSS");
 		model.addAttribute("headerText", "Info Status TVPSS");
-		model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-school-status-detail");
 
 		model.addAttribute("breadcrumbTitle1", "Pengurusan TVPSS");
 		model.addAttribute("breadcrumbTitle2", "Butiran Sekolah");
 
+		Map<String,Object> schoolData = schoolVersionStatusService.getSchoolVersionWithSchoolData(schoolCode);
+		model.addAttribute("schoolData", schoolData);
+
+		model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-school-status-detail");
 		return "layouts/admin-layouts";
 	}
 }

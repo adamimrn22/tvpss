@@ -10,7 +10,7 @@
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<img src="logo_image.jpg" class="img-fluid" alt="Logo TVPSS">
+					<img th:src="${schoolData['version']?.logoPath != null ? schoolData['version'].logoPath : '#'}" class="img-fluid" alt="Logo TVPSS">
 				</div>
 			</div>
 		</div>
