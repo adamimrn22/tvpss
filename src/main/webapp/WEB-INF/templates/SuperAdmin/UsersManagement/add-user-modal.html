@@ -7,7 +7,7 @@
 
 			<div class="modal-content">
 				<form th:action="@{/SuperAdmin/Pengguna/addUser}" method="post">
-					<input	type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input	type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 					<div class="modal-header">
 						<h5 class="modal-title" id="addUserModalLabel"
 							style="color: #515B92" th:text="#{user.addUserModal.title}"></h5>

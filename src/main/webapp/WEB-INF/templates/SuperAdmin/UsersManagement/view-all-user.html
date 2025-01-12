@@ -34,24 +34,70 @@
 
 <div class="card m-2 p-0">
 
-	<table class="table table-sm">
-		<thead class="th-header">
-		<tr class="text-center">
-			<th th:text="#{user.table.columnNumber}"></th>
-			<th class="text-start" th:text="#{user.table.columnFullName}"></th>
-			<th class="text-start" th:text="#{user.table.columnEmail}"></th>
-			<th th:text="#{user.table.columnDistrict}"></th>
-			<th th:text="#{user.table.columnUserType}"></th>
-			<th th:text="#{user.table.columnAction}"></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr class="text-center align-middle" th:each="user, iStat: ${users}">
-			<td th:text="${(currentPage - 1) * pageSize + iStat.count}"></td>
-			<td class="text-start" th:text="${user.name}" style="min-width: 200px; width: 40%;"></td> <!-- Name Column Width -->
-			<td class="text-start" th:text="${user.emailAddress}"></td>
-			<td th:text="${user.getDistrict() != null ? user.getDistrict() : 'N/A'}"></td>
-			<td style="min-width: 60%">
+	<div class="m-3 d-flex justify-content-between align-items-center">
+
+		<div class="d-flex align-items-baseline"	>
+			<div class="floating-form-group" style="width: 400px">
+				<input type="text" class="floating-input" placeholder=" ">
+				<label class="floating-input-label">Cari Nama Pengguna...</label>
+			</div>
+
+			<div class="dropdown ms-2">
+				<button class="btn btn-outline-secondary dropdown-toggle"
+						type="button" id="versiDropdown" data-bs-toggle="dropdown"
+						aria-expanded="false">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						 class="icon icon-tabler icons-tabler-outline icon-tabler-filter">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path
+								d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z" />
+					</svg>
+					<span > Jenis Pengguna </span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="userRole">
+					<li><a class="dropdown-item" href="#">Semua Pengguna</a></li>
+					<li><a class="dropdown-item" href="#">Super Admin</a></li>
+					<li><a class="dropdown-item" href="#">State Admin</a></li>
+					<li><a class="dropdown-item" href="#">PPD Admin</a></li>
+					<li><a class="dropdown-item" href="#">School Admin</a></li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="d-flex align-items-center me-4">
+			<label for="entries" class="mx-3" th:text="#{stateadmin.schoolInfo.showEntries}">Tunjuk</label>
+			<select id="entries" class="form-select w-auto me-2">
+				<option>5</option>
+				<option selected>10</option>
+				<option>25</option>
+				<option>50</option>
+				<option>100</option>
+			</select>
+			<span th:text="#{stateadmin.schoolInfo.entries}">Entri</span>
+		</div>
+	</div>
+
+	<div>
+		<table class="table table-sm">
+			<thead class="th-header">
+			<tr class="text-center">
+				<th th:text="#{user.table.columnNumber}"></th>
+				<th class="text-start" th:text="#{user.table.columnFullName}"></th>
+				<th class="text-start" th:text="#{user.table.columnEmail}"></th>
+				<th th:text="#{user.table.columnDistrict}"></th>
+				<th th:text="#{user.table.columnUserType}"></th>
+				<th th:text="#{user.table.columnAction}"></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr class="text-center align-middle" th:each="user, iStat: ${users}">
+				<td th:text="${iStat.count}"></td>
+				<td class="text-start" th:text="${user.name}" style="min-width: 200px; width: 40%;"></td> <!-- Name Column Width -->
+				<td class="text-start" th:text="${user.emailAddress}"></td>
+				<td th:text="${user.getDistrict() != null ? user.getDistrict() : 'N/A'}"></td>
+				<td style="min-width: 60%">
                 <span class="badge"
 					  th:classappend="${user.getRole().rolename == 'superadmin' ? 'badge-super-admin' :
                                   user.getRole().rolename == 'stateadmin' ? 'badge-admin-state' :
@@ -59,81 +105,64 @@
                                   user.getRole().rolename == 'schooladmin' ? 'badge-admin-sekolah' : ''}"
 					  th:text="${user.getRole().name}">
                 </span>
-			</td>
-			<td class="table-actions">
+				</td>
+				<td class="table-actions">
 
-				<button class="btn hover-view" data-bs-toggle="modal"
-						data-bs-target="#viewUserDetailModal" th:data-id="${user.id}">
-					<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
-				</button>
+					<button class="btn hover-view" data-bs-toggle="modal"
+							data-bs-target="#viewUserDetailModal" th:data-id="${user.id}">
+						<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+					</button>
 
-				<button class="btn hover-edit" data-bs-toggle="modal"
-						data-bs-target="#editUserModal" th:data-id="${user.id}">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-						 class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-						<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-						<path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-						<path d="M16 5l3 3" />
-					</svg>
-				</button>
-
-
-				<button class="btn hover-delete" data-bs-toggle="modal"
-						data-bs-target="#deleteModal" th:data-id="${user.id}" th:if="${user.id != currentUser.id}">
-
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-						 viewBox="0 0 24 24" fill="currentColor"
-						 class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
-						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-						<path
-								d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-						<path
-								d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
-					</svg>
-				</button>
-			</td>
-		</tr>
-		</tbody>
-	</table>
-
-	<div class="d-flex justify-content-end align-items-center m-3">
+					<button class="btn hover-edit" data-bs-toggle="modal"
+							data-bs-target="#editUserModal" th:data-id="${user.id}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+							<path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+							<path d="M16 5l3 3" />
+						</svg>
+					</button>
 
 
-		<ul class="pagination" th:if="${totalPages > 1}">
-			<!-- First and Previous -->
-			<li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
-				<a class="page-link" th:href="@{''(page=1,size=${pageSize})}" aria-label="First">
-					<span aria-hidden="true">&laquo;&laquo;</span>
-				</a>
-			</li>
-			<li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
-				<a class="page-link" th:href="@{''(page=${currentPage - 1},size=${pageSize})}" aria-label="Previous">
+					<button class="btn hover-delete" data-bs-toggle="modal"
+							data-bs-target="#deleteModal" th:data-id="${user.id}" th:if="${user.id != currentUser.id}">
+
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							 viewBox="0 0 24 24" fill="currentColor"
+							 class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path
+									d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+							<path
+									d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
+						</svg>
+					</button>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<div class="d-flex justify-content-end align-items-center m-3">
+
+			<ul class="pagination justify-content-start m-3">
+				<li class="page-item"><a class="page-link" href="#"
+										 aria-label="Previous" >
 					<span aria-hidden="true">&laquo;</span>
-				</a>
-			</li>
-
-			<!-- Page Numbers -->
-			<li class="page-item" th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
-				th:classappend="${pageNum == currentPage ? 'active' : ''}">
-				<a class="page-link" th:href="@{''(page=${pageNum},size=${pageSize})}" th:text="${pageNum}"></a>
-			</li>
-
-			<!-- Next and Last -->
-			<li class="page-item" th:classappend="${currentPage == totalPages ? 'disabled' : ''}">
-				<a class="page-link" th:href="@{''(page=${currentPage + 1},size=${pageSize})}" aria-label="Next">
+				</a></li>
+				<li class="page-item active"><a class="page-link" href="#">1</a>
+				</li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#"
+										 aria-label="Next">
 					<span aria-hidden="true">&raquo;</span>
-				</a>
-			</li>
-			<li class="page-item" th:classappend="${currentPage == totalPages ? 'disabled' : ''}">
-				<a class="page-link" th:href="@{''(page=${totalPages},size=${pageSize})}" aria-label="Last">
-					<span aria-hidden="true">&raquo;&raquo;</span>
-				</a>
-			</li>
-		</ul>
+				</a></li>
+			</ul>
+		</div>
 	</div>
+
 </div>
 
 <!-- Delete Confirmation Modal -->
@@ -168,5 +197,6 @@
 <div
 		th:replace="~{SuperAdmin/UsersManagement/edit-user-modal :: editUserModal}"></div>
 
+<script th:src="@{/js/SuperAdmin/UserManagement/userPagination.js}"></script>
 <script th:src="@{/js/SuperAdmin/UserManagement/UserManagement.js}"></script>
 

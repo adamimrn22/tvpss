@@ -44,16 +44,6 @@ public class UserManagementController {
 		String breadcrumbUserManagement = messageSource.getMessage("breadcrumb.userManagement", null, locale);
 		String breadcrumbAllUsers = messageSource.getMessage("breadcrumb.allUsers", null, locale);
 
-		PageResponse<User> userPage = userManagementService.getAllUsersPageable(page, size);
-
-		int totalPages = userPage.getTotalPages();
-		int currentPage = userPage.getCurrentPage();
-		int startPage = Math.max(1, currentPage - 2);
-		int endPage = Math.min(startPage + 4, totalPages);
-		if (endPage - startPage < 4 && startPage > 1) {
-			startPage = Math.max(1, endPage - 4);
-		}
-
 		model.addAttribute("pageTitle", "View User");
 		model.addAttribute("currentPageDirectory", "SuperAdminPengguna");
 		model.addAttribute("content", "SuperAdmin/UsersManagement/view-all-user");
@@ -64,14 +54,6 @@ public class UserManagementController {
 
 		List<User> users = userManagementService.getAllUsers();
 		model.addAttribute("users", users);
-
-		model.addAttribute("users", userPage.getContent());
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("totalPages", totalPages);
-		model.addAttribute("totalItems", userPage.getTotalElements());
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("pageSize", size);
 
 		return "layouts/admin-layouts";
 	}
