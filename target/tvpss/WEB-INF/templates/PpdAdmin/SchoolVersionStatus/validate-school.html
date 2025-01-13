@@ -141,7 +141,7 @@
 			<div class="col-md-8">
 				<div class="text-center mb-3">
 					<h1 style="color: var(--primary)"
-						th:text="#{adminppd.validate.requirements}">PENUHI KEPERLUAN</h1>
+						th:text="#{adminppd.validate.requirements}">PENUHI </h1>
 					<p class="text-secondary h5"
 						th:text="#{adminppd.validate.upgradeVersion}">Naik Taraf
 						Status Versi</p>
@@ -192,14 +192,6 @@
 							class="custom-checkbox-label ms-3 text-secondary"
 							th:text="#{adminppd.validate.outsideCollaboration}">Berkolaborat
 							dengan agensi luar</label>
-					</div>
-
-					<div class="form-check my-2">
-						<input class="custom-checkbox" type="checkbox"
-							id="inOutSchoolRecording"> <label for="inOutSchoolRecording"
-							class="custom-checkbox-label ms-3 text-secondary"
-							th:text="#{adminppd.validate.recordingInOutSchool}">Rakaman
-							dalaman dan luar Sekolah</label>
 					</div>
 
 					<!-- Version 4 Requirements -->
@@ -255,7 +247,7 @@
 			const versionStatus = document.getElementById('versionStatus');
 	        const version1Requirements = document.getElementById('logoTVPSS').checked && document.getElementById('cornerStudio').checked;
 	        const version2Requirements = version1Requirements && document.getElementById('inSchoolRecording').checked && document.getElementById('uploadToYoutube').checked;
-	        const version3Requirements = version2Requirements && document.getElementById('outsideCollaboration').checked && document.getElementById('inOutSchoolRecording').checked;
+	        const version3Requirements = version2Requirements && document.getElementById('outsideCollaboration').checked;
 	        const version4Requirements = version3Requirements && document.getElementById('greenScreen').checked;
 
 	        // Determine the version based on the requirements

@@ -18,10 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -129,44 +126,37 @@ public class SchoolVersionStatusService {
     }
 
 
-    public List<School> getAllSchoolsByDistrict(String district) {
+    public List<Map<String, Object>> getAllSchoolsByDistrict(String district) {
         List<School> schools = schoolService.getSchoolsByDistrict(district);
-
-        System.out.println("district" + district);
-        System.out.println("all school" + schools);
-
+        List<Map<String, Object>> schoolDataList = new ArrayList<>();
 
         for (School school : schools) {
             TvpssVersion version = tvpssVersionRepository.findBySchoolCode(school.getCode());
-
-            System.out.println("the school" + school);
-
-            if (version != null) {
-                school.setTvpssVersion(version.getTvpssVersion());
-                school.setTvpssStatus(version.getTvpssCurrentStatus());
-            }
+            Map<String, Object> map = new HashMap<>();
+            map.put("school", school);
+            map.put("version", version);
+            System.out.println("vedrsi" + version);
+            schoolDataList.add(map);
         }
 
-        return schools;
+        return schoolDataList;
     }
 
-    public List<School> getAllSchool() {
+    public List<Map<String, Object>> getAllSchool() {
         List<School> schools = schoolService.getAllSchools();
         System.out.println("all school" + schools);
-
+        List<Map<String, Object>> schoolDataList = new ArrayList<>();
 
         for (School school : schools) {
             TvpssVersion version = tvpssVersionRepository.findBySchoolCode(school.getCode());
 
-            System.out.println("the school" + school);
-
-            if (version != null) {
-                school.setTvpssVersion(version.getTvpssVersion());
-                school.setTvpssStatus(version.getTvpssCurrentStatus());
-            }
+            Map<String, Object> map = new HashMap<>();
+            map.put("school", school);
+            map.put("version", version);
+            schoolDataList.add(map);
         }
 
-        return schools;
+        return schoolDataList;
     }
 
     public Map<String, Object> getSchoolVersionWithSchoolData(String schoolCode){

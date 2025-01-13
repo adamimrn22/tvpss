@@ -23,39 +23,90 @@
 	</div>
 </div>
 
+<div th:if="${successMessage}" class="alert alert-success">
+	<span th:text="${successMessage}"></span>
+</div>
+
+<div th:if="${errorMessage}" class="alert alert-danger">
+	<span th:text="${errorMessage}"></span>
+</div>
+
+
 	<div class="card m-2 p-3">
 		<h3 style="color: var(--primary)" th:text="#{schooladmin.manageequipment.itemCount}"></h3>
-		<div class="d-flex justify-content-end">
-			<button class="btn btn-outline-danger btn-sm">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-					 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-					 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					 class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf">
-					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
-					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
-					<path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
-					<path d="M17 18h2" />
-					<path d="M20 15h-3v6" />
-					<path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" />
-				</svg>
-				<span class="mx-1" th:text="#{schooladmin.manageequipment.exportPdf}"></span>
-			</button>
-			<button class="btn btn-outline-success btn-sm ms-2">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-					 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-					 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					 class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-xls">
-					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-					<path d="M14 3v4a1 1 0 0 0 1 1h4" />
-					<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
-					<path d="M4 15l4 6" />
-					<path d="M4 21l4 -6" />
-					<path d="M17 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" />
-					<path d="M11 15v6h3" />
-				</svg>
-				<span class="mx-1" th:text="#{schooladmin.manageequipment.exportExcel}"></span>
-			</button>
+		<div class="d-flex justify-content-between align-items-end mb-3">
+			<div>
+				<!-- Set the width here -->
+				<div class="floating-form-group" style="width: 400px">
+					<input id="searchEquipment" type="text" class="floating-input" placeholder=" ">
+					<label class="floating-input-label">Cari Nama Barang...</label>
+				</div>
+			</div>
+			<div class="d-flex align-items-center">
+				<div class="d-flex align-items-center mx-4">
+					<label for="entries" class="mx-3">Tunjuk</label>
+					<select id="entries" class="form-select w-auto me-2">
+						<option selected>5</option>
+						<option>10</option>
+						<option>25</option>
+						<option>50</option>
+						<option>100</option>
+					</select>
+					<span th:text="#{schooladmin.viewpermohonan.entri}">Entri</span>
+				</div>
+
+				<div class="dropdown mx-2">
+					<button class="btn btn-outline-secondary btn-sm dropdown-toggle"
+							type="button" id="equipmentStatusDropdown" data-bs-toggle="dropdown"
+							aria-expanded="false">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+							 class="icon icon-tabler icons-tabler-outline icon-tabler-filter">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path
+									d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z" />
+						</svg>
+						<span>Status Barang</span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="#">Semua Status</a></li>
+						<li><a class="dropdown-item" href="#">AVAILABLE</a></li>
+						<li><a class="dropdown-item" href="#">DAMAGED</a></li>
+					</ul>
+				</div>
+
+				<button class="btn btn-outline-danger btn-sm">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						 class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path d="M14 3v4a1 1 0 0 0 1 1h4" />
+						<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+						<path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
+						<path d="M17 18h2" />
+						<path d="M20 15h-3v6" />
+						<path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" />
+					</svg>
+					<span class="mx-1" th:text="#{schooladmin.manageequipment.exportPdf}"></span>
+				</button>
+				<button class="btn btn-outline-success btn-sm ms-2">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						 class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-xls">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+						<path d="M14 3v4a1 1 0 0 0 1 1h4" />
+						<path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
+						<path d="M4 15l4 6" />
+						<path d="M4 21l4 -6" />
+						<path d="M17 20.25c0 .414 .336 .75 .75 .75h1.25a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-1a1 1 0 0 1 -1 -1v-1a1 1 0 0 1 1 -1h1.25a.75 .75 0 0 1 .75 .75" />
+						<path d="M11 15v6h3" />
+					</svg>
+					<span class="mx-1" th:text="#{schooladmin.manageequipment.exportExcel}"></span>
+				</button>
+			</div>
 		</div>
 		<table class="table table-sm">
 			<thead class="th-header">
@@ -71,16 +122,16 @@
 			</thead>
 			<tbody>
 			<!-- Rows -->
-			<tr class="text-center align-middle">
-				<td>1</td>
-				<td class="text-start">Nikon</td>
-				<td class="text-start">Kamera</td>
-				<td>Skudai</td>
-				<td>2 Januari 2024</td>
-				<td><span class="badge rounded-pill bg-success" th:text="#{schooladmin.manageequipment.working}">Berfungsi</span></td>
+			<tr class="text-center align-middle" th:each="equipment, iStat : ${equipments}">
+				<td ></td>
+				<td class="text-start" th:text="${equipment.equipmentName}">Nikon</td>
+				<td class="text-start" th:text="${equipment.equipmentType}">Kamera</td>
+				<td th:text="${equipment.location}">Skudai</td>
+				<td th:text="${equipment.dateAdded}">2 Januari 2024</td>
+				<td><span class="badge rounded-pill bg-success" th:text="${equipment.status}">Berfungsi</span></td>
 				<td class="table-actions">
 					<button class="btn hover-edit" data-bs-toggle="modal"
-							data-bs-target="#editEquipmentModal" data-id="1">
+							data-bs-target="#editEquipmentModal" th:data-id="${equipment.id}">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							 viewBox="0 0 24 24" fill="none" stroke="currentColor"
 							 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -93,7 +144,7 @@
 					</button>
 
 					<button class="btn hover-delete" data-bs-toggle="modal"
-							data-bs-target="#deleteModal" data-id="1">
+							data-bs-target="#deleteModal" th:data-id="${equipment.id}">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							 viewBox="0 0 24 24" fill="currentColor"
 							 class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
@@ -147,8 +198,12 @@
 					<p th:text="#{schooladmin.manageequipment.confirmDeleteMessage}">Ini akan hilang selama-lamanya, data tidak dapat dipulihkan.</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.cancel}">Batal</button>
-					<button type="button" class="btn btn-danger" id="confirmDelete" th:text="#{schooladmin.manageequipment.delete}">Padam</button>
+					<form th:action="@{/EquipmentManagement/delete}" method="post">
+						<input	type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+						<input	type="hidden" name="equipmentIDToDelete" id="equipmentIDToDelete" />
+						<button type="button" class="btn" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.cancel}">Batal</button>
+						<button type="submit" class="btn btn-danger" id="confirmDelete" th:text="#{schooladmin.manageequipment.delete}">Padam</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -161,32 +216,20 @@
 
 
 
-<script th:src="@{/js/datepicker.js}"></script>
+<script th:src="@{/js/SchoolAdmin/equipmentFilter.js}"></script>
+<script th:src="@{/js/SchoolAdmin/equipmentManagement.js}"></script>
 
 <script>
-	const datePicker = new DatePicker('dateInput', 'datePicker', 'monthYearDisplay', 'datePickerBody', 'prevMonth', 'nextMonth', 'calendarView', 'yearView');
-	const editDatePicker = new DatePicker('editDateInput', 'editDatePicker', 'editMonthYearDisplay', 'editDatePickerBody', 'editPrevMonth', 'editNextMonth', 'editCalendarView', 'editYearView');
 
-</script>
-
-<script>
 	document.addEventListener("DOMContentLoaded", function() {
-		const deleteModal = document.getElementById("deleteModal");
-		const successToast = new bootstrap.Toast(document
-				.getElementById("successToast"));
+		new TableManager();
+		document.querySelectorAll('.hover-delete').forEach(button => {
+			button.addEventListener('click', function () {
+				document.getElementById('equipmentIDToDelete').value = this.getAttribute('data-id');
+				console.log(document.getElementById('equipmentIDToDelete').value)
+			});
+		});
 
-		// Show Toast on Confirm Delete
-		document.getElementById("confirmDelete").addEventListener(
-				"click",
-				function() {
-					// Close Modal
-					const modalInstance = bootstrap.Modal
-							.getInstance(deleteModal);
-					modalInstance.hide();
-
-					// Show Success Toast
-					successToast.show();
-				});
 	});
 </script>
 

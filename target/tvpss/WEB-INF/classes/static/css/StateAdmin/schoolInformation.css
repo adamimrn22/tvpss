@@ -15,4 +15,11 @@ th, td {
 
 td {
 	color: var(--gray-600) !important;
-} 
+}
+th[data-sort="asc"]::after {
+	content: " ▲";
+}
+
+th[data-sort="desc"]::after {
+	content: " ▼";
+}

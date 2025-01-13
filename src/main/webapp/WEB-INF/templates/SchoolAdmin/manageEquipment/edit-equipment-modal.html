@@ -30,18 +30,17 @@
 							</div>
 							<div class="date-picker-container">
 								<div class="floating-form-group">
-									<input class="floating-datepicker" type="date" placeholder="" style="min-width: 430px">
+									<input class="floating-datepicker" type="date" id="dateAdded" placeholder="" style="min-width: 430px">
 									<label class="floating-datepicker-label"  th:text="#{schooladmin.manageequipment.edit.dateSelect}">Pilih Tarikh</label>
 								</div>
 							</div>
 							<div class="floating-form-group">
-								<select class="floating-select" id="editUserTypeSelect">
+								<select class="floating-select" id="editItemStatus">
 									<option value="" selected disabled hidden></option>
-									<option value="super-admin" th:text="#{schooladmin.manageequipment.edit.working}">Berfungsi</option>
-									<option value="admin-state" th:text="#{schooladmin.manageequipment.edit.notWorking}">Tidak Berfungsi</option>
-									<option value="admin-ppd" th:text="#{schooladmin.manageequipment.edit.maintenance}">Penyelenggaraan</option>
+									<option value="AVAILABLE" th:text="#{schooladmin.manageequipment.edit.working}">Berfungsi</option>
+									<option value="DAMAGED" th:text="#{schooladmin.manageequipment.edit.notWorking}">Tidak Berfungsi</option>
 								</select>
-								<label class="floating-select-label" for="editUserTypeSelect" th:text="#{schooladmin.manageequipment.edit.status}">Status Barang</label>
+								<label class="floating-select-label" for="editItemStatus" th:text="#{schooladmin.manageequipment.edit.status}">Status Barang</label>
 							</div>
 						</div>
 					</form>

@@ -69,7 +69,7 @@
 		<div class="d-flex align-items-center me-4">
 			<label for="entries" class="mx-3" th:text="#{stateadmin.schoolInfo.showEntries}">Tunjuk</label>
 			<select id="entries" class="form-select w-auto me-2">
-				<option>5</option>
+				<option>1</option>
 				<option selected>10</option>
 				<option>25</option>
 				<option>50</option>
@@ -180,7 +180,7 @@
 			</div>
 			<div class="modal-footer">
 				<form th:action="@{/SuperAdmin/Pengguna/delete}" method="post">
-					<input	type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input	type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 					<input	type="hidden" name="userId" id="userIdToDelete" />
 					<button type="button" class="btn" data-bs-dismiss="modal" th:text="#{user.deleteModalCancelButton}"></button>
 					<button type="submit" class="btn btn-danger" id="confirmDelete" th:text="#{user.deleteModalConfirmButton}"></button>

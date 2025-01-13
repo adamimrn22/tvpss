@@ -108,8 +108,8 @@ public class SchoolVersionStatusController {
 		model.addAttribute("pageTitle", "Status TVPSS");
 
 		if (Objects.equals(role, "ppdadmin")) {
-			List<School> schools = schoolVersionStatusService.getAllSchoolsByDistrict(currentUser.getDistrict());
-			model.addAttribute("schools", schools);
+			List<Map<String, Object>> schools = schoolVersionStatusService.getAllSchoolsByDistrict(currentUser.getDistrict());
+			model.addAttribute("schoolDataList", schools);
 
 			model.addAttribute("currentPageDirectory", "AdminPPDInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
@@ -117,8 +117,10 @@ public class SchoolVersionStatusController {
 
 		} else if (Objects.equals(role, "stateadmin")) {
 
-			List<School> schools = schoolVersionStatusService.getAllSchool();
-			model.addAttribute("schools", schools);
+			List<Map<String, Object>> schoolDataList = schoolVersionStatusService.getAllSchool();
+			model.addAttribute("schoolDataList", schoolDataList);
+
+			System.out.println("schoolDataList: " + schoolDataList);
 
 			model.addAttribute("currentPageDirectory", "StateAdminInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");

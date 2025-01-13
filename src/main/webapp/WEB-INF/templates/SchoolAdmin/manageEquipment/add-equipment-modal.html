@@ -7,49 +7,49 @@
 					<h5 class="modal-title" id="addEquipmentModalLabel" style="color: #515B92" th:text="#{schooladmin.manageequipment.add.addNewItem}">Tambah Barang Baharu</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+				<form th:action="@{/EquipmentManagement/add}" method="post">
 				<div class="modal-body">
-					<form action="/StarMIS_TVPSS/SuperAdmin/Pengguna/TambahPengguna" method="post">
 						<div class="p-3 pt-0">
 							<div>
 								<div class="floating-form-group">
-									<input type="text" class="floating-input" placeholder=" ">
+									<input type="text" class="floating-input" placeholder=" " name="equipmentName" required>
 									<label class="floating-input-label" th:text="#{schooladmin.manageequipment.add.itemName}">Nama Barang</label>
 								</div>
 							</div>
 							<div>
 								<div class="floating-form-group">
-									<input type="text" class="floating-input" placeholder=" ">
+									<input type="text" class="floating-input" placeholder=" " name="equipmentType" required>
 									<label class="floating-input-label" th:text="#{schooladmin.manageequipment.add.itemType}">Jenis Barang</label>
 								</div>
 							</div>
 							<div>
 								<div class="floating-form-group">
-									<input type="text" class="floating-input" placeholder=" ">
+									<input type="text" class="floating-input" placeholder=" " name="location" required>
 									<label class="floating-input-label" th:text="#{schooladmin.manageequipment.add.location}">Lokasi</label>
 								</div>
 							</div>
 							<div class="date-picker-container">
 								<div class="floating-form-group">
-									<input class="floating-datepicker" type="date" placeholder="" style="min-width: 430px">
+									<input class="floating-datepicker" type="date" placeholder="" style="min-width: 430px" name="dateAdded" required>
 									<label class="floating-datepicker-label" th:text="#{schooladmin.manageequipment.add.dateSelect}"></label>
 								</div>
 							</div>
 							<div class="floating-form-group">
-								<select class="floating-select" id="userTypeSelect">
-									<option value="" selected disabled hidden></option>
-									<option value="super-admin" th:text="#{schooladmin.manageequipment.add.working}">Berfungsi</option>
-									<option value="admin-state" th:text="#{schooladmin.manageequipment.add.notWorking}">Tidak Berfungsi</option>
-									<option value="admin-ppd" th:text="#{schooladmin.manageequipment.add.maintenance}">Penyelenggaraan</option>
+								<select class="floating-select" name="equipmentStatus" required>
+									<option selected hidden>Status Barang</option>
+									<option value="AVAILABLE" th:text="#{schooladmin.manageequipment.add.working}">Berfungsi</option>
+									<option value="DAMAGED" th:text="#{schooladmin.manageequipment.add.notWorking}">Tidak Berfungsi</option>
 								</select>
 								<label class="floating-select-label" th:text="#{schooladmin.manageequipment.add.status}">Status Barang</label>
 							</div>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-sm" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.add.cancelButton}">Batal</button>
 					<button class="btn btn-primary btn-sm" type="submit" th:text="#{schooladmin.manageequipment.add.addButton}">Tambah Barang</button>
 				</div>
+
+				</form>
 			</div>
 		</div>
 	</div>

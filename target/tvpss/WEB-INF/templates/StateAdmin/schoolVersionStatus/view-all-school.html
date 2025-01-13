@@ -10,11 +10,12 @@
 	</div>
 	<div class="d-flex justify-content-between align-items-end mb-3">
 		<div class="floating-form-group" style="width: 400px">
-			<input type="text" class="floating-input" placeholder=" ">
+			<input id="searchSchool" type="text" class="floating-input" placeholder=" ">
 			<label class="floating-input-label" th:text="#{stateadmin.schoolInfo.searchPlaceholder}">Cari Nama Sekolah...</label>
 		</div>
 		<div class="d-flex align-items-center">
 			<div class="d-flex align-items-center">
+
 				<!-- Versi Dropdown -->
 				<div class="dropdown me-2">
 					<button class="btn btn-outline-secondary btn-sm dropdown-toggle"
@@ -55,8 +56,18 @@
 						<span th:text="#{stateadmin.schoolInfo.district}">Daerah</span>
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="daerahDropdown">
+						<li><a class="dropdown-item" href="#">Semua Daerah</a></li>
 						<li><a class="dropdown-item" href="#">Johor Bahru</a></li>
+						<li><a class="dropdown-item" href="#">Skudai</a></li>
 						<li><a class="dropdown-item" href="#">Kulai</a></li>
+						<li><a class="dropdown-item" href="#">Pontian</a></li>
+						<li><a class="dropdown-item" href="#">Mersing</a></li>
+						<li><a class="dropdown-item" href="#">Batu Pahat</a></li>
+						<li><a class="dropdown-item" href="#">Kota Tinggi</a></li>
+						<li><a class="dropdown-item" href="#">Segamat</a></li>
+						<li><a class="dropdown-item" href="#">Tangkak</a></li>
+						<li><a class="dropdown-item" href="#">Muar</a></li>
+						<li><a class="dropdown-item" href="#">Kluang</a></li>
 					</ul>
 				</div>
 			</div>
@@ -119,31 +130,33 @@
 		</tr>
 		</thead>
 		<tbody>
-		<tr class="text-first" th:each="school : ${schools}">
-			<td th:text="${school.code}">JEA9012</td>
-			<td class="text-center"  th:text="${school.district}">SJK (C) Kuo Kuang 2</td>
-			<td th:text="${school.name}">SJK (C) Kuo Kuang 2</td>
-			<td th:text="${school.principalName}">Mr. Tan Ah Kow</td>
-			<td class="text-center" th:text="${school.tvpssVersion}">3</td>
-			<td class="text-center" th:text="${school.tvpssStatus != null ? school.tvpssStatus : 'BELUM SUBMIT'}">
-				Not Available
+		<tr class="text-first" th:each="data : ${schoolDataList}">
+			<td th:text="${data['school'].code}">JEA9012</td>
+			<td class="text-center" th:text="${data['school'].district}">SJK (C) Kuo Kuang 2</td>
+			<td th:text="${data['school'].name}">SJK (C) Kuo Kuang 2</td>
+			<td th:text="${data['version'] != null && data['version'].pic != null ? data['version'].pic.name : 'N/A'}">N/A</td>
+			<td class="text-center" th:text="${data['version'] != null ? data['version'].tvpssVersion : 'N/A'}">3</td>
+
+			<td class="text-center" th:text="${data['version'] != null && data['version'].tvpssCurrentStatus != null ? data['version'].tvpssCurrentStatus : 'BELUM SUBMIT'}">
+				BELUM SUBMIT
 			</td>
+
 			<td class="text-center">
-				<a class="btn btn-primary btn-sm" th:href="@{/InformasiTVPSS/{schoolCode}(schoolCode=${school.code})}">
+				<a class="btn btn-primary btn-sm" th:href="@{/InformasiTVPSS/{schoolCode}(schoolCode=${data['school'].code})}">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
 						 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 						 class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
 						<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 						<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-						<path
-								d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+						<path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
 					</svg>
 					<span class="mx-1" th:text="#{stateadmin.schoolInfo.view}">Lihat</span>
 				</a>
 			</td>
 		</tr>
- 		</tbody>
+
+		</tbody>
 	</table>
 
 	<ul class="pagination justify-content-start m-3">
@@ -153,7 +166,6 @@
 		</a></li>
 		<li class="page-item active"><a class="page-link" href="#">1</a>
 		</li>
-		<li class="page-item"><a class="page-link" href="#">2</a></li>
 		<li class="page-item"><a class="page-link" href="#"
 								 aria-label="Next">
 			<span aria-hidden="true">&raquo;</span>
@@ -161,3 +173,10 @@
 	</ul>
 </div>
 
+<script th:src="@{/js/StateAdmin/viewSchoo	lTableFilter.js}"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const tableManager = new TableManager('.table-school');
+		console.log('test');
+	});
+</script>

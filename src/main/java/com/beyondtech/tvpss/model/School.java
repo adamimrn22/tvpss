@@ -14,8 +14,6 @@ public class School {
     private String fax;
     private String principalName;
 
-    private int tvpssVersion;
-    private TvpssStatus tvpssStatus;
 
     public School() {}
     public School(Long id, String name, String code, String address1, String address2, String postcode, String district, String state, String phoneNumber, String email, String fax, String principalName) {
@@ -129,22 +127,6 @@ public class School {
         this.principalName = principalName;
     }
 
-    public int getTvpssVersion() {
-        return tvpssVersion;
-    }
-
-    public void setTvpssVersion(int tvpssVersion) {
-        this.tvpssVersion = tvpssVersion;
-    }
-
-    public TvpssStatus getTvpssStatus() {
-        return tvpssStatus;
-    }
-
-    public void setTvpssStatus(TvpssStatus tvpssStatus) {
-        this.tvpssStatus = tvpssStatus;
-    }
-
     @Override
     public String toString() {
         return "School{" +
@@ -160,8 +142,6 @@ public class School {
                 ", email='" + email + '\'' +
                 ", fax='" + fax + '\'' +
                 ", principalName='" + principalName + '\'' +
-                ", tvpssVersion=" + tvpssVersion +
-                ", tvpssStatus=" + tvpssStatus +
                 '}';
     }
 }
