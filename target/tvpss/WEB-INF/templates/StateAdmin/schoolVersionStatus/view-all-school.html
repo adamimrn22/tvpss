@@ -33,6 +33,7 @@
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="versiDropdown">
 						<li><a class="dropdown-item" href="#">Semua Versi</a></li>
+						<li><a class="dropdown-item" href="#">0</a></li>
 						<li><a class="dropdown-item" href="#">1</a></li>
 						<li><a class="dropdown-item" href="#">2</a></li>
 						<li><a class="dropdown-item" href="#">3</a></li>
@@ -173,10 +174,5 @@
 	</ul>
 </div>
 
-<script th:src="@{/js/StateAdmin/viewSchoo	lTableFilter.js}"></script>
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		const tableManager = new TableManager('.table-school');
-		console.log('test');
-	});
-</script>
+<script th:src="@{/js/StateAdmin/viewSchoolTableFilter.js}"></script>
+

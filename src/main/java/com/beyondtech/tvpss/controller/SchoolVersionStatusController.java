@@ -120,8 +120,6 @@ public class SchoolVersionStatusController {
 			List<Map<String, Object>> schoolDataList = schoolVersionStatusService.getAllSchool();
 			model.addAttribute("schoolDataList", schoolDataList);
 
-			System.out.println("schoolDataList: " + schoolDataList);
-
 			model.addAttribute("currentPageDirectory", "StateAdminInformasiTVPSS");
 			model.addAttribute("headerText", "Info Status TVPSS");
 			model.addAttribute("content", "StateAdmin/schoolVersionStatus/view-all-school");

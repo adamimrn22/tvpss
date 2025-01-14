@@ -40,7 +40,7 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="emailAgency1" placeholder=" " name="emailAgency1"
+					<input type="email" class="floating-input" id="emailAgency1" placeholder=" " name="emailAgency1"
 						   th:value="${schoolData['version']?.emailAgency1 != null ? schoolData['version']?.emailAgency1 : ''}">
 
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency1Chairman}"></label>
@@ -58,7 +58,7 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="emailAgency2" name="emailAgency2"
+					<input type="email" class="floating-input" id="emailAgency2" name="emailAgency2"
 						   th:value="${schoolData['version']?.emailAgency2 != null ? schoolData['version']?.emailAgency2 : ''}">
 					<label class="floating-input-label" th:text="#{schooladmin.schooltvpss.collaborationAgency2Chairman}"></label>
 				</div>

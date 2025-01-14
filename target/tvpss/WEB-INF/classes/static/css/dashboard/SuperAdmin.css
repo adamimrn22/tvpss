@@ -45,7 +45,7 @@
 	/* Two equal-width columns */
 	grid-template-rows: auto auto;
 	/* Automatically sized rows */
-	grid-template-areas: "col1 col2" "col3 col3";
+	grid-template-areas: "col1 col1" "col3 col3";
 	gap: 20px;
 }
 
@@ -53,9 +53,9 @@
 	grid-area: col1;
 }
 
-.graph-2 {
-	grid-area: col2;
-}
+/*.graph-2 {*/
+/*	grid-area: col2;*/
+/*}*/
 
 .graph-3 {
 	grid-area: col3;

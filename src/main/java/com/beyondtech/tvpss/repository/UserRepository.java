@@ -16,4 +16,6 @@ public interface UserRepository {
     boolean edit(Long id, String name, String email);
     void delete(User user);
 
+    Long countUsersByRole(String roleName);
+
 }

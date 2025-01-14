@@ -1,5 +1,6 @@
 package com.beyondtech.tvpss.config;
 
+import com.beyondtech.tvpss.auth.CustomAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,19 +18,31 @@ public class SecurityConfig {
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
 
+	@Autowired
+	private CustomAuthenticationSuccessHandler successHandler;
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/resources/**", "/images/**", "/css/**", "/js/**").permitAll()
-			.requestMatchers("/SuperAdmin/**").hasRole("superadmin")
-			.requestMatchers("/StateAdmin/**").hasRole("stateadmin")
-			.requestMatchers("/AdminPPD/**").hasRole("ppdadmin")
-			.requestMatchers("/SchoolAdmin/**", "/SubmitTVPSSVersion").hasRole("schooladmin")
-			.requestMatchers("/InformasiTVPSS").hasAnyRole("stateadmin", "ppdadmin")
-			.requestMatchers("/schools/district/**").authenticated()
-			.anyRequest().authenticated())
-			.formLogin(form -> form.loginPage("/login").permitAll().defaultSuccessUrl("/"))
-			.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login").permitAll())
-			.userDetailsService(userDetailsService);
+		http
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/resources/**", "/images/**", "/css/**", "/js/**").permitAll()
+						.requestMatchers("/SuperAdmin/**").hasRole("superadmin")
+						.requestMatchers("/StateAdmin/**").hasRole("stateadmin")
+						.requestMatchers("/AdminPPD/**").hasRole("ppdadmin")
+						.requestMatchers("/SchoolAdmin/**", "/SubmitTVPSSVersion").hasRole("schooladmin")
+						.requestMatchers("/InformasiTVPSS").hasAnyRole("stateadmin", "ppdadmin")
+						.requestMatchers("/schools/district/**").authenticated()
+						.anyRequest().authenticated())
+				.formLogin(form -> form
+						.loginPage("/login")
+						.permitAll()
+						.defaultSuccessUrl("/", true)
+						.successHandler(successHandler))
+				.logout(logout -> logout
+						.logoutUrl("/logout")
+						.logoutSuccessUrl("/login")
+						.permitAll())
+				.userDetailsService(userDetailsService);
 
 		return http.build();
 	}

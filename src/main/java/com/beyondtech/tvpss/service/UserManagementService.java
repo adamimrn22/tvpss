@@ -179,4 +179,8 @@ public class UserManagementService {
         }
     }
 
+    public Long getUserCountByRole(String roleName) {
+        return userRepository.countUsersByRole(roleName);
+    }
+
 }

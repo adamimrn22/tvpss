@@ -38,13 +38,13 @@
 
 		<div class="d-flex align-items-baseline"	>
 			<div class="floating-form-group" style="width: 400px">
-				<input type="text" class="floating-input" placeholder=" ">
+				<input type="text" id="userSearch" class="floating-input" placeholder=" ">
 				<label class="floating-input-label">Cari Nama Pengguna...</label>
 			</div>
 
 			<div class="dropdown ms-2">
 				<button class="btn btn-outline-secondary dropdown-toggle"
-						type="button" id="versiDropdown" data-bs-toggle="dropdown"
+						type="button" id="userDropdownRole" data-bs-toggle="dropdown"
 						aria-expanded="false">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 						 viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -57,18 +57,18 @@
 					<span > Jenis Pengguna </span>
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="userRole">
-					<li><a class="dropdown-item" href="#">Semua Pengguna</a></li>
-					<li><a class="dropdown-item" href="#">Super Admin</a></li>
-					<li><a class="dropdown-item" href="#">State Admin</a></li>
-					<li><a class="dropdown-item" href="#">PPD Admin</a></li>
-					<li><a class="dropdown-item" href="#">School Admin</a></li>
+					<li><a class="dropdown-item">Semua Pengguna</a></li>
+					<li><a class="dropdown-item">Super Admin</a></li>
+					<li><a class="dropdown-item">State Admin</a></li>
+					<li><a class="dropdown-item">PPD Admin</a></li>
+					<li><a class="dropdown-item">School Admin</a></li>
 				</ul>
 			</div>
 
 		</div>
 		<div class="d-flex align-items-center me-4">
-			<label for="entries" class="mx-3" th:text="#{stateadmin.schoolInfo.showEntries}">Tunjuk</label>
-			<select id="entries" class="form-select w-auto me-2">
+			<label for="userEntries" class="mx-3" th:text="#{stateadmin.schoolInfo.showEntries}">Tunjuk</label>
+			<select id="userEntries" class="form-select w-auto me-2">
 				<option>1</option>
 				<option selected>10</option>
 				<option>25</option>
@@ -197,6 +197,13 @@
 <div
 		th:replace="~{SuperAdmin/UsersManagement/edit-user-modal :: editUserModal}"></div>
 
-<script th:src="@{/js/SuperAdmin/UserManagement/userPagination.js}"></script>
+
 <script th:src="@{/js/SuperAdmin/UserManagement/UserManagement.js}"></script>
+<script th:src="@{/js/SuperAdmin/UserManagement/userPagination.js}"></script>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		new TableManager();
+	});
+
+</script>
 

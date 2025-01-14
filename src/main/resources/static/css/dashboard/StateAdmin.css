@@ -19,7 +19,6 @@
 	width: 100%;
 	justify-content: space-between;
 	color: var(--primary);
-	font-family: var(--Inter);
 }
 
 .card-dashboard-content p {
@@ -29,7 +28,6 @@
 
 .card-dashboard-title {
 	color: var(--primary);
-	font-family: var(--Inter);
 	font-size: 18px;
 	font-weight: 500;
 }
@@ -102,4 +100,23 @@ canvas {
 
 .pagination .page-item:hover .page-link {
 	background-color: #f8f9fa;
+}
+
+.table-school thead th {
+	color: var(--gray-500);
+	text-transform: uppercase;
+	text-align: start;
+}
+
+.table-school tbody td {
+	color: var(--gray-500);
+	text-align: start
+}
+
+th, td {
+	cursor: default;
+}
+
+td {
+	color: var(--gray-600) !important;
 }
