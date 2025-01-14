@@ -62,3 +62,32 @@
 </div>
 
 <th:block th:include="fragments/chartscripts :: chartscripts"></th:block>
+<script th:inline="javascript">
+ 	const genderCounts = /*[[${genderCounts}]]*/ {};
+
+	const maleCount = genderCounts['Male'] || 0;
+	const femaleCount = genderCounts['Female'] || 0;
+
+	const approvedCrewCounts = /*[[${approvedCrewCounts}]]*/ [];
+	const years = /*[[${years}]]*/ [];
+
+	console.log("approvedCrewCounts from Thymeleaf: ", approvedCrewCounts);  // Check data
+	console.log("Years: ", years);  // Check years
+
+	// Create the data for the bar chart
+	const barChartData = {
+		labels: years,  // Dynamic years
+		datasets: [{
+			data: approvedCrewCounts,  // Dynamic data
+			backgroundColor: [
+				'#004b75', '#007a8e', '#009999', '#00a8c9', '#72e1c5', '#66bb6a'  // Colors for all 6 bars
+			]
+		}]
+	};
+
+	console.log("Bar Chart Data: ", barChartData);  // Check chart data
+	updateBarChart(barChartData);  // Render the chart
+
+
+	updateDonutChart(maleCount, femaleCount);
+</script>

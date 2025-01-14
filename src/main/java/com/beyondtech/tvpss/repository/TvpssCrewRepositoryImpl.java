@@ -2,13 +2,16 @@ package com.beyondtech.tvpss.repository;
 
 import com.beyondtech.tvpss.model.ApplicationStatus;
 import com.beyondtech.tvpss.model.TvpssCrew;
+import com.beyondtech.tvpss.model.Student;
+import com.beyondtech.tvpss.model.TvpssCrew;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 @Repository
 @Transactional
@@ -75,4 +78,25 @@ public class TvpssCrewRepositoryImpl implements TvpssCrewRepository {
                 .getResultCount();
     }
 
+    @Override
+    public List<TvpssCrew> findApprovedByIdentificationNumbers(List<String> identificationNumbers) {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM TvpssCrew tc WHERE tc.identificationNumber IN :identificationNumbers AND tc.status = :status";
+            Query<TvpssCrew> query = session.createQuery(hql, TvpssCrew.class);
+            query.setParameter("identificationNumbers", identificationNumbers);
+            query.setParameter("status", ApplicationStatus.APPROVED);
+
+            return query.list();
+        }
+    }
+
+    public Long countTvpssCrewByYearRangeAndStatus(int year, ApplicationStatus status) {
+        Session session = getCurrentSession();
+
+        Query<Long> query = session.createQuery("SELECT COUNT(t) FROM TvpssCrew t WHERE YEAR(t.dateApplied) = :year AND t.status = :status", Long.class)
+                .setParameter("year", year)
+                .setParameter("status", status);
+
+        return query.getSingleResult();
+    }
 }

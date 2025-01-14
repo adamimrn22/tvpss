@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -102,6 +103,27 @@ public class DashboardController {
 				model.addAttribute("equipmentCount", equipmentCount != null ? equipmentCount : 0);
 				model.addAttribute("crewCount", crewCount != null ? crewCount : 0);
 				model.addAttribute("currentTvpssVersion", currentTvpssVersion != null ? currentTvpssVersion : 0);
+
+				Map<String, Long> genderCounts = tvpssCrewService.countTvpssCrewByGender(currentUser.getSchool().getCode());
+				model.addAttribute("genderCounts", genderCounts);
+
+				List<Long> approvedCrewCounts = tvpssCrewService.getTvpssCrewCountsForPast5Years();
+
+				System.out.println("approvedCrewCounts: " + approvedCrewCounts);
+
+				int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+				List<Integer> years = List.of(
+						currentYear - 5,
+						currentYear - 4,
+						currentYear - 3,
+						currentYear - 2,
+						currentYear - 1,
+						currentYear
+				);
+
+				model.addAttribute("approvedCrewCounts", approvedCrewCounts);
+				model.addAttribute("years", years);
+
 
 				break;
 			default:
