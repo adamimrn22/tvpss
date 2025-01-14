@@ -45,24 +45,6 @@ public class TvpssVersionRepositoryImpl implements TvpssVersionRepository {
         return tvpssVersion;
     }
 
-//    @Override
-//    public TvpssVersion saveOrUpdate(TvpssVersion tvpssVersion) {
-//        Session session = getCurrentSession();
-//
-//        TvpssVersion existingVersion = session.createQuery("FROM TvpssVersion WHERE schoolCode = :schoolCode", TvpssVersion.class)
-//                .setParameter("schoolCode", tvpssVersion.getSchoolCode())
-//                .uniqueResult();
-//
-//        if (existingVersion != null) {
-//            tvpssVersion.setId(existingVersion.getId());
-//            session.merge(tvpssVersion);
-//        } else {
-//            session.persist(tvpssVersion);
-//        }
-//
-//        return tvpssVersion;
-//    }
-
     @Override
     public TvpssVersion findBySchoolCode(String schoolCode) {
         Session session = getCurrentSession();
@@ -87,4 +69,12 @@ public class TvpssVersionRepositoryImpl implements TvpssVersionRepository {
         }
     }
 
+    @Override
+    public Integer getTvpssVersion(String schoolCode){
+        Session session = getCurrentSession();
+
+        return (Integer) session.createQuery("SELECT tvpssVersion FROM TvpssVersion WHERE schoolCode = :schoolCode ")
+                .setParameter("schoolCode", schoolCode)
+                .uniqueResult();
+    }
 }

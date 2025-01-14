@@ -72,4 +72,13 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
         return result;
     }
 
+    @Override
+    public Long getEquipmentCountBySchoolCode(String schoolCode) {
+        Session session = getCurrentSession();
+
+        return session.createQuery("SELECT COUNT(e) FROM Equipment e WHERE e.schoolCode =: schoolCode")
+                .setParameter("schoolCode", schoolCode)
+                .getResultCount();
+    }
+
 }

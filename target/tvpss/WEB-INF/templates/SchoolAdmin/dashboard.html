@@ -4,7 +4,7 @@
 			<p>
 				<i class="bi bi-box" style="font-size: 64px"></i>
 			</p>
-			<p class="card-dashboard-number">25</p>
+			<p class="card-dashboard-number" th:text="${equipmentCount}">25</p>
 		</div>
 		<p class="card-dashboard-title" th:text="#{schooladmin.dashboard.inventoryCount}">Bilangan Inventori Barang</p>
 	</div>
@@ -22,7 +22,7 @@
 			<p>
 				<i class="bi bi-person-video2" style="font-size: 64px"></i>
 			</p>
-			<p class="card-dashboard-number ps-3">25</p>
+			<p class="card-dashboard-number ps-3" th:text="${crewCount}">25</p>
 		</div>
 		<p class="card-dashboard-title" th:text="#{schooladmin.dashboard.tvpssCrewCount}">Bilangan TVPSS Krew</p>
 	</div>
@@ -35,7 +35,7 @@
 							d="M440-360h160q33 0 56.5-23.5T680-440v-60q0-26-17-43t-43-17q26 0 43-17t17-43v-60q0-33-23.5-56.5T600-760H440v80h160v80h-80v80h80v80H440v80ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z" />
 				</svg>
 			</p>
-			<p class="card-dashboard-number ps-3">Versi 3</p>
+			<p class="card-dashboard-number ps-3" th:text="'Versi ' + ${currentTvpssVersion}">Versi 3</p>
 		</div>
 		<p class="card-dashboard-title" th:text="#{schooladmin.dashboard.currentVersion}">Versi TVPSS Terkini</p>
 	</div>

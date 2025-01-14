@@ -28,4 +28,8 @@ public class TvpssCrewService {
     public void updateApplication(TvpssCrew tvpssCrew) {
         tvpssCrewRepository.updateStatus(tvpssCrew);
     }
+
+    public Long countTvpssCrewBySchoolAndStatus(String schoolCode, ApplicationStatus status) {
+        return tvpssCrewRepository.countApplicationBySchool(schoolCode, status);
+    }
 }

@@ -7,4 +7,6 @@ public interface TvpssVersionRepository {
     TvpssVersion saveOrUpdate(TvpssVersion tvpssVersion);
     TvpssVersion findBySchoolCode(String schoolCode);
     void updateTvpssVersion(String schoolCode, int version, TvpssStatus tvpssStatus);
+
+    Integer getTvpssVersion(String schoolCode);
 }

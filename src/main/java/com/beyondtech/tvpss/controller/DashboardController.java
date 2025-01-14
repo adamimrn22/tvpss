@@ -1,9 +1,9 @@
 package com.beyondtech.tvpss.controller;
 
+import com.beyondtech.tvpss.model.ApplicationStatus;
+import com.beyondtech.tvpss.model.TvpssVersion;
 import com.beyondtech.tvpss.model.User;
-import com.beyondtech.tvpss.service.LogService;
-import com.beyondtech.tvpss.service.SchoolVersionStatusService;
-import com.beyondtech.tvpss.service.UserManagementService;
+import com.beyondtech.tvpss.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,10 +26,18 @@ public class DashboardController {
 	@Autowired
 	private LogService logService;
 
-	public DashboardController(UserManagementService userManagementService, LogService logService, SchoolVersionStatusService schoolVersionStatusService) {
+	@Autowired
+	EquipmentManagementService equipmentManagementService;
+
+	@Autowired
+	TvpssCrewService tvpssCrewService;
+
+	public DashboardController(UserManagementService userManagementService, LogService logService, SchoolVersionStatusService schoolVersionStatusService, EquipmentManagementService equipmentManagementService, TvpssCrewService tvpssCrewService) {
 		this.userManagementService = userManagementService;
 		this.logService = logService;
 		this.schoolVersionStatusService = schoolVersionStatusService;
+		this.equipmentManagementService = equipmentManagementService;
+		this.tvpssCrewService = tvpssCrewService;
 	}
 
 	@GetMapping("/")
@@ -86,6 +94,15 @@ public class DashboardController {
 			case "ROLE_schooladmin":
 				model.addAttribute("content", "SchoolAdmin/dashboard");
 				model.addAttribute("currentPageDirectory", "SchoolAdmin");
+
+				Long crewCount = tvpssCrewService.countTvpssCrewBySchoolAndStatus(currentUser.getSchool().getCode(), ApplicationStatus.APPROVED);
+				Long equipmentCount = equipmentManagementService.countAllEquipments(currentUser.getSchool().getCode());
+				Integer currentTvpssVersion = schoolVersionStatusService.getTvpssVersion(currentUser.getSchool().getCode());
+
+				model.addAttribute("equipmentCount", equipmentCount != null ? equipmentCount : 0);
+				model.addAttribute("crewCount", crewCount != null ? crewCount : 0);
+				model.addAttribute("currentTvpssVersion", currentTvpssVersion != null ? currentTvpssVersion : 0);
+
 				break;
 			default:
 				break;

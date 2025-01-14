@@ -65,4 +65,14 @@ public class TvpssCrewRepositoryImpl implements TvpssCrewRepository {
                 .getResultList();
     }
 
+    @Override
+    public Long countApplicationBySchool(String schoolCode, ApplicationStatus status) {
+        Session session = getCurrentSession();
+
+        return session.createQuery("SELECT COUNT(t) FROM TvpssCrew t WHERE t.schoolCode =: schoolCode AND status = :status")
+                .setParameter("schoolCode", schoolCode)
+                .setParameter("status", status)
+                .getResultCount();
+    }
+
 }

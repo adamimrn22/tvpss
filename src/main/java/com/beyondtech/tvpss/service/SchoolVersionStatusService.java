@@ -175,6 +175,8 @@ public class SchoolVersionStatusService {
         tvpssVersionRepository.updateTvpssVersion(schoolCode, version, TvpssStatus.SUDAH);
     }
 
-
+    public Integer getTvpssVersion(String schoolCode) {
+        return tvpssVersionRepository.getTvpssVersion(schoolCode);
+    }
 
 }

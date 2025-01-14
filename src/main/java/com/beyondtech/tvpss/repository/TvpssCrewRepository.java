@@ -10,4 +10,7 @@ public interface TvpssCrewRepository {
     void deleteApplication(TvpssCrew crew);
     TvpssCrew getCrewById(long id);
     List<TvpssCrew> getAllAplicationBySchool(String schoolCode, ApplicationStatus status);
+
+    Long countApplicationBySchool(String schoolCode, ApplicationStatus status);
+
 }

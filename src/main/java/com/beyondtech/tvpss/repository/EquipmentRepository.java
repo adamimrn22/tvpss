@@ -10,4 +10,6 @@ public interface EquipmentRepository {
     void deleteEquipment(Equipment equipment);
     List<Equipment> getAllEquipmentBySchoolCode(String schoolCode);
     Map<Long, Equipment> getEquipmentById(Long id);
+
+    Long getEquipmentCountBySchoolCode(String schoolCode);
 }

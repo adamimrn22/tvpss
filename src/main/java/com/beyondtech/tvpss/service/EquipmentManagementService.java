@@ -39,4 +39,8 @@ public class EquipmentManagementService {
             e.printStackTrace();
         }
     }
+
+    public Long countAllEquipments(String schoolCode) {
+        return equipmentRepository.getEquipmentCountBySchoolCode(schoolCode);
+    }
 }
