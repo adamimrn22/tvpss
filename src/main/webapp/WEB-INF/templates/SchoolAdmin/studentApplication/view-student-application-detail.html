@@ -1,0 +1,125 @@
+<div
+	th:replace="~{fragments/breadcrumbs :: breadcrumb3WithLink(
+    title1=${breadcrumbTitle1}, 
+    title2=${breadcrumbTitle2}, 
+    title3=${breadcrumbTitle3},
+    link1=${breadcrumbLink1}, 
+)}">
+</div>
+
+
+<div class="card p-3">
+		<div class="form-section row">
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" th:value="${crew.identificationNumber}" name="identificationNumber">
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.kad_pengenalan_pelajar}">
+						Kad Pengenalan Pelajar</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" th:value="${crew.name}" name="name" readonly>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.nama_penuh_pelajar}">
+						Nama Penuh Pelajar</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" th:value="${crew.email}" name="email" readonly>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.alamat_email}">
+						Alamat Email</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<input type="date" class="floating-input" th:value="${crew.dateApplied}" name="dateApplied" readonly>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.tarikh_permohonan}">
+						Tarikh Permohonan</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<button class="floating-input btn-resume" type="button"
+							th:data-resume="${crew.resumeLink}">
+						Lihat Pautan Resume
+					</button>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.pautan_resume}">
+						Pautan Resume</label>
+				</div>
+			</div>
+
+			<div class="col-12 col-md-6">
+				<div class="floating-form-group">
+					<button class="floating-input btn-smedia" type="button"
+							th:data-smedia="${crew.socialmediaLink}">
+						Lihat Pautan Social Media
+					</button>
+
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.pautan_media_sosial}">
+						Pautan Media Sosial</label>
+				</div>
+			</div>
+
+			<div class="col-12">
+				<div class="floating-form-group">
+					<input type="text" class="floating-input" th:value="${crew.status}" readonly>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.status_permohonan}"></label>
+				</div>
+			</div>
+
+			<div class="col-12 reason-textfield" id="reasonTextField"
+				 th:if="${crew.status == T(com.beyondtech.tvpss.model.ApplicationStatus).REJECTED}">
+				<div class="floating-form-group">
+					<textarea id="reasonInput" name="rejectCause"
+							  style="height: 200px; resize: none; width: 100%;" class="floating-input" th:text="${crew.rejectCause}"></textarea>
+					</textarea>
+					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.alasan_penolakan}">
+						Alasan Penolakan</label>
+				</div>
+			</div>
+
+		</div>
+</div>
+
+<script>
+
+
+
+	document.querySelectorAll('.floating-input.btn-resume').forEach(button => {
+		button.addEventListener('click', function () {
+			const resumeLink = this.getAttribute('data-resume');
+			window.open(resumeLink, '_blank');
+		});
+	});
+
+	document.querySelectorAll('.floating-input.btn-smedia').forEach(button => {
+		// Get the social media link from the data attribute
+		const smediaLink = button.getAttribute('data-smedia');
+
+		// Check if the smediaLink is null or empty
+		if (smediaLink === null || smediaLink.trim() === '') {
+			// Change the button text and style to indicate no social media link
+			button.textContent = 'Tiada Social Media';
+			button.style.cursor = 'not-allowed'; // Change cursor to indicate it's not clickable
+			button.disabled = true;  // Disable the button to prevent clicks
+		} else {
+			// Enable the button (in case the link exists)
+			button.addEventListener('click', function () {
+				window.open(smediaLink, '_blank');
+			});
+		}
+	});
+
+	document.querySelectorAll('.floating-input.btn-smedia').forEach(button => {
+		button.addEventListener('click', function () {
+			// Get the resume link from the data attribute
+			const smediaLink = this.getAttribute('data-smedia');
+			window.open(smediaLink, '_blank');
+		});
+	});
+</script>

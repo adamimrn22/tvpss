@@ -46,8 +46,8 @@
 				<div class="d-flex align-items-center mx-4">
 					<label for="entries" class="mx-3">Tunjuk</label>
 					<select id="entries" class="form-select w-auto me-2">
-						<option selected>5</option>
-						<option>10</option>
+						<option>5</option>
+						<option selected>10</option>
 						<option>25</option>
 						<option>50</option>
 						<option>100</option>
@@ -226,7 +226,6 @@
 		document.querySelectorAll('.hover-delete').forEach(button => {
 			button.addEventListener('click', function () {
 				document.getElementById('equipmentIDToDelete').value = this.getAttribute('data-id');
-				console.log(document.getElementById('equipmentIDToDelete').value)
 			});
 		});
 

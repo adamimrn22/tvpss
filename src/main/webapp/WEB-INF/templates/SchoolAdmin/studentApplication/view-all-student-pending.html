@@ -3,6 +3,15 @@
 	th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}">
 </div>
 
+<div th:if="${success}" class="alert alert-success" role="alert">
+	<span th:text="${success}"></span>
+</div>
+
+<div th:if="${error}" class="alert alert-danger" role="alert">
+	<span th:text="${error}"></span>
+</div>
+
+
 <div class="card p-3">
 
 	<div class="custom-nav mb-3">
@@ -59,7 +68,7 @@
 		<div>
 			<!-- Set the width here -->
 			<div class="floating-form-group" style="width: 400px">
-				<input type="text" class="floating-input" placeholder=" "> <label
+				<input type="text" id="studentName" class="floating-input"  placeholder="Cari nama pelajar.."> <label
 					class="floating-input-label"
 					th:text="#{schooladmin.viewpermohonan.cariNamaPelajar}">Cari
 					Nama Pelajar...</label>
@@ -92,21 +101,21 @@
 					th:text="#{schooladmin.viewpermohonan.kadPengenalan}">Kad
 					Pengenalan</th>
 				<th class="text-center"
-					th:text="#{schooladmin.viewpermohonan.tingkatan}">Tingkatan</th>
+					th:text="#{schooladmin.viewpermohonan.email}">Email</th>
 				<th class="text-center"
 					th:text="#{schooladmin.viewpermohonan.jawatan}">Jawatan</th>
 				<th class="text-center" th:text="#{schooladmin.viewpermohonan.aksi}">Aksi</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="text-first align-middle">
+			<tr class="text-first align-middle" th:each="tvpssCrew : ${tvpssCrews}">
 				<td>1</td>
-				<td>Mr. Tan Ah Kow</td>
-				<td class="text-center">030504010</td>
-				<td class="text-center">3</td>
-				<td class="text-center">Pembaca Berita</td>
+				<td th:text="${tvpssCrew.name}">Mr. Tan Ah Kow</td>
+				<td class="text-center" th:text="${tvpssCrew.identificationNumber}">030504010</td>
+				<td class="text-center" th:text="${tvpssCrew.email}">030504010</td>
+				<td class="text-center" th:text="${tvpssCrew.getPosition().name}">030504010</td>
 				<td class="text-center"><a class="btn btn-primary btn-sm"
-					th:href="@{/StudentApplication/validate}"> <svg
+						th:href="@{/StudentApplication/validate/{id}(id=${tvpssCrew.id})}"> <svg
 							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							viewBox="0 0 24 24" fill="currentColor"
 							class="icon icon-tabler icons-tabler-filled icon-tabler-copy-check">
@@ -133,3 +142,13 @@
 		</a></li>
 	</ul>
 </div>
+
+<script th:src="@{js/SchoolAdmin/studentApplicationFilter.js}"></script>
+
+<script>
+	// Initialize TableManager
+	document.addEventListener('DOMContentLoaded', () => {
+		new TableManager();
+	});
+
+</script>

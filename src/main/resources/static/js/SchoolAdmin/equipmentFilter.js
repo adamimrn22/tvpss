@@ -137,7 +137,70 @@ class TableManager
         // Add visible rows
         this.filteredRows.slice(startIndex, endIndex).forEach((row, index) => {
             const newRow = row.cloneNode(true);
-            newRow.querySelector('td').textContent = startIndex + index + 1; // Update row numbers
+
+            // Update row numbers (serial number column)
+            newRow.querySelector('td').textContent = startIndex + index + 1;
+
+            // Ensure the action buttons have correct 'data-id' attributes
+            const editButton = newRow.querySelector('.hover-edit');
+            const deleteButton = newRow.querySelector('.hover-delete');
+
+            // Make sure the 'data-id' for each button is preserved
+            const equipmentId = row.querySelector('.hover-edit').getAttribute('data-id');
+            if (editButton) {
+                editButton.setAttribute('data-id', equipmentId);
+            }
+            if (deleteButton) {
+                deleteButton.setAttribute('data-id', equipmentId);
+            }
+
+            this.tbody.appendChild(newRow);
+        });
+
+        this.updatePagination(totalPages);
+    }
+    updateTable() {
+        // Check if there are any filtered rows
+        if (this.filteredRows.length === 0) {
+            this.table.style.display = 'none';
+            this.pagination.style.display = 'none';
+            this.noDataContainer.style.display = 'flex';
+            return;
+        }
+
+        // Show table and hide no data message if we have rows
+        this.table.style.display = 'table';
+        this.pagination.style.display = 'flex';
+        this.noDataContainer.style.display = 'none';
+
+        // Calculate pagination
+        const totalPages = Math.ceil(this.filteredRows.length / this.itemsPerPage);
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+
+        // Clear current rows
+        this.tbody.innerHTML = '';
+
+        // Add visible rows
+        this.filteredRows.slice(startIndex, endIndex).forEach((row, index) => {
+            const newRow = row.cloneNode(true);
+
+            // Update row numbers (serial number column)
+            newRow.querySelector('td').textContent = startIndex + index + 1;
+
+            // Ensure the action buttons have correct 'data-id' attributes
+            const editButton = newRow.querySelector('.hover-edit');
+            const deleteButton = newRow.querySelector('.hover-delete');
+
+            // Make sure the 'data-id' for each button is preserved
+            const equipmentId = row.querySelector('.hover-edit').getAttribute('data-id');
+            if (editButton) {
+                editButton.setAttribute('data-id', equipmentId);
+            }
+            if (deleteButton) {
+                deleteButton.setAttribute('data-id', equipmentId);
+            }
+
             this.tbody.appendChild(newRow);
         });
 

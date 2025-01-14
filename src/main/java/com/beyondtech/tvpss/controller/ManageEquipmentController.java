@@ -97,9 +97,57 @@ public class ManageEquipmentController {
 	@ResponseBody
 	public Map<Long, Equipment> getEquipmentById(@PathVariable Long equipmentId) {
 		System.out.println("Received equipmentId: " + equipmentId); // Debug log
-        return equipmentManagementService.getEquipmentById(equipmentId);
+		return equipmentManagementService.getEquipmentById(equipmentId);
 	}
 
+	@PostMapping("/update")
+	public String updateEquipment(@RequestParam("equipmentID") Long id,
+								  @RequestParam("equipmentName") String name,
+								  @RequestParam("equipmentType") String type,
+								  @RequestParam("location") String location,
+								  @RequestParam("dateAdded") Date date,
+								  @RequestParam("equipmentStatus") EquipmentStatus status,
+								  Model model,
+								  RedirectAttributes redirectAttributes) {
+		try {
+			User currentUser = (User) model.getAttribute("currentUser");
+
+			if (name == null || name.isEmpty()) {
+				throw new IllegalArgumentException("Equipment name is required.");
+			}
+
+			if (type == null || type.isEmpty()) {
+				throw new IllegalArgumentException("Equipment type is required.");
+			}
+
+			if (location == null || location.isEmpty()) {
+				throw new IllegalArgumentException("Location is required.");
+			}
+
+			if (date == null) {
+				throw new IllegalArgumentException("Date is required.");
+			}
+
+			if (status == null) {
+				throw new IllegalArgumentException("Status is required.");
+			}
+
+			Equipment equipment = new Equipment();
+			equipment.setId(id);
+			equipment.setEquipmentName(name);
+			equipment.setEquipmentType(type);
+			equipment.setLocation(location);
+			equipment.setDateAdded(date);
+			equipment.setStatus(status);
+			equipment.setSchoolCode(currentUser.getSchool().getCode());
+			equipmentManagementService.saveOrUpdateEquipment(equipment);
+			redirectAttributes.addFlashAttribute("successMessage", "Equipment updated successfully!");
+			return "redirect:/EquipmentManagement";
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "Equipment does not exist!");
+			return "redirect:/EquipmentManagement";
+		}
+	}
 
 	@PostMapping("/delete")
 	public String deleteEquipment(@RequestParam("equipmentIDToDelete") Long id, RedirectAttributes redirectAttributes) {

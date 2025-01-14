@@ -79,4 +79,17 @@ public class Equipment {
     public void setSchoolCode(String schoolCode) {
         this.schoolCode = schoolCode;
     }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "id=" + id +
+                ", equipmentName='" + equipmentName + '\'' +
+                ", equipmentType='" + equipmentType + '\'' +
+                ", location='" + location + '\'' +
+                ", dateAdded=" + dateAdded +
+                ", status=" + status +
+                ", schoolCode='" + schoolCode + '\'' +
+                '}';
+    }
 }

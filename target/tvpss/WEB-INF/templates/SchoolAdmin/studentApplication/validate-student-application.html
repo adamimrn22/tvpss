@@ -8,13 +8,23 @@
 )}">
 </div>
 
+<div th:if="${success}" class="alert alert-success" role="alert">
+	<span th:text="${success}"></span>
+</div>
+
+<div th:if="${error}" class="alert alert-danger" role="alert">
+	<span th:text="${error}"></span>
+</div>
+
+
 <div class="card p-3">
-	<form>
+	<form th:action="@{/StudentApplication/updateStatus}" method="POST">
 		<div class="form-section row">
+			<input type="hidden" name="id" th:value="${crew.id}">
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="schoolName" placeholder=" ">
+					<input type="text" class="floating-input" th:value="${crew.identificationNumber}" name="identificationNumber">
 					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.kad_pengenalan_pelajar}">
 						Kad Pengenalan Pelajar</label>
 				</div>
@@ -22,7 +32,7 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address1" placeholder=" ">
+					<input type="text" class="floating-input" th:value="${crew.name}" name="name" readonly>
 					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.nama_penuh_pelajar}">
 						Nama Penuh Pelajar</label>
 				</div>
@@ -30,7 +40,7 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="address2" placeholder=" ">
+					<input type="text" class="floating-input" th:value="${crew.email}" name="email" readonly>
 					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.alamat_email}">
 						Alamat Email</label>
 				</div>
@@ -38,7 +48,7 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<input type="text" class="floating-input" id="postcode" placeholder=" ">
+					<input type="date" class="floating-input" th:value="${crew.dateApplied}" name="dateApplied" readonly>
 					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.tarikh_permohonan}">
 						Tarikh Permohonan</label>
 				</div>
@@ -46,8 +56,9 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<button class="floating-input btn-resume" type="button">
-						<span th:text="#{schooladmin.validateapplication.lihat_pautan_resume}">Lihat Pautan Resume</span>
+					<button class="floating-input btn-resume" type="button"
+							th:data-resume="${crew.resumeLink}">
+						Lihat Pautan Resume
 					</button>
 					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.pautan_resume}">
 						Pautan Resume</label>
@@ -56,9 +67,11 @@
 
 			<div class="col-12 col-md-6">
 				<div class="floating-form-group">
-					<button class="floating-input btn-resume" type="button">
-						<span th:text="#{schooladmin.validateapplication.lihat_pautan_media_sosial}">Lihat Pautan Media Sosial</span>
+					<button class="floating-input btn-smedia" type="button"
+							th:data-smedia="${crew.socialmediaLink}">
+						Lihat Pautan Social Media
 					</button>
+
 					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.pautan_media_sosial}">
 						Pautan Media Sosial</label>
 				</div>
@@ -66,13 +79,13 @@
 
 			<div class="col-12">
 				<div class="floating-form-group">
-					<select class="floating-select" id="userTypeSelect">
-						<option value="" selected disabled hidden
+					<select class="floating-select" id="ApplicationStatusSelect" name="ApplicationStatusSelect">
+						<option selected disabled hidden
 							th:text="#{schooladmin.validateapplication.pilih_status_permohonan}">
 							Pilih Status Permohonan</option>
-						<option value="super-admin" th:text="#{schooladmin.validateapplication.lulus_permohonan}">
+						<option value="APPROVED" th:text="#{schooladmin.validateapplication.lulus_permohonan}">
 							Lulus Permohonan</option>
-						<option value="admin-state" th:text="#{schooladmin.validateapplication.tolak_permohonan}">
+						<option value="REJECTED" th:text="#{schooladmin.validateapplication.tolak_permohonan}">
 							Tolak Permohonan</option>
 					</select>
 					<label class="floating-select-label" th:text="#{schooladmin.validateapplication.status_permohonan}">
@@ -82,7 +95,7 @@
 
 			<div class="col-12 reason-textfield" id="reasonTextField" style="display: none;">
 				<div class="floating-form-group">
-					<textarea id="reasonInput" name="reasonPenolakan"
+					<textarea id="reasonInput" name="rejectCause"
 						style="height: 200px; resize: none; width: 100%;" class="floating-input"></textarea>
 					<label class="floating-input-label" th:text="#{schooladmin.validateapplication.alasan_penolakan}">
 						Alasan Penolakan</label>
@@ -104,13 +117,13 @@
 
 <script>
 
-document.getElementById('userTypeSelect').addEventListener('change', function () {
+document.getElementById('ApplicationStatusSelect').addEventListener('change', function () {
     const reasonTextField = document.getElementById('reasonTextField');
     const reasonInput = document.getElementById('reasonInput');
     const selectedValue = this.value;
 
     // If "Tolak Permohonan" is selected
-    if (selectedValue === 'admin-state') {
+    if (selectedValue === 'REJECTED') {
         // Show the textarea and make it required
         reasonTextField.style.display = 'block';
         reasonInput.setAttribute('required', 'required'); // Set the required attribute
@@ -122,4 +135,36 @@ document.getElementById('userTypeSelect').addEventListener('change', function ()
 });
 
 
+document.querySelectorAll('.floating-input.btn-resume').forEach(button => {
+	button.addEventListener('click', function () {
+		const resumeLink = this.getAttribute('data-resume');
+		window.open(resumeLink, '_blank');
+	});
+});
+
+document.querySelectorAll('.floating-input.btn-smedia').forEach(button => {
+	// Get the social media link from the data attribute
+	const smediaLink = button.getAttribute('data-smedia');
+
+	// Check if the smediaLink is null or empty
+	if (smediaLink === null || smediaLink.trim() === '') {
+		// Change the button text and style to indicate no social media link
+		button.textContent = 'Tiada Social Media';
+		button.style.cursor = 'not-allowed'; // Change cursor to indicate it's not clickable
+		button.disabled = true;  // Disable the button to prevent clicks
+	} else {
+		// Enable the button (in case the link exists)
+		button.addEventListener('click', function () {
+			window.open(smediaLink, '_blank');
+		});
+	}
+});
+
+document.querySelectorAll('.floating-input.btn-smedia').forEach(button => {
+	button.addEventListener('click', function () {
+		// Get the resume link from the data attribute
+		const smediaLink = this.getAttribute('data-smedia');
+		window.open(smediaLink, '_blank');
+	});
+});
 </script>

@@ -7,48 +7,49 @@
 					<h5 class="modal-title" id="editEquipmentLabel" style="color: #515B92" th:text="#{schooladmin.manageequipment.edit.updateItem}">Kemaskini Barang</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+				<form th:action="@{/EquipmentManagement/update}" method="post">
 				<div class="modal-body">
-					<form action="/StarMIS_TVPSS/SuperAdmin/Pengguna/TambahPengguna" method="post">
 						<div class="p-3 pt-0">
+							<input id="equipmentID" name="equipmentID" type="hidden">
 							<div>
 								<div class="floating-form-group">
-									<input type="text" class="floating-input" placeholder=" " id="editItemName">
+									<input type="text" class="floating-input" placeholder=" " id="editItemName" name="equipmentName" required>
 									<label class="floating-input-label" for="editItemName" th:text="#{schooladmin.manageequipment.edit.itemName}">Nama Barang</label>
 								</div>
 							</div>
 							<div>
 								<div class="floating-form-group">
-									<input type="text" class="floating-input" placeholder=" " id="editItemType">
+									<input type="text" class="floating-input" placeholder=" " id="editItemType" name="equipmentType" required>
 									<label class="floating-input-label" for="editItemType" th:text="#{schooladmin.manageequipment.edit.itemType}">Jenis Barang</label>
 								</div>
 							</div>
 							<div>
 								<div class="floating-form-group">
-									<input type="text" class="floating-input" placeholder=" " id="editItemLocation">
+									<input type="text" class="floating-input" placeholder=" " id="editItemLocation" name="location" required>
 									<label class="floating-input-label" for="editItemLocation" th:text="#{schooladmin.manageequipment.edit.location}">Lokasi</label>
 								</div>
 							</div>
 							<div class="date-picker-container">
 								<div class="floating-form-group">
-									<input class="floating-datepicker" type="date" id="dateAdded" placeholder="" style="min-width: 430px">
+									<input class="floating-datepicker" type="date" id="dateAdded" placeholder="" style="min-width: 430px" name="dateAdded" required>
 									<label class="floating-datepicker-label"  th:text="#{schooladmin.manageequipment.edit.dateSelect}">Pilih Tarikh</label>
 								</div>
 							</div>
 							<div class="floating-form-group">
-								<select class="floating-select" id="editItemStatus">
-									<option value="" selected disabled hidden></option>
+								<select class="floating-select" id="editItemStatus" name="equipmentStatus" required>
 									<option value="AVAILABLE" th:text="#{schooladmin.manageequipment.edit.working}">Berfungsi</option>
 									<option value="DAMAGED" th:text="#{schooladmin.manageequipment.edit.notWorking}">Tidak Berfungsi</option>
 								</select>
 								<label class="floating-select-label" for="editItemStatus" th:text="#{schooladmin.manageequipment.edit.status}">Status Barang</label>
 							</div>
 						</div>
-					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-sm" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.edit.cancelButton}">Batal</button>
 					<button class="btn btn-primary btn-sm" type="submit" th:text="#{schooladmin.manageequipment.edit.updateButton}">Kemaskini Barang</button>
 				</div>
+				</form>
+
 			</div>
 		</div>
 	</div>

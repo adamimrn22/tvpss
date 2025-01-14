@@ -27,12 +27,18 @@ public class EquipmentRepositoryImpl implements EquipmentRepository {
     @Override
     public Equipment saveOrUpdate(Equipment equipment) {
         Session session = getCurrentSession();
-
         if (equipment.getId() != null) {
             Equipment existingEquipment = session.get(Equipment.class, equipment.getId());
-            session.merge(existingEquipment);
-        }else {
-            equipment.setId(equipment.getId());
+            if (existingEquipment != null) {
+                existingEquipment.setEquipmentName(equipment.getEquipmentName());
+                existingEquipment.setEquipmentType(equipment.getEquipmentType());
+                existingEquipment.setLocation(equipment.getLocation());
+                existingEquipment.setDateAdded(equipment.getDateAdded());
+                existingEquipment.setStatus(equipment.getStatus());
+                existingEquipment.setSchoolCode(equipment.getSchoolCode());
+                session.merge(existingEquipment);
+            }
+        } else {
             session.persist(equipment);
         }
 
