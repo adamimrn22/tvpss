@@ -97,4 +97,22 @@ public class UserRepositoryImpl implements UserRepository {
 
         return query.uniqueResult();
     }
+
+    @Override
+    public void updatePassword(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        if (user.getId() != null) {
+            session.get(User.class, user.getId());
+            session.merge(user);
+        }else{
+            throw new IllegalArgumentException("Something went wrong");
+        }
+    }
+
+    @Override
+    public void resetPassword(User user, String newPassword) {
+        Session session = sessionFactory.getCurrentSession();
+        user.setPassword(newPassword);  
+        session.merge(user);
+    }
 }

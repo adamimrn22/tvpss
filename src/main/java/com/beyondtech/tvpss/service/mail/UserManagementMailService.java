@@ -21,11 +21,6 @@ public class UserManagementMailService {
     @Autowired
     private TemplateEngine templateEngine;
 
-    public UserManagementMailService(JavaMailSender mailSender, TemplateEngine templateEngine) {
-        this.mailSender = mailSender;
-        this.templateEngine = templateEngine;
-    }
-
     @Async
     public void sendPasswordMail(User user, String password) throws MessagingException {
         Context context = new Context();

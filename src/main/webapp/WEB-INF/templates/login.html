@@ -106,6 +106,21 @@
             accent-color: #515B92; /* Make the checkbox color match the primary color */
         }
 
+        .password-help {
+            font-size: 0.875rem;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .password-help a {
+            color: #515B92;
+            text-decoration: none;
+        }
+
+        .password-help a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -119,7 +134,16 @@
         <span th:text="${error}"></span>
     </div>
 
+    <div th:if="${success}" class="alert alert-success" role="alert">
+        <span th:text="${success}"></span>
+    </div>
+
+    <div th:if="${message}" class="alert alert-danger">
+        <span th:text="${message}"></span>
+    </div>
+
     <form th:action="@{/login}" method="post">
+        <input	type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <div class="floating-form-group">
             <input type="email" class="floating-input" id="email" name="username" placeholder="" required>
             <label for="email" class="floating-input-label">Email MOE</label>
@@ -137,6 +161,16 @@
 
         <button type="submit" class="login-btn">Log Masuk</button>
     </form>
+
+    <div class="password-help">
+       Lupa Kata Laluan? <a th:href="@{/forgot-password}">Tekan sini</a>
+    </div>
+
+    <hr>
+
+    <div class="password-help">
+        Menghadapi masalah log masuk? <a href="#">Hubungi Admin</a>
+    </div>
 
 </div>
 

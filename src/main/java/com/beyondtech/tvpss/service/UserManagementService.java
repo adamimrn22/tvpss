@@ -180,4 +180,31 @@ public class UserManagementService {
         return userRepository.countUsersByRole(roleName);
     }
 
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmailAddress(email);
+    }
+
+    public boolean changePassword(String email, String currentPassword, String newPassword) {
+        Optional<User> userOpt = userRepository.findByEmailAddress(email);
+
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+
+            // Validate the current password
+            if (passwordEncoder.matches(currentPassword, user.getPassword())) {
+                String encodedNewPassword = passwordEncoder.encode(newPassword);
+                user.setPassword(encodedNewPassword);
+
+                // Call the repository method to update the password
+                userRepository.updatePassword(user);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void resetPassword(User user, String newPassword) {
+        userRepository.resetPassword(user, newPassword);
+    }
+
 }

@@ -18,4 +18,6 @@ public interface UserRepository {
 
     Long countUsersByRole(String roleName);
 
+    void updatePassword(User user);
+    void resetPassword(User user, String newPassword);
 }

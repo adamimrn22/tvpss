@@ -20,7 +20,7 @@ public class HibernateConfig {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/tvpss?useSSL=false&serverTimezone=UTC");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/tvpss?useSSL=false&serverTimezone=Asia/Kuala_Lumpur");
 		dataSource.setUsername("root");
 		dataSource.setPassword("");
 		return dataSource;
@@ -36,6 +36,7 @@ public class HibernateConfig {
 //		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+		hibernateProperties.setProperty("hibernate.jdbc.time_zone", "Asia/Kuala_Lumpur");
 
 		sessionFactory.setHibernateProperties(hibernateProperties);
 
