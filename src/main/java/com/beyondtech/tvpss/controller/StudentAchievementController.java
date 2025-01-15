@@ -1,5 +1,6 @@
 package com.beyondtech.tvpss.controller;
 
+import com.beyondtech.tvpss.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,9 @@ public class StudentAchievementController {
 		model.addAttribute("content", "SchoolAdmin/studentAchievement/add-student-achievement");
 		model.addAttribute("breadcrumbTitle1", "Pencapai Pelajar");
 		model.addAttribute("breadcrumbTitle2", "Semua Pencapaian");
+
+		User currentUser = (User) model.getAttribute("currentUser");
+		model.addAttribute("schoolCode", currentUser.getSchool().getCode());
 
 		return "layouts/admin-layouts";
 	}

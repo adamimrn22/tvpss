@@ -36,14 +36,6 @@ public class DashboardController {
     @Autowired
     private SchoolService schoolService;
 
-//	public DashboardController(UserManagementService userManagementService, LogService logService, SchoolVersionStatusService schoolVersionStatusService, EquipmentManagementService equipmentManagementService, TvpssCrewService tvpssCrewService) {
-//		this.userManagementService = userManagementService;
-//		this.logService = logService;
-//		this.schoolVersionStatusService = schoolVersionStatusService;
-//		this.equipmentManagementService = equipmentManagementService;
-//		this.tvpssCrewService = tvpssCrewService;
-//	}
-
 	@GetMapping("/")
 	public String showDashboard(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
