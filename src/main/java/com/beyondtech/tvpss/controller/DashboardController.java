@@ -1,6 +1,7 @@
 package com.beyondtech.tvpss.controller;
 
 import com.beyondtech.tvpss.model.ApplicationStatus;
+import com.beyondtech.tvpss.model.TvpssStatus;
 import com.beyondtech.tvpss.model.TvpssVersion;
 import com.beyondtech.tvpss.model.User;
 import com.beyondtech.tvpss.service.*;
@@ -32,6 +33,8 @@ public class DashboardController {
 
 	@Autowired
 	TvpssCrewService tvpssCrewService;
+    @Autowired
+    private SchoolService schoolService;
 
 //	public DashboardController(UserManagementService userManagementService, LogService logService, SchoolVersionStatusService schoolVersionStatusService, EquipmentManagementService equipmentManagementService, TvpssCrewService tvpssCrewService) {
 //		this.userManagementService = userManagementService;
@@ -95,6 +98,9 @@ public class DashboardController {
 				Map<String, Long> districtVersion3Counts = schoolVersionStatusService.countTvpssVersionsByVersion(3);
 				Map<String, Long> districtVersion4Counts = schoolVersionStatusService.countTvpssVersionsByVersion(4);
 
+				long schoolInJohorCount = schoolService.countAllSchools();
+
+				model.addAttribute("schoolInJohorCount", schoolInJohorCount);
 				model.addAttribute("districtVersion0Counts", districtVersion0Counts);
 				model.addAttribute("districtVersion1Counts", districtVersion1Counts);
 				model.addAttribute("districtVersion2Counts", districtVersion2Counts);
@@ -116,6 +122,27 @@ public class DashboardController {
 				List<Map<String, Object>> schools = schoolVersionStatusService.getAllSchoolsByDistrict(currentUser.getDistrict());
 				model.addAttribute("schoolDataList", schools);
 
+				Long schoolVersion0Counts = schoolVersionStatusService.countTvpssVersionsByDistrictAndVersion(currentUser.getDistrict(), 0L);
+				Long schoolVersion1Counts = schoolVersionStatusService.countTvpssVersionsByDistrictAndVersion(currentUser.getDistrict(), 1L);
+				Long schoolVersion2Counts = schoolVersionStatusService.countTvpssVersionsByDistrictAndVersion(currentUser.getDistrict(), 2L);
+				Long schoolVersion3Counts = schoolVersionStatusService.countTvpssVersionsByDistrictAndVersion(currentUser.getDistrict(), 3L);
+				Long schoolVersion4Counts = schoolVersionStatusService.countTvpssVersionsByDistrictAndVersion(currentUser.getDistrict(), 4L);
+
+				long schoolCountDistrict = schoolService.countSchoolByDistrict(currentUser.getDistrict());
+
+				Long validatedSchool = schoolVersionStatusService.countTvpssVersionByDistrictAndStatus(currentUser.getDistrict(), TvpssStatus.SUDAH);
+				Long pendingSchool = schoolVersionStatusService.countTvpssVersionByDistrictAndStatus(currentUser.getDistrict(), TvpssStatus.PENDING);
+
+				model.addAttribute("validatedSchool", validatedSchool);
+				model.addAttribute("pendingSchool", pendingSchool);
+				model.addAttribute("schoolCountDistrict", schoolCountDistrict);
+ 				model.addAttribute("schoolVersion0Counts", schoolVersion0Counts);
+				model.addAttribute("schoolVersion1Counts", schoolVersion1Counts);
+				model.addAttribute("schoolVersion2Counts", schoolVersion2Counts);
+				model.addAttribute("schoolVersion3Counts", schoolVersion3Counts);
+				model.addAttribute("schoolVersion4Counts", schoolVersion4Counts);
+
+
 				break;
 			case "ROLE_schooladmin":
 				model.addAttribute("content", "SchoolAdmin/dashboard");
@@ -133,8 +160,6 @@ public class DashboardController {
 				model.addAttribute("genderCounts", genderCounts);
 
 				List<Long> approvedCrewCounts = tvpssCrewService.getTvpssCrewCountsForPast5Years(currentUser.getSchool().getCode());
-
-				System.out.println("approvedCrewCounts: " + approvedCrewCounts);
 
 				int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 				List<Integer> years = List.of(

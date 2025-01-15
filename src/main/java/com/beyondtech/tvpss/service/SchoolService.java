@@ -31,6 +31,29 @@ public class SchoolService {
         return List.of();
     }
 
+    public long countAllSchools() {
+        SchoolApiResponse response = restTemplate.getForObject(apiUrl, SchoolApiResponse.class);
+
+        if (response != null && response.isSuccess()) {
+            List<School> schools = response.getData();
+            return schools.size();
+        }
+
+        return 0L;
+    }
+
+    public long countSchoolByDistrict(String district) {
+        String url = apiUrl + "/district/" + district;
+        SchoolApiResponse response = restTemplate.getForObject(url, SchoolApiResponse.class);
+        if (response != null && response.isSuccess()) {
+            List<School> schools = response.getData();
+            return schools.size();
+        }
+
+        return 0L;
+    }
+
+
     public Map<String, List<String>> getDistrictSchoolMap() {
          SchoolApiResponse response = restTemplate.getForObject(apiUrl, SchoolApiResponse.class);
 

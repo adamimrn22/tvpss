@@ -22,7 +22,7 @@
 			<p>
 				<i class="bi bi-building" style="font-size: 64px"></i>
 			</p>
-			<p class="card-dashboard-number ps-3">250</p>
+			<p class="card-dashboard-number ps-3" th:text="${schoolInJohorCount}">250</p>
 		</div>
 		<p class="card-dashboard-title" th:text="#{stateadmin.dashboard.schoolsInJohor}">Bilangan Sekolah di Johor</p>
 	</div>
@@ -45,8 +45,7 @@
 			<div>
 				<div class="floating-form-group">
 					<select class="floating-select" value="1">
-						<option value="" selected disabled hidden></option>
-						<option value="0">Versi 0</option>
+						<option value="0" selected>Versi 0</option>
 						<option value="1">Versi 1</option>
 						<option value="2">Versi 2</option>
 						<option value="3">Versi 3</option>

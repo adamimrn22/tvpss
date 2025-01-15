@@ -4,8 +4,18 @@
 		<!-- User -->
 		<div class="user-icon text-uppercase" th:text="${#strings.substring(currentUser.name, 0, 1) + (#strings.contains(currentUser.name, ' ') ? #strings.substring(#strings.substringAfter(currentUser.name, ' '), 0, 1) : #strings.substring(currentUser.name, 1, 2))}">JD</div>
 		<div class="d-flex flex-column">
-			<span  th:text="${currentUser.getName()}">Adam Doe</span> <span class="role-text"  th:text="${currentUser.getRole().name}">Super
-				Admin</span>
+			<span  th:text="${currentUser.getName()}">Adam Doe</span>
+			<span class="role-text">
+ 				<span th:text="${currentUser.getRole().name}"></span>
+
+ 				<span th:if="${currentUser.getRole().rolename.equals('ppdadmin')}">
+					( <span th:text="${currentUser.getDistrict()}"></span> )
+				</span>
+
+				<span th:if="${currentUser.getRole().rolename.equals('schooladmin')}">
+					( <span th:text="${currentUser.getSchool().code}"></span> )
+				</span>
+			</span>
 		</div>
 
 		<div class="dropdown">

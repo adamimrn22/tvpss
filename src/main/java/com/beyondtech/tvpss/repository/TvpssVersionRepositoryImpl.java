@@ -131,7 +131,7 @@ public class TvpssVersionRepositoryImpl implements TvpssVersionRepository {
 
 
     @Override
-    public Long countTvpssVersionsByDistrictAndVersion(String district, int version) {
+    public Long countTvpssVersionsByDistrictAndVersion(String district, Long version) {
          Map<String, List<String>> districtSchoolMap = schoolService.getDistrictSchoolMap();
 
         List<String> schoolCodesInDistrict = districtSchoolMap.getOrDefault(district, List.of());
@@ -151,5 +151,24 @@ public class TvpssVersionRepositoryImpl implements TvpssVersionRepository {
                 .uniqueResult();
 
         return count != null ? count : 0L;
+    }
+
+    @Override
+    public Long countTvpssVersionByDistrictAndStatus(String district, TvpssStatus status) {
+        Map<String, List<String>> districtSchoolMap = schoolService.getDistrictSchoolMap();
+
+        List<String> schoolCodesInDistrict = districtSchoolMap.get(district);
+        if (schoolCodesInDistrict == null || schoolCodesInDistrict.isEmpty()) {
+            return 0L; // If no schools in the district, return 0
+        }
+
+        Session session = getCurrentSession();
+        Long count = (Long) session.createQuery(
+                        "SELECT COUNT(t) FROM TvpssVersion t WHERE t.schoolCode IN :schoolCodes AND t.tvpssCurrentStatus = :status")
+                .setParameter("schoolCodes", schoolCodesInDistrict)
+                .setParameter("status", status)
+                .uniqueResult();
+
+        return count != null ? count.intValue() : 0L;
     }
 }

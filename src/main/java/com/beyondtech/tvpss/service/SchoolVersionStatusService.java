@@ -182,11 +182,15 @@ public class SchoolVersionStatusService {
         return tvpssVersionRepository.countTvpssVersions(version);
     }
 
-    public Long countTvpssVersionsByDistrictAndVersion(String district, int version) {
+    public Long countTvpssVersionsByDistrictAndVersion(String district, Long version) {
         return tvpssVersionRepository.countTvpssVersionsByDistrictAndVersion(district, version);
     }
 
     public Map<String, Long> countTvpssVersionsByVersion(int version) {
         return tvpssVersionRepository.countTvpssVersionsByVersion(version);
+    }
+
+    public Long countTvpssVersionByDistrictAndStatus(String district, TvpssStatus status) {
+        return tvpssVersionRepository.countTvpssVersionByDistrictAndStatus(district, status);
     }
 }

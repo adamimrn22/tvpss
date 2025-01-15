@@ -2,8 +2,6 @@ package com.beyondtech.tvpss.repository;
 
 import com.beyondtech.tvpss.model.ApplicationStatus;
 import com.beyondtech.tvpss.model.TvpssCrew;
-import com.beyondtech.tvpss.model.Student;
-import com.beyondtech.tvpss.model.TvpssCrew;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

@@ -4,7 +4,7 @@
 			<p>
 				<i class="bi bi-person-vcard-fill" style="font-size: 64px"></i>
 			</p>
-			<p class="card-dashboard-number ps-3">5</p>
+			<p class="card-dashboard-number ps-3" th:text="${validatedSchool}">5</p>
 		</div>
 		<p class="card-dashboard-title" th:text="#{adminppd.dashboard.certifiedSchools}">Bilangan TVPSS Sekolah Disahkan</p>
 	</div>
@@ -13,7 +13,7 @@
 			<p>
 				<i class="bi bi-person-square" style="font-size: 64px"></i>
 			</p>
-			<p class="card-dashboard-number ps-3">25</p>
+			<p class="card-dashboard-number ps-3" th:text="${pendingSchool}">25</p>
 		</div>
 		<p class="card-dashboard-title" th:text="#{adminppd.dashboard.pendingValidations}">Bilangan Pending Validasi</p>
 	</div>
@@ -22,7 +22,7 @@
 			<p>
 				<i class="bi bi-person-workspace" style="font-size: 64px"></i>
 			</p>
-			<p class="card-dashboard-number ps-3">250</p>
+			<p class="card-dashboard-number ps-3" th:text="${schoolCountDistrict}">250</p>
 		</div>
 		<p class="card-dashboard-title" th:text="#{adminppd.dashboard.schoolsInDistrict}">Bilangan Sekolah di Daerah anda</p>
 	</div>
@@ -150,6 +150,22 @@
 		</a></li>
 	</ul>
 </div>
+
+<script th:inline="javascript">
+	var schoolVersion0Counts = [[${schoolVersion0Counts}]];
+	var schoolVersion1Counts = [[${schoolVersion1Counts}]];
+	var schoolVersion2Counts = [[${schoolVersion2Counts}]];
+	var schoolVersion3Counts = [[${schoolVersion3Counts}]];
+	var schoolVersion4Counts = [[${schoolVersion4Counts}]];
+
+	var totalCount = schoolVersion0Counts + schoolVersion1Counts + schoolVersion2Counts + schoolVersion3Counts + schoolVersion4Counts;
+	var version0Percentage = (schoolVersion0Counts / totalCount) * 100;
+	var version1Percentage = (schoolVersion1Counts / totalCount) * 100;
+	var version2Percentage = (schoolVersion2Counts / totalCount) * 100;
+	var version3Percentage = (schoolVersion3Counts / totalCount) * 100;
+	var version4Percentage = (schoolVersion4Counts / totalCount) * 100;
+
+</script>
 
 <script th:src="@{/js/PPDAdmin/viewPPDSchoolTableFilter.js}"></script>
 <th:block th:include="fragments/chartscripts :: chartscripts"></th:block>

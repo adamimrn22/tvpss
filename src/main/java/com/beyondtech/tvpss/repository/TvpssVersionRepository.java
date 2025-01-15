@@ -14,7 +14,9 @@ public interface TvpssVersionRepository {
 
     Long countTvpssVersions(Long version);
 
-    Long countTvpssVersionsByDistrictAndVersion(String district, int version);
+    Long countTvpssVersionsByDistrictAndVersion(String district, Long version);
+
+    Long countTvpssVersionByDistrictAndStatus(String district, TvpssStatus status);
 
     Map<String, Long> countTvpssVersionsByVersion(int version);
 }

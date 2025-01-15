@@ -40,9 +40,6 @@ public class TvpssCrewService {
         int startYear = currentYear - 5;  // 5 years ago
         List<Long> counts = new ArrayList<>();
 
-
-
-        // Loop through the last 5 years and get the count for each year
         for (int year = startYear; year <= currentYear; year++) {
             long count = tvpssCrewRepository.countTvpssCrewByYearRangeAndStatus(schoolCode, year, ApplicationStatus.APPROVED);
             counts.add(count);
