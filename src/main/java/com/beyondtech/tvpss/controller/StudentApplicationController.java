@@ -4,6 +4,7 @@ import com.beyondtech.tvpss.model.ApplicationStatus;
 import com.beyondtech.tvpss.model.TvpssCrew;
 import com.beyondtech.tvpss.model.User;
 import com.beyondtech.tvpss.service.TvpssCrewService;
+import com.beyondtech.tvpss.service.mail.StudentResultMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,9 @@ public class StudentApplicationController {
 
 	@Autowired
 	TvpssCrewService tvpssCrewService;
+
+	@Autowired
+	StudentResultMailService studentResultMailService;
 
 //	pending
 	@GetMapping("")
@@ -76,10 +80,12 @@ public class StudentApplicationController {
 				crew.setRejectCause(rejectCause);
 				tvpssCrewService.updateApplication(crew);
 				redirectAttributes.addFlashAttribute("success", "Status Dikemaskini");
+				studentResultMailService.sendStudentResult(crew.getEmail());
 				return "redirect:/StudentApplication/Rejected";
 			}else if (status.equals(ApplicationStatus.APPROVED.toString())) {
 				crew.setStatus(ApplicationStatus.APPROVED);
 				tvpssCrewService.updateApplication(crew);
+				studentResultMailService.sendStudentResult(crew.getEmail());
 				redirectAttributes.addFlashAttribute("success", "Status Dikemaskini ");
 				return "redirect:/StudentApplication/Approved";
 			}else {

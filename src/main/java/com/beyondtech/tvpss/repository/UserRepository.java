@@ -20,4 +20,6 @@ public interface UserRepository {
 
     void updatePassword(User user);
     void resetPassword(User user, String newPassword);
+
+    List<User> getUsersPpdByDistrict(String district);
 }

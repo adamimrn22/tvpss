@@ -10,6 +10,8 @@ import com.beyondtech.tvpss.model.School;
 import com.beyondtech.tvpss.model.TvpssVersion;
 import com.beyondtech.tvpss.model.User;
 import com.beyondtech.tvpss.service.SchoolVersionStatusService;
+import com.beyondtech.tvpss.service.mail.TvpssVersionMailService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,6 +29,9 @@ public class SchoolVersionStatusController {
 
 	@Autowired
 	private SchoolVersionStatusService schoolVersionStatusService;
+
+	@Autowired
+	private TvpssVersionMailService tvpssVersionMailService;
 
 	@GetMapping("/SubmitTVPSSVersion")
 	public String getSchoolVersion(Model model) {
@@ -90,14 +95,21 @@ public class SchoolVersionStatusController {
 
             schoolVersionStatusService.submitTvpssVersion(tvpssVersion, logo);
 
+			if (currentUser != null) {
+				tvpssVersionMailService.sendTvpssSubmitted(currentUser.getEmailAddress());
+				tvpssVersionMailService.sendNewTvpssVersionSubmitted(currentUser.getDistrict());
+			}
+
 			redirectAttributes.addFlashAttribute("success", "Data TVPSS Anda Berjaya Dihantar");
 			return "redirect:/SubmitTVPSSVersion";
 
 		} catch (IOException e) {
 			redirectAttributes.addFlashAttribute("error", e.getMessage());
 			return "redirect:/SubmitTVPSSVersion";
-		}
-	}
+		} catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 	@GetMapping("/InformasiTVPSS")
@@ -160,8 +172,12 @@ public class SchoolVersionStatusController {
 	}
 
 	@PostMapping("/InformasiTVPSS/validate")
-	public String updateTvpssStatus(@RequestParam("schoolCode") String schoolCode,@RequestParam("versionStatus") int version, RedirectAttributes redirectAttributes) {
+	public String updateTvpssStatus(@RequestParam("schoolCode") String schoolCode,
+									@RequestParam("versionStatus") int version,
+									@RequestParam("email") String email,
+									RedirectAttributes redirectAttributes) throws MessagingException {
 		schoolVersionStatusService.updateTvpssVersion(schoolCode, version);
+		tvpssVersionMailService.sendUpdatedTvpssVersion(email);
 
 		redirectAttributes.addFlashAttribute("success", "Status Bagi Kod Sekolah " + schoolCode + " berjaya dikemaskini dengan versi " + version);
 		return "redirect:/InformasiTVPSS";

@@ -21,9 +21,6 @@ public class ManageEquipmentController {
 	@Autowired
 	EquipmentManagementService equipmentManagementService;
 
-//	public ManageEquipmentController(EquipmentManagementService equipmentManagementService) {
-//		this.equipmentManagementService = equipmentManagementService;
-//	}
 
 	@GetMapping("")
 	public String viewAllEquipment(Model model) {

@@ -207,4 +207,8 @@ public class UserManagementService {
         userRepository.resetPassword(user, newPassword);
     }
 
+    public List<User> getPpdAdminByDistrict(String district) {
+        return userRepository.getUsersPpdByDistrict(district);
+    }
+
 }

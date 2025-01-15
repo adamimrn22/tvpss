@@ -1,0 +1,31 @@
+<!-- Edit Equipment Modal -->
+<div th:fragment="addCrewModal">
+    <div class="modal fade" id="addCrewModal" tabindex="-1" aria-labelledby="addCrewModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="color: #515B92">Tambah Jawatan Baharu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/CrewRole/add}" method="post">
+                    <input	type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    <div class="modal-body">
+                        <div class="p-3 pt-0">
+                            <div>
+                                <div class="floating-form-group">
+                                    <input type="text" class="floating-input" placeholder=" " id="addCrewRoleName" name="name" required>
+                                    <label class="floating-input-label" for="addCrewRoleName">Nama Jawatan</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Batal</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Tambah Jawatan</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

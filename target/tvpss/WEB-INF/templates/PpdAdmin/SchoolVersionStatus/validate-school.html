@@ -206,6 +206,7 @@
 
 						<form method="POST" th:action="@{/InformasiTVPSS/validate}">
 						<input type="hidden" id="versionStatus" name="versionStatus">
+						<input type="text" name="email" th:value="${schoolData['version'] != null && schoolData['version'].pic != null && schoolData['version'].pic.name != null ? schoolData['version'].pic.name">
 						<input type="hidden" th:value="${schoolData['version'].schoolCode}" name="schoolCode">
 
 							<th:block th:if="${schoolData['version'].tvpssCurrentStatus != null}">

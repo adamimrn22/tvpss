@@ -115,4 +115,14 @@ public class UserRepositoryImpl implements UserRepository {
         user.setPassword(newPassword);  
         session.merge(user);
     }
+
+    @Override
+    public List<User> getUsersPpdByDistrict(String district) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query<User> query = session.createQuery("FROM User u WHERE u.role.id = :roleId AND u.district = :district", User.class);
+        query.setParameter("roleId", 3L);
+        query.setParameter("district", district);
+        return query.getResultList();
+    }
 }

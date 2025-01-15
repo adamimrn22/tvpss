@@ -1,0 +1,162 @@
+  <div class="p-3 pb-0">
+    <div
+            th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
+  </div>
+
+<div th:if="${successMessage}" class="alert alert-success">
+  <span th:text="${successMessage}"></span>
+</div>
+
+<div th:if="${errorMessage}" class="alert alert-danger">
+  <span th:text="${errorMessage}"></span>
+</div>
+
+
+<div class="card m-2 p-3 w-50">
+  <div class="d-flex justify-content-between align-items-center">
+  <h3 style="color: var(--primary)">Bilangan Jawatan</h3>
+  <div class="end-btn">
+    <div>
+      <button class="btn btn-primary" data-bs-toggle="modal"
+              data-bs-target="#addCrewModal" data-id="1"
+              style="display: flex; align-items: center;">
+        <span style="margin-right: 8px;">Tambah Jawatan Baharu</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M5 12l14 0" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-end mb-3">
+    <div>
+      <!-- Set the width here -->
+      <div class="floating-form-group" style="width: 400px">
+        <input id="searchRole" type="text" class="floating-input" placeholder=" ">
+        <label class="floating-input-label">Cari Nama Jawatan...</label>
+      </div>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center mx-4">
+        <label for="entries" class="mx-3">Tunjuk</label>
+        <select id="entries" class="form-select w-auto me-2">
+          <option>5</option>
+          <option selected>10</option>
+          <option>25</option>
+          <option>50</option>
+          <option>100</option>
+        </select>
+        <span th:text="#{schooladmin.viewpermohonan.entri}">Entri</span>
+      </div>
+    </div>
+  </div>
+  <table class="table table-sm">
+    <thead class="th-header">
+    <tr class="text-center">
+      <th>Bil</th>
+      <th class="text-start">Nama Jawatan</th>
+      <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Rows -->
+    <tr class="text-center align-middle" th:each="position, iStat : ${positions}">
+      <td th:text="${iStat.count}"></td>
+      <td class="text-start" th:text="${position.name}">Nikon</td>
+      <td class="table-actions">
+        <button class="btn hover-edit" data-bs-toggle="modal"
+                data-bs-target="#editCrewRoleModal" th:data-id="${position.id}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+            <path d="M16 5l3 3" />
+          </svg>
+        </button>
+
+        <button class="btn hover-delete" data-bs-toggle="modal"
+                data-bs-target="#deleteModal" th:data-id="${position.id}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+               viewBox="0 0 24 24" fill="currentColor"
+               class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+            <path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
+          </svg>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ul class="pagination justify-content-start m-3">
+    <li class="page-item"><a class="page-link" href="#"
+                             aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+    </a></li>
+    <li class="page-item active"><a class="page-link" href="#">1</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#"
+                             aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+    </a></li>
+  </ul>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1"
+     aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel" th:text="#{schooladmin.manageequipment.confirmDeleteTitle}">Adakah anda pasti
+          mahu memadam bagi data barang ini?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p th:text="#{schooladmin.manageequipment.confirmDeleteMessage}">Ini akan hilang selama-lamanya, data tidak dapat dipulihkan.</p>
+      </div>
+      <div class="modal-footer">
+        <form th:action="@{/CrewRole/delete}" method="post">
+          <input	type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+          <input	type="hidden" name="crewRoleToDelete" id="crewRoleToDelete" />
+          <button type="button" class="btn" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.cancel}">Batal</button>
+          <button type="submit" class="btn btn-danger" id="confirmDelete" th:text="#{schooladmin.manageequipment.delete}">Padam</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+        th:replace="~{SchoolAdmin/crewRole/add-role-modal :: addCrewModal}"></div>
+<div
+        th:replace="~{SchoolAdmin/crewRole/edit-role-modal :: editCrewRoleModal}"></div>
+
+
+
+<script th:src="@{/js/SchoolAdmin/crewRoleFilter.js}"></script>
+<script th:src="@{/js/SchoolAdmin/crewRoleManagement.js}"></script>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+    new TableManager();
+    document.querySelectorAll('.hover-delete').forEach(button => {
+      button.addEventListener('click', function () {
+        document.getElementById('crewRoleToDelete').value = this.getAttribute('data-id');
+      });
+    });
+
+  });
+</script>
+
