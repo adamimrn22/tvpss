@@ -13,14 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class TvpssCrewService {
     @Autowired
-    TvpssCrewRepository tvpssCrewRepository;
+    private TvpssCrewRepository tvpssCrewRepository;
 
-    private final StudentService studentService;
+    @Autowired
+    private StudentService studentService;
 
-    public TvpssCrewService(TvpssCrewRepository tvpssCrewRepository, StudentService studentService) {
-        this.tvpssCrewRepository = tvpssCrewRepository;
-        this.studentService = studentService;
-    }
 
     public List<TvpssCrew> getAllApplicationBySchoolAndStatus(String schoolCode, ApplicationStatus status) {
         return tvpssCrewRepository.getAllAplicationBySchool(schoolCode, status);
@@ -38,14 +35,16 @@ public class TvpssCrewService {
         return tvpssCrewRepository.countApplicationBySchool(schoolCode, status);
     }
 
-    public List<Long> getTvpssCrewCountsForPast5Years() {
+    public List<Long> getTvpssCrewCountsForPast5Years(String schoolCode) {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR); // Get the current year
         int startYear = currentYear - 5;  // 5 years ago
         List<Long> counts = new ArrayList<>();
 
+
+
         // Loop through the last 5 years and get the count for each year
         for (int year = startYear; year <= currentYear; year++) {
-            long count = tvpssCrewRepository.countTvpssCrewByYearRangeAndStatus(year, ApplicationStatus.APPROVED);
+            long count = tvpssCrewRepository.countTvpssCrewByYearRangeAndStatus(schoolCode, year, ApplicationStatus.APPROVED);
             counts.add(count);
         }
 
@@ -56,9 +55,11 @@ public class TvpssCrewService {
     public Map<String, Long> countTvpssCrewByGender(String schoolCode) {
         // Fetch all students from the external API for the given school code
         List<Student> students = studentService.getStudentsBySchoolCode(schoolCode);
+        Map<String, Long> genderCounts = new HashMap<>();
 
         if (students.isEmpty()) {
-            throw new IllegalArgumentException("No students found for school code: " + schoolCode);
+
+           return genderCounts;
         }
 
         // Extract identificationNumbers of students
@@ -74,7 +75,6 @@ public class TvpssCrewService {
                 .collect(Collectors.toMap(Student::getIdentificationNumber, Student::getGender));
 
         // Create a map to count tvpssCrew entries by gender
-        Map<String, Long> genderCounts = new HashMap<>();
 
         // Count the occurrences based on gender
         for (TvpssCrew tvpssCrew : tvpssCrews) {

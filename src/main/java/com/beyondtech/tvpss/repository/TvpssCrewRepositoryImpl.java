@@ -90,12 +90,13 @@ public class TvpssCrewRepositoryImpl implements TvpssCrewRepository {
         }
     }
 
-    public Long countTvpssCrewByYearRangeAndStatus(int year, ApplicationStatus status) {
+    public Long countTvpssCrewByYearRangeAndStatus(String schoolCode, int year, ApplicationStatus status) {
         Session session = getCurrentSession();
 
-        Query<Long> query = session.createQuery("SELECT COUNT(t) FROM TvpssCrew t WHERE YEAR(t.dateApplied) = :year AND t.status = :status", Long.class)
+        Query<Long> query = session.createQuery("SELECT COUNT(t) FROM TvpssCrew t WHERE YEAR(t.dateApplied) = :year AND t.status = :status AND schoolCode = :schoolCode", Long.class)
                 .setParameter("year", year)
-                .setParameter("status", status);
+                .setParameter("status", status)
+                .setParameter("schoolCode", schoolCode);
 
         return query.getSingleResult();
     }

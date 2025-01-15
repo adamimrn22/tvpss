@@ -170,7 +170,6 @@ public class SchoolVersionStatusService {
         return map;
     }
 
-
     public void updateTvpssVersion(String schoolCode, int version){
         tvpssVersionRepository.updateTvpssVersion(schoolCode, version, TvpssStatus.SUDAH);
     }
@@ -179,4 +178,15 @@ public class SchoolVersionStatusService {
         return tvpssVersionRepository.getTvpssVersion(schoolCode);
     }
 
+    public Long countTvpssVersion(Long version){
+        return tvpssVersionRepository.countTvpssVersions(version);
+    }
+
+    public Long countTvpssVersionsByDistrictAndVersion(String district, int version) {
+        return tvpssVersionRepository.countTvpssVersionsByDistrictAndVersion(district, version);
+    }
+
+    public Map<String, Long> countTvpssVersionsByVersion(int version) {
+        return tvpssVersionRepository.countTvpssVersionsByVersion(version);
+    }
 }

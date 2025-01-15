@@ -33,13 +33,13 @@ public class DashboardController {
 	@Autowired
 	TvpssCrewService tvpssCrewService;
 
-	public DashboardController(UserManagementService userManagementService, LogService logService, SchoolVersionStatusService schoolVersionStatusService, EquipmentManagementService equipmentManagementService, TvpssCrewService tvpssCrewService) {
-		this.userManagementService = userManagementService;
-		this.logService = logService;
-		this.schoolVersionStatusService = schoolVersionStatusService;
-		this.equipmentManagementService = equipmentManagementService;
-		this.tvpssCrewService = tvpssCrewService;
-	}
+//	public DashboardController(UserManagementService userManagementService, LogService logService, SchoolVersionStatusService schoolVersionStatusService, EquipmentManagementService equipmentManagementService, TvpssCrewService tvpssCrewService) {
+//		this.userManagementService = userManagementService;
+//		this.logService = logService;
+//		this.schoolVersionStatusService = schoolVersionStatusService;
+//		this.equipmentManagementService = equipmentManagementService;
+//		this.tvpssCrewService = tvpssCrewService;
+//	}
 
 	@GetMapping("/")
 	public String showDashboard(Model model) {
@@ -83,6 +83,31 @@ public class DashboardController {
 				List<Map<String, Object>> schoolDataList = schoolVersionStatusService.getAllSchool();
 				model.addAttribute("schoolDataList", schoolDataList);
 
+				Long versionZero = schoolVersionStatusService.countTvpssVersion(0L);
+				Long versionOne = schoolVersionStatusService.countTvpssVersion(1L);
+				Long versionTwo = schoolVersionStatusService.countTvpssVersion(2L);
+				Long versionThree = schoolVersionStatusService.countTvpssVersion(3L);
+				Long versionFour = schoolVersionStatusService.countTvpssVersion(4L);
+
+				Map<String, Long> districtVersion0Counts = schoolVersionStatusService.countTvpssVersionsByVersion(0);
+				Map<String, Long> districtVersion1Counts = schoolVersionStatusService.countTvpssVersionsByVersion(1);
+				Map<String, Long> districtVersion2Counts = schoolVersionStatusService.countTvpssVersionsByVersion(2);
+				Map<String, Long> districtVersion3Counts = schoolVersionStatusService.countTvpssVersionsByVersion(3);
+				Map<String, Long> districtVersion4Counts = schoolVersionStatusService.countTvpssVersionsByVersion(4);
+
+				model.addAttribute("districtVersion0Counts", districtVersion0Counts);
+				model.addAttribute("districtVersion1Counts", districtVersion1Counts);
+				model.addAttribute("districtVersion2Counts", districtVersion2Counts);
+				model.addAttribute("districtVersion3Counts", districtVersion3Counts);
+				model.addAttribute("districtVersion4Counts", districtVersion4Counts);
+
+				model.addAttribute("versionZero", versionZero != null ? versionZero : 0);
+				model.addAttribute("versionOne", versionOne != null ? versionOne : 0);
+				model.addAttribute("versionTwo", versionTwo != null ? versionTwo : 0);
+				model.addAttribute("versionThree", versionThree != null ? versionThree : 0);
+				model.addAttribute("versionFour", versionFour != null ? versionFour : 0);
+				model.addAttribute("versionFour", versionFour != null ? versionFour : 0);
+
 				break;
 			case "ROLE_ppdadmin":
 
@@ -107,7 +132,7 @@ public class DashboardController {
 				Map<String, Long> genderCounts = tvpssCrewService.countTvpssCrewByGender(currentUser.getSchool().getCode());
 				model.addAttribute("genderCounts", genderCounts);
 
-				List<Long> approvedCrewCounts = tvpssCrewService.getTvpssCrewCountsForPast5Years();
+				List<Long> approvedCrewCounts = tvpssCrewService.getTvpssCrewCountsForPast5Years(currentUser.getSchool().getCode());
 
 				System.out.println("approvedCrewCounts: " + approvedCrewCounts);
 

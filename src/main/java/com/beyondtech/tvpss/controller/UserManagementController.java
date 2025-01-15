@@ -28,13 +28,10 @@ public class UserManagementController {
 
 	@Autowired
 	private MessageSource messageSource;
+	
 	@Autowired
 	private UserManagementService userManagementService;
 
-	public UserManagementController(UserManagementService userManagementService, MessageSource messageSource) {
-		this.userManagementService = userManagementService;
-		this.messageSource = messageSource;
-	}
 
 	@GetMapping("")
 	public String showAllUser(Model model,

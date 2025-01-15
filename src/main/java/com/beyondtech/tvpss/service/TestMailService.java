@@ -11,10 +11,6 @@ public class TestMailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public TestMailService(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
-
     @Async
     public void sendMail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();

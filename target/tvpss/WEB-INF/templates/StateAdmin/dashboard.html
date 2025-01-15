@@ -46,6 +46,7 @@
 				<div class="floating-form-group">
 					<select class="floating-select" value="1">
 						<option value="" selected disabled hidden></option>
+						<option value="0">Versi 0</option>
 						<option value="1">Versi 1</option>
 						<option value="2">Versi 2</option>
 						<option value="3">Versi 3</option>
@@ -197,6 +198,49 @@
 	</ul>
 </div>
 
+<script th:inline="javascript">
+	// Fetch data passed from Spring (via Thymeleaf)
+	var versionZero = [[${versionZero}]];
+	var versionOne = [[${versionOne}]];
+	var versionTwo = [[${versionTwo}]];
+	var versionThree = [[${versionThree}]];
+	var versionFour = [[${versionFour}]];
+
+	/*<![CDATA[*/
+	var version0Data = [[${districtVersion0Counts}]]; // {Pontian=0, Skudai=1, ...}
+	var version1Data = [[${districtVersion1Counts}]]; // {Pontian=0, Skudai=1, ...}
+	var version2Data = [[${districtVersion2Counts}]]; // {Pontian=0, Skudai=1, ...}
+	var version3Data = [[${districtVersion3Counts}]]; // {Pontian=0, Skudai=1, ...}
+	var version4Data = [[${districtVersion4Counts}]]; // {Pontian=0, Skudai=1, ...}
+	/*]]>*/
+
+	document.querySelector('select').addEventListener('change', function (e) {
+		var selectedVersion = parseInt(e.target.value); // Get selected version (1, 2, 3, 4)
+
+		let newData;
+		switch (selectedVersion) {
+			case 1:
+				newData = Object.values(version1Data);
+				break;
+			case 2:
+				newData = Object.values(version2Data);
+				break;
+			case 3:
+				newData = Object.values(version3Data);
+				break;
+			case 4:
+				newData = Object.values(version4Data);
+				break;
+			default:
+				newData = Object.values(version0Data); // Default to version 0 if no selection
+				break;
+		}
+
+		// Update the chart data and re-render
+		donutChart.data.datasets[0].data = newData;
+		donutChart.update();
+	});
+</script>
 <!-- Include chart scripts -->
 <th:block th:include="fragments/chartscripts :: chartscripts"></th:block>
 <script th:src="@{/js/StateAdmin/viewSchoolTableFilter.js}"></script>

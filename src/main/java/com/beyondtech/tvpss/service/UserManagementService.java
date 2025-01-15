@@ -43,11 +43,8 @@ public class UserManagementService {
     @Autowired
     private RestTemplate restTemplate;
 
-    private final UserManagementMailService userManagementMailService;
-
-    public UserManagementService(UserManagementMailService userManagementMailService) {
-        this.userManagementMailService = userManagementMailService;
-    }
+    @Autowired
+    private UserManagementMailService userManagementMailService;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();

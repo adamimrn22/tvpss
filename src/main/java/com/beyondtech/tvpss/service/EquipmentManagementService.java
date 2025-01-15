@@ -14,10 +14,6 @@ public class EquipmentManagementService {
     @Autowired
     private EquipmentRepository equipmentRepository;
 
-    public EquipmentManagementService(EquipmentRepository equipmentRepository) {
-        this.equipmentRepository = equipmentRepository;
-    }
-
     public List<Equipment> getAllEquipmentsBySchoolCode(String schoolCode) {
         return equipmentRepository.getAllEquipmentBySchoolCode(schoolCode);
     }

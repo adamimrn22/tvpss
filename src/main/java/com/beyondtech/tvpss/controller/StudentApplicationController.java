@@ -19,10 +19,6 @@ public class StudentApplicationController {
 	@Autowired
 	TvpssCrewService tvpssCrewService;
 
-	public StudentApplicationController(TvpssCrewService tvpssCrewService) {
-		this.tvpssCrewService = tvpssCrewService;
-	}
-
 //	pending
 	@GetMapping("")
 	public String viewStudentApplication(Model model) {

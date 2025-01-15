@@ -19,5 +19,5 @@ public interface TvpssCrewRepository {
 
     List<TvpssCrew> findApprovedByIdentificationNumbers(List<String> identificationNumbers);
 
-    Long countTvpssCrewByYearRangeAndStatus(int year, ApplicationStatus status);
+    Long countTvpssCrewByYearRangeAndStatus(String schoolCode, int year, ApplicationStatus status);
 }
