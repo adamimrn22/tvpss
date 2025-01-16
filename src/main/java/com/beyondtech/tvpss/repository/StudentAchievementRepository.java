@@ -11,7 +11,9 @@ public interface StudentAchievementRepository {
     List<StudentAchievement> findAll();
     List<StudentAchievement> findAllBySchoolId(String schoolCode);
     List<Achievement> findAchievementBySchoolCode(String schoolCode);
+    List<Achievement> findAllAchievement();
     Achievement achievementById(Long id);
+    List<Achievement> achievementBySchoolCode(String schoolCode);
     List<StudentAchievement> findStudentAchievementsByAchievementId(Long id);
     void saveAchievement(Achievement achievement);
     void save(StudentAchievement studentAchievement);

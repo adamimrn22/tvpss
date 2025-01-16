@@ -1,18 +1,23 @@
 package com.beyondtech.tvpss.service;
 
 import com.beyondtech.tvpss.model.Achievement;
+import com.beyondtech.tvpss.model.School;
 import com.beyondtech.tvpss.model.StudentAchievement;
+import com.beyondtech.tvpss.model.TvpssVersion;
 import com.beyondtech.tvpss.repository.StudentAchievementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class StudentAchievementService {
 
     private final StudentAchievementRepository studentAchievementRepository;
+
+    @Autowired
+    private SchoolService schoolService;
+
 
     @Autowired
     public StudentAchievementService(StudentAchievementRepository studentAchievementRepository) {
@@ -54,5 +59,34 @@ public class StudentAchievementService {
     public void delete(Achievement achievement) {
         studentAchievementRepository.delete(achievement);
     }
+
+
+    public List<Map<String, Object>> getAllSchool() {
+        // Get all schools from the external API
+        List<School> schools = schoolService.getAllSchools();
+        System.out.println("All schools: " + schools);
+
+        List<Map<String, Object>> schoolDataList = new ArrayList<>();
+
+        // Loop through all schools
+        for (School school : schools) {
+            // Get all achievements for this school
+            List<Achievement> achievements = studentAchievementRepository.achievementBySchoolCode(school.getCode());
+
+            // Check if the school has any associated achievements
+            if (achievements != null && !achievements.isEmpty()) {
+                for (Achievement achievement : achievements) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("school", school);
+                    map.put("achievement", achievement);
+                    schoolDataList.add(map);
+                }
+            }
+        }
+
+        return schoolDataList;
+    }
+
+
 }
 

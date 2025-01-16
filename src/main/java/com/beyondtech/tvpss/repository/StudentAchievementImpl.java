@@ -52,11 +52,27 @@ public class StudentAchievementImpl implements StudentAchievementRepository {
         return query.getResultList();
     }
 
+    @Override
+    public List<Achievement> findAllAchievement() {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Achievement> query = session.createQuery("FROM Achievement ", Achievement.class);
+        return query.getResultList();
+    }
+
 
     @Override
     public Achievement achievementById(Long id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(Achievement.class, id);
+    }
+
+    @Override
+    public List<Achievement> achievementBySchoolCode(String schoolCode) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Achievement> query = session.createQuery(
+                "FROM Achievement WHERE schoolCode = :schoolCode", Achievement.class);
+        query.setParameter("schoolCode", schoolCode);
+        return query.list();
     }
 
     @Override

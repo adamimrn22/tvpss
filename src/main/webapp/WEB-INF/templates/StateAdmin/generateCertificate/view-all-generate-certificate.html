@@ -1,81 +1,76 @@
-
 <div class="p-3 pb-0">
-	<div
-		th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
+	<div th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
 </div>
 
 <div class="card m-2 p-3">
 
 	<h3 class="p-3 ps-0" style="color: var(--primary)" th:text="#{stateadmin.generatecert.title}">
-		Pencapaian Pelajar</h3>
+		Pencapaian Pelajar
+	</h3>
 
 	<table class="table table-sm">
 		<thead class="th-header">
-			<tr class="text-center">
-				<th th:text="#{stateadmin.generatecert.table.header.no}">Bil</th>
-				<th class="text-start" th:text="#{stateadmin.generatecert.table.header.school_name}">
-					Nama Sekolah</th>
-				<th class="text-start" th:text="#{stateadmin.generatecert.table.header.school_code}">
-					Kod Sekolah</th>
-				<th class="text-start" th:text="#{stateadmin.generatecert.table.header.principal_name}">
-					Nama Pengetua</th>
-				<th th:text="#{stateadmin.generatecert.table.header.status}">Status</th>
-				<th th:text="#{stateadmin.generatecert.table.header.action}">Aksi</th>
-			</tr>
+		<tr class="text-center">
+			<th th:text="#{stateadmin.generatecert.table.header.no}">Bil</th>
+			<th class="text-start" th:text="#{stateadmin.generatecert.table.header.school_name}">Nama Sekolah</th>
+			<th class="text-start" th:text="#{stateadmin.generatecert.table.header.school_code}">Kod Sekolah</th>
+			<th class="text-start" th:text="#{stateadmin.generatecert.table.header.principal_name}">Nama Pengetua</th>
+			<th th:text="#{stateadmin.generatecert.table.header.status}">Status</th>
+			<th th:text="#{stateadmin.generatecert.table.header.action}">Aksi</th>
+		</tr>
 		</thead>
 		<tbody>
-			<tr class="align-middle">
-				<td class="text-center">1</td>
-				<td>SJK (C) Kuo Kuang 2</td>
-				<td>JEA9012</td>
-				<td>Mr. Tan Ah Kow</td>
-				<td class="text-center">
-					<span class="badge rounded-pill bg-warning" th:text="#{stateadmin.generatecert.badge.pending}">
-						Pending</span>
-				</td>
-				<td class="text-center">
-					<a class="btn btn-primary btn-sm" th:href="@{/GenerateCertificate/certGen}">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-							fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-copy-check">
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path
-								d="M18.333 6a3.667 3.667 0 0 1 3.667 3.667v8.666a3.667 3.667 0 0 1 -3.667 3.667h-8.666a3.667 3.667 0 0 1 -3.667 -3.667v-8.666a3.667 3.667 0 0 1 3.667 -3.667zm-3.333 -4c1.094 0 1.828 .533 2.374 1.514a1 1 0 1 1 -1.748 .972c-.221 -.398 -.342 -.486 -.626 -.486h-10c-.548 0 -1 .452 -1 1v9.998c0 .32 .154 .618 .407 .805l.1 .065a1 1 0 1 1 -.99 1.738a3 3 0 0 1 -1.517 -2.606v-10c0 -1.652 1.348 -3 3 -3zm1.293 9.293l-3.293 3.292l-1.293 -1.292a1 1 0 0 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 -1.414 -1.414" />
-						</svg>
-						<span class="mx-1" th:text="#{stateadmin.generatecert.button.generate}">Jana</span>
-					</a>
-				</td>
-			</tr>
+		<!-- Loop through the schools and achievements -->
+		<tr th:each="schoolData, iterStat : ${schoolData}">
+			<td class="text-center" th:text="${iterStat.index + 1}">1</td>
 
-			<tr class="align-middle">
-				<td class="text-center">2</td>
-				<td>SJK Skudai</td>
-				<td>JEA3456</td>
-				<td>Cik Noraini binti Mohd Nor</td>
-				<td class="text-center">
-					<span class="badge rounded-pill bg-success" th:text="#{stateadmin.generatecert.badge.generated}">
-						Dijana</span>
-				</td>
-				<td class="text-center">
-					<a class="btn btn-success btn-sm" th:href="@{/GenerateCertificate/viewGeneratedCert}">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
-							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-							<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-							<path
-								d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
-						</svg>
-						<span class="mx-1" th:text="#{stateadmin.generatecert.button.view}">Lihat</span>
-					</a>
-				</td>
-			</tr>
+			<!-- Accessing 'school' data from the map -->
+			<td th:text="${schoolData['school'].name}">Sekolah Menengah Skudai</td>
+			<td th:text="${schoolData['school'].code}">SMJ001</td>
+			<td th:text="${schoolData['school'].principalName}">Mr. John Doe</td>
+
+			<!-- Accessing 'achievement' data from the map -->
+			<td class="text-center">
+				<span class="badge rounded-pill"
+					  th:class="${schoolData['achievement'] != null && schoolData['achievement'].status.equals('JANA') ? 'bg-success' : 'bg-warning'}"
+					  th:text="${schoolData['achievement'] != null && schoolData['achievement'].status.equals('JANA') ? 'JANA' : 'PENDING'}">
+				</span>
+			</td>
+
+
+			<td class="text-center">
+				<!-- Conditional links based on achievement status -->
+				<a th:if="${schoolData['achievement'] == null || schoolData['achievement'].status.equals('PENDING')}"
+				   class="btn btn-primary btn-sm"
+				   th:href="@{/certGen/{id}/{schoolCode}(id=${schoolData['achievement'].id}, schoolCode=${schoolData['school'].code})}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-copy-check">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+						<path d="M18.333 6a3.667 3.667 0 0 1 3.667 3.667v8.666a3.667 3.667 0 0 1 -3.667 3.667h-8.666a3.667 3.667 0 0 1 -3.667 -3.667v-8.666a3.667 3.667 0 0 1 3.667 -3.667zm-3.333 -4c1.094 0 1.828 .533 2.374 1.514a1 1 0 1 1 -1.748 .972c-.221 -.398 -.342 -.486 -.626 -.486h-10c-.548 0 -1 .452 -1 1v9.998c0 .32 .154 .618 .407 .805l.1 .065a1 1 0 1 1 -.99 1.738a3 3 0 0 1 -1.517 -2.606v-10c0 -1.652 1.348 -3 3 -3zm1.293 9.293l-3.293 3.292l-1.293 -1.292a1 1 0 0 0 -1.414 1.414l2 2a1 1 0 0 0 1.414 0l4 -4a1 1 0 0 0 -1.414 -1.414"/>
+					</svg>
+					<span class="mx-1" th:text="#{stateadmin.generatecert.button.generate}">Jana</span>
+				</a>
+
+				<a th:if="${schoolData['achievement'] != null && schoolData['achievement'].status.equals('JANA')}"
+				   class="btn btn-success btn-sm"
+				   th:href="@{/GenerateCertificate/viewGeneratedCert/{id}(id=${schoolData['achievement'].id})}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+						<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+						<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+						<path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/>
+					</svg>
+					<span class="mx-1" th:text="#{stateadmin.generatecert.button.view}">Lihat</span>
+				</a>
+			</td>
+
+
+		</tr>
 		</tbody>
 	</table>
 
 	<ul class="pagination justify-content-start m-3">
 		<li class="page-item">
 			<a class="page-link" href="#" aria-label="Previous">
-				<span aria-hidden="true" >&laquo;</span>
+				<span aria-hidden="true">&laquo;</span>
 			</a>
 		</li>
 		<li class="page-item active"><a class="page-link" href="#">1</a></li>
