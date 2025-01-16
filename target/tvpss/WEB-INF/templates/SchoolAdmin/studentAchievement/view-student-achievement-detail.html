@@ -1,39 +1,35 @@
 <div class="p-3 pb-0">
-	<div
-		th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
+	<div th:replace="~{fragments/breadcrumbs :: breadcrumb(title1=${breadcrumbTitle1}, title2=${breadcrumbTitle2})}"></div>
 </div>
 
 <div class="p-3">
 	<!-- Main Form -->
 	<div class="card">
 		<div class="card-body">
-		<h5 class="mb-0">Student List</h5>
+			<h5 class="mb-0">Student List</h5>
 			<table class="table" id="selectedStudentsTable">
 				<thead>
-					<tr>
-						<th style="width: 10%">ID</th>
-						<th style="width: 20%">Name</th>
-						<th style="width: 15%">Date</th>
-						<th style="width: 20%">Jenis Pencapaian</th>
-						<th style="width: 25%">Maklumat Pencapaian</th>
-					</tr>
+				<tr>
+					<th style="width: 10%">ID</th>
+					<th style="width: 20%">Name</th>
+					<th style="width: 15%">Date</th>
+					<th style="width: 20%">Jenis Pencapaian</th>
+					<th style="width: 25%">Maklumat Pencapaian</th>
+				</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="width: 10%">012100</td>
-						<td style="width: 20%">ABU</td>
-						<td style="width: 15%">22/2/2024</td>
-						<td style="width: 20%">Sukan</td>
-						<td style="width: 25%">Menang</td>
-					</tr>
+				<!-- Thymeleaf Loop to populate the table rows -->
+				<tr th:each="studentAchievement : ${studentAchievements}">
+					<td th:text="${studentAchievement.studentIdentificationNumber}"></td>
+					<td th:text="${studentAchievement.studentName}"></td>
+					<td th:text="${#dates.format(studentAchievement.studentDateAchievement, 'dd/MM/yyyy')}"></td>
+					<td th:text="${studentAchievement.studentTypeAchievement}"></td>
+					<td th:text="${studentAchievement.achievementInformation}"></td>
+				</tr>
 				</tbody>
 			</table>
-
-
 		</div>
 	</div>
-
-
 </div>
 
 <script th:src="@{/js/SchoolAdmin/addStudentAchievement.js}"></script>

@@ -37,38 +37,36 @@
 		</thead>
 		<tbody>
 			<!-- Rows -->
-			<tr class="align-middle">
-
-				<td class="text-center">1</td>
-				<td>AE2121</td>
-				<td>2 Januari 2024</td>
-				<td class="text-center"><span
-					class="badge rounded-pill bg-warning">Pending</span></td>
-				<td class="table-actions"><a class="btn btn-primary btn-sm"
-					th:href="@{/StudentAchievement/viewStudentAchievementDetail}"> <svg
-							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+			<tr class="text-center align-middle" th:each="achievement, iStat : ${achievements}">
+				<td class="text-center" th:text="${iStat.count}" ></td>
+				<td class="text-start" th:text="${achievement.id}" >AE2121</td> <!-- Corrected here -->
+				<td class="text-start" th:text="${achievement.dateGenerated}" >2 Januari 2024</td>
+				<td class="text-center" th:text="${achievement.status}" ><span class="badge rounded-pill bg-warning">Pending</span></td>
+				<td class="table-actions">
+					<a class="btn btn-primary btn-sm" th:href="@{/StudentAchievement/viewStudentAchievementDetail/{id}(id=${achievement.id})}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
 							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 							<path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
-							<path
-								d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg><span
-						class="mx-1">Lihat Permohonan</span>
-				</a>
+							<path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+						</svg>
+						<span class="mx-1">Lihat Permohonan</span>
+					</a>
 
-					<button class="btn hover-delete" data-bs-toggle="modal"
-						data-bs-target="#deleteModal" data-id="1">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="currentColor"
-							class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
-								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-								<path
-								d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
-								<path
-								d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" /></svg>
-					</button></td>
+					<button class="btn hover-delete"
+							data-bs-toggle="modal"
+							data-bs-target="#deleteModal"
+							th:data-id="${achievement.id}"
+							th:if="${achievement.status.equals('PENDING')}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-trash">
+							<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+							<path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" />
+							<path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" />
+						</svg>
+					</button>
+
+				</td>
 			</tr>
+
 
 
 
@@ -88,17 +86,42 @@
 	</ul>
 </div>
 
-<div class="position-fixed top-0 end-0 p-3" style="z-index: 9911">
-	<div id="successToast"
-		class="toast align-items-center text-bg-success border-0" role="alert"
-		aria-live="assertive" aria-atomic="true">
-		<div class="d-flex">
-			<div class="toast-body">Data berjaya dipadam.</div>
-			<button type="button" class="btn-close btn-close-white me-2 m-auto"
-				data-bs-dismiss="toast" aria-label="Close"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="deleteModalLabel" th:text="#{schooladmin.manageequipment.confirmDeleteTitle}">Adakah anda pasti mahu memadam bagi data barang ini?</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p th:text="#{schooladmin.manageequipment.confirmDeleteMessage}">Ini akan hilang selama-lamanya, data tidak dapat dipulihkan.</p>
+			</div>
+			<div class="modal-footer">
+				<form th:action="@{/StudentAchievement/delete}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<input type="hidden" name="achievementIDToDelete" id="achievementIDToDelete" />
+					<button type="button" class="btn" data-bs-dismiss="modal" th:text="#{schooladmin.manageequipment.cancel}">Batal</button>
+					<button type="submit" class="btn btn-danger" id="confirmDelete" th:text="#{schooladmin.manageequipment.delete}">Padam</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
 
+<script>
+	// Event listener to open the modal and set the equipment ID to delete
+	document.addEventListener('DOMContentLoaded', function () {
+		const deleteButtons = document.querySelectorAll('.hover-delete');
+		deleteButtons.forEach(button => {
+			button.addEventListener('click', function () {
+				const equipmentId = this.getAttribute('data-id');
+				const modalInput = document.getElementById('achievementIDToDelete');
+				modalInput.value = equipmentId;
+			});
+		});
+	});
+</script>
 
 

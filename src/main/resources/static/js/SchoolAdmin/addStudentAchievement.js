@@ -20,6 +20,50 @@ function initializeDateInput() {
 function initializeEventListeners() {
 	document.getElementById('searchInput').addEventListener('input', debounce(handleSearch, 300));
 	document.getElementById('modalDate').addEventListener('change', handleDateChange);
+
+	// Add event listener for the form submit
+	document.getElementById('studentForm').addEventListener('submit', function(event) {
+		// Prevent the default form submission
+		event.preventDefault();
+
+		// Initialize the achievements array
+		let achievements = [];
+
+		// Collect all the rows from the selected students table
+		const rows = document.querySelectorAll('#selectedStudentsTable tbody tr');
+
+		// Loop through each row and collect data for each student
+		rows.forEach((row, index) => {
+			const studentAchievement = {
+				studentIdentificationNumber: row.querySelector(`input[name="achievements[${index}].studentIdentificationNumber"]`).value,
+				studentName: row.querySelector(`input[name="achievements[${index}].studentName"]`).value,
+				studentDateAchievement: row.querySelector(`input[name="achievements[${index}].studentDateAchievement"]`).value,
+				studentTypeAchievement: row.querySelector(`input[name="achievements[${index}].studentTypeAchievement"]`).value,
+				achievementInformation: row.querySelector(`input[name="achievements[${index}].achievementInformation"]`).value
+			};
+
+			// Add the student achievement object to the achievements array
+			achievements.push(studentAchievement);
+		});
+
+		// Log the structured data for debugging
+		console.log("Reformatted Achievements Data:", achievements);
+
+		// Create a hidden input to hold the formatted data as a JSON string
+		const hiddenInput = document.createElement('input');
+		hiddenInput.type = 'hidden';
+		hiddenInput.name = 'achievementsStudent'; // The name of the parameter expected on the backend
+		hiddenInput.value = JSON.stringify(achievements); // Store the array as a JSON string
+
+		// Append the hidden input to the form
+		this.appendChild(hiddenInput);
+
+		// Now submit the form traditionally
+		this.submit();
+	});
+
+
+
 }
 
 function debounce(func, wait) {
@@ -40,6 +84,7 @@ function fetchStudents() {
 		.then(data => {
 			if (data.success) {
 				students = data.data;
+				console.log(students);
 				updateModalTable(students);
 			} else {
 				alert(data.message);
@@ -54,11 +99,11 @@ function fetchStudents() {
 function handleSearch(event) {
 	const searchTerm = event.target.value.toLowerCase();
 	const filteredStudents = students.filter(student =>
-		student.id.toLowerCase().includes(searchTerm) ||
+		student.identificationNumber.toLowerCase().includes(searchTerm) ||
 		student.name.toLowerCase().includes(searchTerm)
 	);
 	currentModalPage = 1; // Reset to first page when searching
-	updateModalTable(filteredStudents, searchTerm); // Pass searchTerm to updateModalTable
+	updateModalTable(filteredStudents);
 }
 
 function updateModalTable(studentsToShow) {
@@ -77,15 +122,15 @@ function updateModalTable(studentsToShow) {
         `;
 	} else {
 		paginatedStudents.forEach(student => {
-			const isSelected = selectedStudents.some(s => s.id === student.id);
+			const isSelected = selectedStudents.some(s => s.identificationNumber === student.identificationNumber);
 			const row = document.createElement('tr');
 			row.innerHTML = `
-                <td>${student.id}</td>
+                <td>${student.identificationNumber}</td>
                 <td>${student.name}</td>
                 <td>
                     <button type="button" 
                             class="btn btn-sm ${isSelected ? 'btn-danger' : 'btn-primary'}"
-                            onclick="handleStudentAction('${student.id}', '${student.name}')">
+                            onclick="handleStudentAction('${student.identificationNumber}', '${student.name}')">
                         ${isSelected ? 'Remove' : 'Add'}
                     </button>
                 </td>
@@ -101,7 +146,7 @@ function updateModalTable(studentsToShow) {
 
 function updateMainTable() {
 	const tbody = document.querySelector('#selectedStudentsTable tbody');
-	tbody.innerHTML = '';
+	tbody.innerHTML = '';  // Clear any existing rows
 
 	const startIndex = (currentMainPage - 1) * itemsPerPage;
 	const endIndex = Math.min(startIndex + itemsPerPage, selectedStudents.length);
@@ -116,34 +161,38 @@ function updateMainTable() {
 	} else {
 		paginatedStudents.forEach((student, index) => {
 			const row = document.createElement('tr');
-			const absoluteIndex = startIndex + index;
+
+			// Dynamically generate row content for each student
 			row.innerHTML = `
                 <td>
-                    <input type="hidden" name="achievements[${absoluteIndex}].studentId" value="${student.id}">
-                    ${student.id}
+                    <input type="hidden" name="achievements[${startIndex + index}].studentIdentificationNumber" value="${student.identificationNumber}">
+                    ${student.identificationNumber}
                 </td>
-                <td>${student.name}</td>
+                <td>
+                    ${student.name}
+                    <input type="hidden" name="achievements[${startIndex + index}].studentName" value="${student.name}">
+                </td>
                 <td>
                     <input type="date" class="form-control" 
-                           name="achievements[${absoluteIndex}].date" 
+                           name="achievements[${startIndex + index}].studentDateAchievement" 
                            value="${student.date}" required
-                           onchange="updateStudentDate('${student.id}', this.value)">
+                           onchange="updateStudentDate('${student.identificationNumber}', this.value)">
                 </td>
                 <td>
                     <input type="text" class="form-control" 
-                           name="achievements[${absoluteIndex}].jenisPencapaian" 
+                           name="achievements[${startIndex + index}].studentTypeAchievement" 
                            value="${student.jenisPencapaian}" required
-                           onchange="updateStudentField('${student.id}', 'jenisPencapaian', this.value)">
+                           onchange="updateStudentField('${student.identificationNumber}', 'jenisPencapaian', this.value)">
                 </td>
                 <td>
                     <input type="text" class="form-control" 
-                           name="achievements[${absoluteIndex}].maklumatPencapaian" 
+                           name="achievements[${startIndex + index}].achievementInformation" 
                            value="${student.maklumatPencapaian}" required
-                           onchange="updateStudentField('${student.id}', 'maklumatPencapaian', this.value)">
+                           onchange="updateStudentField('${student.identificationNumber}', 'maklumatPencapaian', this.value)">
                 </td>
                 <td>
                     <button type="button" class="btn btn-danger btn-sm" 
-                            onclick="removeStudent('${student.id}')">
+                            onclick="removeStudent('${student.identificationNumber}')">
                         Remove
                     </button>
                 </td>
@@ -156,20 +205,22 @@ function updateMainTable() {
 	updatePagination('main', selectedStudents.length);
 }
 
-function handleStudentAction(studentId, studentName) {
-	const selectedIndex = selectedStudents.findIndex(s => s.id === studentId);
+
+
+function handleStudentAction(studentIdentificationNumber, studentName) {
+	const selectedIndex = selectedStudents.findIndex(s => s.identificationNumber === studentIdentificationNumber);
 	const date = document.getElementById('modalDate').value;
 
-	if (selectedIndex === -1 && studentName) {
+	if (selectedIndex === -1) {
 		// Add student
 		selectedStudents.push({
-			id: studentId,
+			identificationNumber: studentIdentificationNumber,
 			name: studentName,
 			date: date,
 			jenisPencapaian: '',
 			maklumatPencapaian: ''
 		});
-	} else if (selectedIndex !== -1) {
+	} else {
 		// Remove student
 		selectedStudents.splice(selectedIndex, 1);
 	}
@@ -178,9 +229,8 @@ function handleStudentAction(studentId, studentName) {
 	updateModalTable(students); // This will refresh the modal table with updated buttons
 }
 
-
 function removeStudent(studentId) {
-	const index = selectedStudents.findIndex(s => s.id === studentId);
+	const index = selectedStudents.findIndex(s => s.identificationNumber === studentId);
 	if (index !== -1) {
 		selectedStudents.splice(index, 1);
 		updateMainTable();
@@ -189,66 +239,73 @@ function removeStudent(studentId) {
 }
 
 function updateStudentDate(studentId, newDate) {
-	const student = selectedStudents.find(s => s.id === studentId);
+	// Find the student in the selectedStudents array
+	const student = selectedStudents.find(student => student.identificationNumber === studentId);
+
+	// Update the student date in the array
 	if (student) {
 		student.date = newDate;
 	}
-}
 
-function updateStudentField(studentId, field, value) {
-	const student = selectedStudents.find(s => s.id === studentId);
-	if (student) {
-		student[field] = value;
+	// Manually update the input field value if needed (but it should already be done automatically)
+	const inputField = document.querySelector(`input[name="achievements[${selectedStudents.indexOf(student)}].studentDateAchievement"]`);
+	if (inputField) {
+		inputField.value = newDate;
 	}
 }
+
+function updateStudentField(studentId, field, newValue) {
+	// Find the student object in the JavaScript model
+	const student = selectedStudents.find(student => student.identificationNumber === studentId);
+
+	if (student) {
+		// Update the student data in the JavaScript model
+		student[field] = newValue;
+
+		// Find the correct input element dynamically based on the field name
+		const inputElement = document.querySelector(`input[name="achievements[${selectedStudents.indexOf(student)}].${field}"]`);
+
+		if (inputElement) {
+			// Update the input field's value to reflect the change
+			inputElement.value = newValue;
+		}
+	}
+}
+
 
 function handleDateChange(event) {
 	const newDate = event.target.value;
 	// Only update date for newly added students
 	students.forEach(student => {
-		if (!selectedStudents.some(s => s.id === student.id)) {
+		if (!selectedStudents.some(s => s.identificationNumber === student.identificationNumber)) {
 			student.date = newDate;
 		}
 	});
 }
 
-// function handleFormSubmit(event) {
-// 	event.preventDefault();
-//
-// 	if (selectedStudents.length === 0) {
-// 		alert('Please select at least one student');
-// 		return;
-// 	}
-//
-// 	// Validate all required fields
-// 	const form = event.target;
-// 	if (!form.checkValidity()) {
-// 		form.reportValidity();
-// 		return;
-// 	}
-//
-// 	const formData = new FormData(form);
-//
-// 	fetch(form.action, {
-// 		method: 'POST',
-// 		body: formData
-// 	})
-// 		.then(response => response.json())
-// 		.then(data => {
-// 			if (data.success) {
-// 				alert('Achievements saved successfully');
-// 				window.location.href = `${contextPath}student/achievement/list`;
-// 			} else {
-// 				alert(data.message);
-// 			}
-// 		})
-// 		.catch(error => {
-// 			console.error('Error submitting form:', error);
-// 			alert('Failed to save achievements');
-// 		});
-// }
+// Update the data before the form submission
+function updateDataBeforeSubmit() {
+	// Loop through all the rows in the table and update the model
+	const rows = document.querySelectorAll('#selectedStudentsTable tbody tr');
 
-// Pagination functions
+	rows.forEach((row, index) => {
+		const studentId = row.querySelector('input[name^="achievements"]')?.value; // Get the student ID
+
+		// Update the model based on the input values in the row
+		const student = selectedStudents.find(student => student.identificationNumber === studentId);
+
+		if (student) {
+			student.studentDateAchievement = row.querySelector(`input[name="achievements[${index}].studentDateAchievement"]`).value;
+			student.studentTypeAchievement = row.querySelector(`input[name="achievements[${index}].studentTypeAchievement"]`).value;
+			student.achievementInformation = row.querySelector(`input[name="achievements[${index}].achievementInformation"]`).value;
+		}
+	});
+
+	// Optionally, log the updated model for debugging purposes
+	console.log("Updated student data:", selectedStudents);
+}
+
+// Pagination functions (same as your original code)
 function updatePaginationInfo(type, start, end, total) {
 	document.getElementById(`${type}StartIndex`).textContent = total === 0 ? 0 : start;
 	document.getElementById(`${type}EndIndex`).textContent = end;
@@ -262,7 +319,7 @@ function updatePagination(type, studentsToShow, startIndex, endIndex) {
 	const ul = document.getElementById(`${type}Pagination`);
 	ul.innerHTML = '';
 
-	if (totalPages <= 1) return; // Don't show pagination if only one page
+	if (totalPages <= 1) return;
 
 	// Previous button
 	ul.appendChild(createPaginationItem('Previous', currentPage > 1, () => {

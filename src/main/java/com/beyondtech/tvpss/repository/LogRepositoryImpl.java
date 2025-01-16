@@ -15,7 +15,7 @@ import java.util.List;
 public class LogRepositoryImpl implements LogRepository {
 
     @Autowired
-    private SessionFactory sessionFactory;  // Inject the Hibernate SessionFactory
+    private SessionFactory sessionFactory;
 
     @Override
     public void save(Log log) {
